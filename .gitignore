@@ -4,7 +4,6 @@ home-assistant.log
 home-assistant_v2.db*
 pyozw.sqlite
 options.xml
-secrets.yaml
 __pycache__
 /home-assistant.git
 .uuid
