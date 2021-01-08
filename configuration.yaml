@@ -1,0 +1,19 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+telegram_bot:
+  - platform: polling
+    api_key: 1534859305:AAFk4oT8jIokebkOqgXZM-84SI5CrNQVxDw
+    allowed_chat_ids:
+      - 400839748
+
+notify:
+  - name: telegram_notifier
+    platform: telegram
+    chat_id: 400839748
+
+sensor: !include_dir_merge_list sensors
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

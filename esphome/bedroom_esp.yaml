@@ -1,0 +1,23 @@
+esphome:
+  name: bedroom_esp
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Home mommy"
+  password: "sapfir1997"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Bedroom Esp Fallback Hotspot"
+    password: "84dX34KGjTWl"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:

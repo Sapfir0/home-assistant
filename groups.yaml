@@ -1,0 +1,11 @@
+weather:
+  name: Weather
+  view: yes
+  entities:
+    - sensor.owm_cloud_coverage
+    - sensor.owm_condition
+    - sensor.owm_humidity
+    - sensor.owm_rain
+    - sensor.owm_snow
+    - sensor.owm_temperature
+    - sensor.owm_wind_speed

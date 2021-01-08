@@ -1,0 +1,13 @@
+- id: "Home_Assistant_Check_State"
+  alias: "Home Assistant check state"
+  description: "Home Assistant проверка состояния системы"
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: "/ping"
+  condition: []
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "-> pong"

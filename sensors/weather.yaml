@@ -1,0 +1,12 @@
+- platform: openweathermap
+  api_key: 9881fdc10d1d14339a3a6514d415efa4
+  latitude: 48.700001
+  longitude: 44.516666
+  monitored_conditions:
+    - weather
+    - temperature
+    - wind_speed
+    - humidity
+    - clouds
+    - rain
+    - snow

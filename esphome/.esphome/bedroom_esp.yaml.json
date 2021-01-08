@@ -1,0 +1,14 @@
+{
+  "storage_version": 1,
+  "name": "bedroom_esp",
+  "comment": null,
+  "esphome_version": "1.15.3",
+  "src_version": 1,
+  "arduino_version": null,
+  "address": "bedroom_esp.local",
+  "esp_platform": "ESP8266",
+  "board": "nodemcuv2",
+  "build_path": null,
+  "firmware_bin_path": null,
+  "loaded_integrations": []
+}
