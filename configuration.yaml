@@ -1,9 +1,8 @@
 homeassistant:
   latitude: !secret latitude_home
   longitude: !secret longitude_home
-  elevation: 322
+  elevation: 80
   name: Home
-  temperature_unit: C
   time_zone: Europe/Moscow
   unit_system: metric
 
@@ -15,6 +14,7 @@ telegram_bot: !include output/telegram_bot.yaml
 sensor: !include_dir_merge_list sensors
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation
+
 script: !include scripts.yaml
 scene: !include scenes.yaml

@@ -1,0 +1,24 @@
+- id: "Home_Assistant_Check_State"
+  alias: "Home Assistant check state"
+  description: "Home Assistant проверка состояния системы"
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: "/start"
+  condition: []
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "
+        {% if now().strftime('%H')|int < 7 %}
+        Доброй ночи)
+        {% elif now().strftime('%H')|int < 12 %}
+        Доброе утро)
+        {% elif now().strftime('%H')|int < 18 %}
+        Хорошего дня)
+        {% else %}
+        Хорошего вечера)
+        {% endif %}
+        Сейчас за бортом {{ states.sensor.openweathermap_temperature.state }} градусов, прогноз на ближайшее время: {{ states.sensor.openweathermap_forecast_temperature.state }} "
+        

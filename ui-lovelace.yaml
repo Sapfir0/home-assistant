@@ -1,0 +1,44 @@
+title: Home
+views:
+  - path: default_view
+    title: Home
+    badges:
+      - entity: binary_sensor.updater
+      - entity: person.alexander
+      - entity: sun.sun
+    cards:
+      - type: weather-forecast
+        entity: weather.home
+        show_forecast: false
+      - type: entities
+        entities:
+          - sensor.living_room_humidity
+          - sensor.living_room_temperature
+      - type: sensor
+        entity: sensor.living_room_humidity
+        graph: line
+      - type: sensor
+        entity: sensor.living_room_humidity
+        graph: line
+      - type: entities
+        entities:
+          - sensor.speedtest_upload
+          - sensor.speedtest_ping
+          - sensor.speedtest_download
+      - type: media-control
+        entity: media_player.samsung_lt24h390
+      - type: entities
+        entities:
+          - sensor.time_online
+  - title: Router
+    path: router
+    badges: []
+    cards:
+      - type: markdown
+        content: 'Full router settings in http://router.miwifi.com/ '
+        title: Info
+      - type: entities
+        entities:
+          - entity: sensor.speedtest_download
+          - entity: sensor.speedtest_upload
+          - entity: sensor.speedtest_ping
