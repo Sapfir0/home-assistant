@@ -25,4 +25,4 @@
   action:
     service: telegram_bot.send_message
     data:
-      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C."
+      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. {{states('sensor.time')}} {{states('input_number.alarmminutes')[:-2]}}"
