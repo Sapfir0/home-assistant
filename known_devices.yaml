@@ -1,0 +1,49 @@
+
+desktop_346lj7p:
+  name: DESKTOP-346LJ7P
+  mac: 18:C0:4D:64:D5:C2
+  icon:
+  picture:
+  track: true
+
+yeelink_light_lamp4_mibtf86f:
+  name: yeelink-light-lamp4_mibtF86F
+  mac: 44:23:7C:DD:F8:6F
+  icon:
+  picture:
+  track: true
+
+samsung:
+  name: Samsung
+  mac: 64:E7:D8:C3:E4:0C
+  icon:
+  picture:
+  track: true
+
+mi9lite_miphone:
+  name: Mi9Lite-MiPhone
+  mac: 28:16:7F:61:E2:54
+  icon:
+  picture:
+  track: true
+
+homeassistant:
+  name: homeassistant
+  mac: 08:00:27:5A:91:30
+  icon:
+  picture:
+  track: true
+
+mi5s_miphone:
+  name: MI5s-MiPhone
+  mac: 78:02:F8:29:EC:4A
+  icon:
+  picture:
+  track: true
+
+3c_71_bf_2a_b0_77:
+  name: 3c_71_bf_2a_b0_77
+  mac: 3C:71:BF:2A:B0:77
+  icon:
+  picture:
+  track: true

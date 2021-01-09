@@ -1,0 +1,10 @@
+- alias: phone_tracker
+  trigger:
+    platform: zone
+    event: enter
+    entity_id: device_tracker.mi9lite_miphone
+    zone: zone.home 
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Добро пожаловать домой!"

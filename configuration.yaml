@@ -11,6 +11,11 @@ default_config:
 logger:
   default: info
 
+device_tracker:
+  - platform: xiaomi
+    host: 192.168.31.1
+    password: !secret xiaomi_router_password
+
 notify: !include output/telegram_notifier.yaml
 telegram_bot: !include output/telegram_bot.yaml
 
