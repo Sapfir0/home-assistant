@@ -1,7 +1,7 @@
 - alias: 'Wake Me Up'
   trigger:
     platform: template
-    value_template: '{{ states.sensor.time }} == str({{states.input_number.alarmhour.state}}:{{ states.input_number.alarmminutes.state }})'
+    value_template: "{{ states('sensor.time') == states('input_number.alarmhour')[:-2] + ':' + states('input_number.alarmminutes')[:-2] }}"
   condition:
     condition: or
     conditions:
@@ -25,6 +25,4 @@
   action:
     service: telegram_bot.send_message
     data:
-      message: 'Good morning. Time to Wake Up! {{ states('') states.sensor.time.state }} {{states.input_number.alarmhour.state|int}}:{{ states.input_number.alarmminutes.state|int }}
-      is_state("sensor.time.state", {{states.input_number.alarmhour.state|int}}:{{states.input_number.alarmminutes.state|int}} ) 
-      '
+      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C."

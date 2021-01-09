@@ -25,3 +25,6 @@ scene: !include scenes.yaml
 input_select: !include input_select.yaml
 input_number: !include input_slider.yaml
 input_boolean: !include input_boolean.yaml
+
+python_script:
+  
