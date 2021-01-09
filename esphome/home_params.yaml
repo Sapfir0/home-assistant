@@ -1,0 +1,26 @@
+esphome:
+  name: home_params
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Home mommy"
+  password: "sapfir1997"
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    model: DHT11
+    pin: D2
+    temperature:
+      name: "Living Room Temperature"
+    humidity:
+      name: "Living Room Humidity"
+    update_interval: 60s

@@ -1,0 +1,8 @@
+alarmclock:
+  name: Wake Me Up
+  entities: 
+    - sensor.alarm_time
+    - input_slider.alarmhour
+    - input_slider.alarmminutes
+    - input_boolean.alarmstatus
+    - input_boolean.alarmweekday

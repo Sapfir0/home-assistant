@@ -1,0 +1,30 @@
+- alias: 'Wake Me Up'
+  trigger:
+    platform: time
+    at: input_datetime.weather_notification
+# оповещение в выходные
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'on'
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'off'
+    
+  action:
+    service: telegram_bot.send_message
+    data:
+      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. "
