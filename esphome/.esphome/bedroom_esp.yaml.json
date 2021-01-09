@@ -1,14 +1,24 @@
 {
   "storage_version": 1,
-  "name": "bedroom_esp",
+  "name": "home_params",
   "comment": null,
   "esphome_version": "1.15.3",
   "src_version": 1,
-  "arduino_version": null,
-  "address": "bedroom_esp.local",
+  "arduino_version": "espressif8266@2.6.2",
+  "address": "home_params.local",
   "esp_platform": "ESP8266",
   "board": "nodemcuv2",
-  "build_path": null,
-  "firmware_bin_path": null,
-  "loaded_integrations": []
+  "build_path": "/config/esphome/home_params",
+  "firmware_bin_path": "/data/home_params/.pioenvs/home_params/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "async_tcp",
+    "dht",
+    "esphome",
+    "logger",
+    "network",
+    "ota",
+    "sensor",
+    "wifi"
+  ]
 }
