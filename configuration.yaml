@@ -8,6 +8,9 @@ homeassistant:
 
 default_config:
 
+logger:
+  default: info
+
 notify: !include output/telegram_notifier.yaml
 telegram_bot: !include output/telegram_bot.yaml
 
@@ -18,3 +21,7 @@ automation: !include_dir_merge_list automation
 
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+input_select: !include input_select.yaml
+input_number: !include input_slider.yaml
+input_boolean: !include input_boolean.yaml

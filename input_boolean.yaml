@@ -1,0 +1,8 @@
+alarmstatus:
+  name: Wake Me Up
+  initial: on
+  icon: mdi:alarm-check
+alarmweekday:
+  name: Weekdays Only
+  initial: off
+  icon: mdi:calendar

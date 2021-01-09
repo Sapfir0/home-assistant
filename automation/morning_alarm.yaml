@@ -1,0 +1,30 @@
+- alias: 'Wake Me Up'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time }} == str({{states.input_number.alarmhour.state}}:{{ states.input_number.alarmminutes.state }})'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'on'
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'off'
+  action:
+    service: telegram_bot.send_message
+    data:
+      message: 'Good morning. Time to Wake Up! {{ states('') states.sensor.time.state }} {{states.input_number.alarmhour.state|int}}:{{ states.input_number.alarmminutes.state|int }}
+      is_state("sensor.time.state", {{states.input_number.alarmhour.state|int}}:{{states.input_number.alarmminutes.state|int}} ) 
+      '
