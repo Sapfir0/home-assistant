@@ -1,7 +1,8 @@
 - alias: 'Wake Me Up'
   trigger:
-    platform: template
-    value_template: "{{ states('sensor.time') == states('input_number.alarmhour')[:-2] + ':' + states('input_number.alarmminutes')[:-2] }}"
+    platform: time
+    at: input_datetime.weather_notification
+# оповещение в выходные
   condition:
     condition: or
     conditions:
@@ -22,7 +23,8 @@
           - condition: state
             entity_id: input_boolean.alarmweekday
             state: 'off'
+    
   action:
     service: telegram_bot.send_message
     data:
-      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. {{states('sensor.time')}} {{states('input_number.alarmminutes')[:-2]}}"
+      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. "
