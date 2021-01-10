@@ -2,48 +2,81 @@ title: Home
 views:
   - path: default_view
     title: Home
+    icon: 'mdi:home'
     badges:
       - entity: binary_sensor.updater
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - type: weather-forecast
-        entity: weather.home
-        show_forecast: false
-      - type: sensor
-        entity: sensor.living_room_humidity
-        graph: line
-      - type: sensor
-        entity: sensor.living_room_humidity
-        graph: line
+      - type: 'custom:weather-card'
+        entity: weather.openweathermap
+        hourly_forecast: true
+        forecast: true
+        details: true
+        current: true
+        number_of_forecasts: '3'
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
           - entity: input_boolean.alarmweekday
+      - type: entities
+        entities:
+          - entity: sensor.openweathermap_rain
+          - entity: sensor.openweathermap_snow
+          - entity: sensor.openweathermap_humidity
+          - entity: sensor.openweathermap_pressure
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.living_room_temperature
+            line_color: var(--accent-color)
+            line_width: 8
+            font_size: 75
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.living_room_humidity
+            line_color: blue
+            line_width: 8
+            font_size: 75
+  - title: Weather
+    path: ''
+    icon: 'mdi:weather-cloudy'
+    badges: []
+    cards:
+      - type: markdown
+        content: >-
+          Тут должна быть информация о  погоде, но тогда на первом экране будет
+          слишком пусто
   - title: Media
     path: media
+    icon: 'mdi:television'
     badges: []
     cards:
       - type: media-control
         entity: media_player.samsung_lt24h390
   - title: Network
     path: router
+    icon: 'mdi:access-point'
     badges: []
     cards:
       - type: markdown
         content: 'Full router settings in http://router.miwifi.com/ '
         title: Info
-      - type: entities
-        entities:
-          - entity: sensor.speedtest_download
-          - entity: sensor.speedtest_upload
-          - entity: sensor.speedtest_ping
       - type: gauge
         entity: sensor.speedtest_download
         min: 0
         max: 100
+      - type: entities
+        entities:
+          - entity: sensor.speedtest_ping
+      - type: 'custom:mini-graph-card'
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
   - title: System
     path: system
+    icon: 'mdi:server'
     badges: []
     cards:
       - type: gauge
@@ -63,7 +96,7 @@ views:
           yellow: 50
           red: 75
       - type: gauge
-        entity: sensor.disk_use_percent_home
+        entity: sensor.disk_use_percent
         min: 0
         max: 100
         severity:
