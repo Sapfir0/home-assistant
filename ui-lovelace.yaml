@@ -10,10 +10,6 @@ views:
       - type: weather-forecast
         entity: weather.home
         show_forecast: false
-      - type: entities
-        entities:
-          - sensor.living_room_humidity
-          - sensor.living_room_temperature
       - type: sensor
         entity: sensor.living_room_humidity
         graph: line
@@ -22,15 +18,15 @@ views:
         graph: line
       - type: entities
         entities:
-          - sensor.speedtest_upload
-          - sensor.speedtest_ping
-          - sensor.speedtest_download
+          - entity: input_datetime.weather_notification
+          - entity: input_boolean.alarmweekday
+  - title: Media
+    path: media
+    badges: []
+    cards:
       - type: media-control
         entity: media_player.samsung_lt24h390
-      - type: entities
-        entities:
-          - sensor.time_online
-  - title: Router
+  - title: Network
     path: router
     badges: []
     cards:
@@ -42,3 +38,38 @@ views:
           - entity: sensor.speedtest_download
           - entity: sensor.speedtest_upload
           - entity: sensor.speedtest_ping
+      - type: gauge
+        entity: sensor.speedtest_download
+        min: 0
+        max: 100
+  - title: System
+    path: system
+    badges: []
+    cards:
+      - type: gauge
+        entity: sensor.processor_use_percent
+        min: 0
+        max: 100
+        severity:
+          green: 0
+          yellow: 50
+          red: 75
+      - type: gauge
+        entity: sensor.memory_use_percent
+        min: 0
+        max: 100
+        severity:
+          green: 0
+          yellow: 50
+          red: 75
+      - type: gauge
+        entity: sensor.disk_use_percent_home
+        min: 0
+        max: 100
+        severity:
+          green: 0
+          yellow: 50
+          red: 75
+      - type: entities
+        entities:
+          - sensor.time_online
