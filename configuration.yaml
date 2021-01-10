@@ -27,7 +27,7 @@ recorder:
 
 frontend:
   themes: !include_dir_merge_named themes
-  
+
 device_tracker:
   - platform: xiaomi
     host: 192.168.31.1
@@ -50,3 +50,16 @@ input_boolean: !include input_boolean.yaml
 input_datetime: !include input_datetime.yaml
 
 python_script:
+
+
+zone:
+  - name: Work
+    latitude: !secret latitude_work
+    longitude: !secret longitude_work
+    icon: mdi:desktop-mac
+
+  - name: Univercity
+    latitude: !secret latitude_univercity
+    longitude: !secret longitude_univercity     
+    radius: 250
+    icon: mdi:book
