@@ -1,20 +1,15 @@
-- alias: 'Rainy Day'
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.openweathermap_rain
-      above: 0
-  action:
-    - service: telegram_bot.send_message
-      data:
-        message: "Похоже, дождь начинается. Уже накапало {{states('sensor.openweathermap_rain')}}мм."
+- alias: 'Rainy is started'
+  use_blueprint:
+    path: homeassistant/fallout_start_notification.yaml
+    input:
+      fallout_sensor: sensor.openweathermap_rain
+      message_start: "Похоже, дождь начинается. Уже накапало {{states('sensor.openweathermap_rain')}}мм."
 
 
 - alias: 'Rain is over'
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.openweathermap_rain
-      below: 1
-  action:
-    - service: telegram_bot.send_message
-      data:
-        message: "Дождь закончился)"
+  use_blueprint:
+    path: homeassistant/fallout_end_notification.yaml
+    input:
+      not_fallout_value: "not raining" # если переменная ниже будет равно этому значению
+      fallout_sensor: sensor.openweathermap_rain
+      message_end: "Дождь закончился)"

@@ -1,0 +1,23 @@
+blueprint:
+  name: Fallout start notification
+  domain: automation
+  input:
+    fallout_sensor:
+      name: Fallout sensor
+      selector:
+        entity:
+          domain: sensor
+
+    message_start:
+      name: Telegram message
+      default: "No message"
+      
+trigger:
+  - platform: numeric_state
+    entity_id: !input fallout_sensor
+    above: 0
+action:
+  - service: telegram_bot.send_message
+    data:
+      message: !input message_start
+      

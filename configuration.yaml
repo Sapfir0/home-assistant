@@ -23,8 +23,11 @@ recorder:
       - sensor.date
       - sensor.date_time
       - sensor.time
+      - sensor.openweathermap_forecast_time
 
-
+frontend:
+  themes: !include_dir_merge_named themes
+  
 device_tracker:
   - platform: xiaomi
     host: 192.168.31.1
