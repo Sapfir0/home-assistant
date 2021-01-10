@@ -3,6 +3,4 @@
     - 'time'
     - 'date'
     - 'date_time'
-    - 'time_date'
-    - 'time_utc'
     - 'beat'

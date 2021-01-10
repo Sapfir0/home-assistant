@@ -11,6 +11,20 @@ default_config:
 logger:
   default: info
 
+recorder:
+  commit_interval: 1500
+  purge_keep_days: 5
+  exclude:
+    domains:
+      - updater
+    entity_globs:
+      - sensor.miwifi_router*
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+
+
 device_tracker:
   - platform: xiaomi
     host: 192.168.31.1
