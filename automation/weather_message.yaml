@@ -1,6 +1,6 @@
-- id: "Home_Assistant_Check_State"
-  alias: "Home Assistant check state"
-  description: "Home Assistant проверка состояния системы"
+- id: "Get current weather"
+  alias: "Get current weather"
+  description: "Получение температуры"
   trigger:
     - platform: event
       event_type: telegram_command

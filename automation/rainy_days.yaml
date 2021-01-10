@@ -1,0 +1,20 @@
+- alias: 'Rainy Day'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.openweathermap_rain
+      above: 0
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Похоже, дождь начинается. Уже накапало {{states('sensor.openweathermap_rain')}}мм."
+
+
+- alias: 'Rain is over'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.openweathermap_rain
+      below: 1
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Дождь закончился)"
