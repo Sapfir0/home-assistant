@@ -5,6 +5,10 @@ homeassistant:
   name: Home
   time_zone: Europe/Moscow
   unit_system: metric
+  # customize:
+  #   device_tracker.mi_9_lite:
+  #     source_type: router # предпочитать роутер для экономия батареи телефона
+  
 
 default_config:
 
@@ -27,6 +31,7 @@ recorder:
 
 frontend:
   themes: !include_dir_merge_named themes
+
 
 device_tracker:
   - platform: xiaomi

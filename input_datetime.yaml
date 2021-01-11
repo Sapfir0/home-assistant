@@ -3,3 +3,9 @@ weather_notification:
   has_time: true
   has_date: false
   initial: '10:00:00'
+
+minimum_time_for_stable_value:
+  name: Minimum time for stable value
+  has_time: true
+  has_date: false
+  initial: '00:10:00'

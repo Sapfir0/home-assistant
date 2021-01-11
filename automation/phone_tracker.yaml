@@ -1,4 +1,4 @@
-- alias: phone_tracker
+- alias: My phone tracker
   trigger:
     platform: zone
     event: enter
@@ -8,3 +8,14 @@
     - service: telegram_bot.send_message
       data:
         message: "Добро пожаловать домой!"
+
+- alias: Phone tracker
+  trigger:
+    platform: zone
+    event: enter
+    entity_id: device_tracker.mi5s_miphone
+    zone: zone.home 
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Мама пришла домой"
