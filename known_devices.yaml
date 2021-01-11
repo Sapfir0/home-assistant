@@ -47,3 +47,10 @@ esp_home_params:
   icon: 
   picture:
   track: false
+
+homeassistant_2:
+  name: homeassistant
+  mac: 08:00:27:76:FF:19
+  icon:
+  picture:
+  track: true

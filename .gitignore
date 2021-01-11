@@ -12,3 +12,5 @@ google_assistant.yaml
 __pycache__
 .storage
 .cloud
+custom_components/*
+www/
