@@ -18,6 +18,7 @@ trigger:
   - platform: state
     entity_id: !input fallout_sensor
     to: !input not_fallout_value
+    for: "00:10:00"
 action:
   - service: telegram_bot.send_message
     data:
