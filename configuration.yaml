@@ -1,42 +1,18 @@
-homeassistant:
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  elevation: 80
-  name: Home
-  time_zone: Europe/Moscow
-  unit_system: metric
-  # customize:
-  #   device_tracker.mi_9_lite:
-  #     source_type: router # предпочитать роутер для экономия батареи телефона
-  
+homeassistant: !include configs/main.yaml
 
 default_config:
 
 logger:
   default: info
 
-recorder:
-  commit_interval: 1500
-  purge_keep_days: 5
-  exclude:
-    domains:
-      - updater
-    entity_globs:
-      - sensor.miwifi_router*
-    entities:
-      - sensor.date
-      - sensor.date_time
-      - sensor.time
-      - sensor.openweathermap_forecast_time
+recorder: !include  configs/recorder.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
 
 
-device_tracker:
-  - platform: xiaomi
-    host: 192.168.31.1
-    password: !secret xiaomi_router_password
+device_tracker: !include configs/router_device_tracker.yaml
+
 
 notify: !include output/telegram_notifier.yaml
 telegram_bot: !include output/telegram_bot.yaml
@@ -60,14 +36,4 @@ yandex_station:
   username: !secret yandex_login
   password: !secret yandex_password
 
-zone:
-  - name: Work
-    latitude: !secret latitude_work
-    longitude: !secret longitude_work
-    icon: mdi:desktop-mac
-
-  - name: Univercity
-    latitude: !secret latitude_univercity
-    longitude: !secret longitude_univercity     
-    radius: 250
-    icon: mdi:book
+zone: !include configs/zones.yaml

@@ -1,0 +1,9 @@
+latitude: !secret latitude_home
+longitude: !secret longitude_home
+elevation: 80
+name: Home
+time_zone: Europe/Moscow
+unit_system: metric
+# customize:
+#   device_tracker.mi_9_lite:
+#     source_type: router # предпочитать роутер для экономия батареи телефона
