@@ -2,7 +2,7 @@
   trigger:
     platform: zone
     event: enter
-    entity_id: device_tracker.mi9lite_miphone
+    entity_id: device_tracker.mi9lite
     zone: zone.home 
   action:
     - service: telegram_bot.send_message

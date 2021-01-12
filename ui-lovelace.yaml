@@ -36,9 +36,38 @@ views:
           - type: 'custom:mini-graph-card'
             entities:
               - sensor.living_room_humidity
-            line_color: blue
+            line_color: green
             line_width: 8
             font_size: 75
+      - type: vertical-stack
+        cards:
+          - type: button
+            tap_action:
+              action: toggle
+            entity: light.midesklamp1s_f86f
+          - shorten_cards: false
+            consolidate_entities: false
+            color_wheel: true
+            persist_features: false
+            brightness: true
+            color_temp: true
+            white_value: true
+            color_picker: true
+            smooth_color_wheel: false
+            hide_header: true
+            child_card: false
+            show_slider_percent: false
+            full_width_sliders: false
+            brightness_icon: weather-sunny
+            white_icon: file-word-box
+            temperature_icon: thermometer
+            type: 'custom:light-entity-card'
+            header: Midesklamp1s_f86f
+            entity: light.midesklamp1s_f86f
+      - type: button
+        tap_action:
+          action: toggle
+        entity: switch.fluxer
   - title: Weather
     path: ''
     icon: 'mdi:weather-cloudy'
@@ -48,6 +77,26 @@ views:
         content: >-
           Тут должна быть информация о  погоде, но тогда на первом экране будет
           слишком пусто
+      - type: history-graph
+        entities:
+          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi_9_lite
+        hours_to_show: 24
+        refresh_interval: 0
+  - title: Users
+    path: users
+    icon: 'mdi:account'
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi_9_lite
+      - type: map
+        entities:
+          - entity: device_tracker.mi_9_lite
+          - entity: device_tracker.mi5s_miphone
+        hours_to_show: 0
   - title: Media
     path: media
     icon: 'mdi:television'
@@ -106,3 +155,6 @@ views:
       - type: entities
         entities:
           - sensor.time_online
+      - type: entities
+        entities:
+          - sensor.snapshot_backup

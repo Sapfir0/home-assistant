@@ -37,3 +37,20 @@ yandex_station:
   password: !secret yandex_password
 
 zone: !include configs/zones.yaml
+
+
+switch:
+  - platform: flux
+    lights:
+      - light.midesklamp1s_f86f
+    name: Fluxer
+    start_time: '9:00'
+    stop_time: '0:00'
+    start_colortemp: 4500
+    sunset_colortemp: 3000
+    stop_colortemp: 2300
+    brightness: 20
+    disable_brightness_adjust: true
+    mode: xy
+    transition: 30
+    interval: 60
