@@ -1,9 +1,8 @@
 - alias: My phone tracker
   trigger:
-    platform: zone
-    event: enter
+    platform: state
+    to: home
     entity_id: device_tracker.mi9lite
-    zone: zone.home 
   action:
     - service: telegram_bot.send_message
       data:
@@ -11,10 +10,9 @@
 
 - alias: Mom phone tracker
   trigger:
-    platform: zone
-    event: enter
-    entity_id: device_tracker.mi5s_miphone
-    zone: zone.home 
+    platform: state
+    to: home
+    entity_id: device_tracker.mi5s
   action:
     - service: telegram_bot.send_message
       data:

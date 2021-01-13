@@ -15,7 +15,7 @@ blueprint:
 trigger:
   - platform: numeric_state
     entity_id: !input fallout_sensor
-    above: 0
+    above: 0.9
     for: input_datetime.minimum_time_for_stable_value
 action:
   - service: telegram_bot.send_message

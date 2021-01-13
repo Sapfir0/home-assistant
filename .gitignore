@@ -14,3 +14,4 @@ __pycache__
 .cloud
 custom_components/*
 www/
+themes

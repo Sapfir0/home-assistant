@@ -20,12 +20,12 @@ samsung:
   picture:
   track: false
 
-mi9lite_miphone:
+mi9lite:
   name: Mi9Lite-MiPhone
   mac: 28:16:7F:61:E2:54
   icon: mdi:cellphone-android
   picture:
-  track: false
+  track: true
 
 homeassistant:
   name: homeassistant
@@ -34,7 +34,7 @@ homeassistant:
   picture:
   track: false
 
-mi5s_miphone:
+mi5s:
   name: MI5s-MiPhone
   mac: 78:02:F8:29:EC:4A
   icon: mdi:cellphone-android
