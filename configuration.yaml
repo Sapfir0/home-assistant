@@ -10,6 +10,7 @@ recorder: !include  configs/recorder.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
+mobile_app:
 
 device_tracker: !include configs/router_device_tracker.yaml
 
@@ -44,13 +45,13 @@ switch:
     lights:
       - light.midesklamp1s_f86f
     name: Fluxer
-    start_time: '9:00'
+    start_time: '10:00'
     stop_time: '0:00'
-    start_colortemp: 4500
-    sunset_colortemp: 3000
-    stop_colortemp: 2300
-    brightness: 20
+    start_colortemp: 5000
+    sunset_colortemp: 3700
+    stop_colortemp: 2800
+    brightness: 25.5
     disable_brightness_adjust: true
-    mode: xy
+    mode: mired
     transition: 30
     interval: 60

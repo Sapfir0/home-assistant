@@ -4,9 +4,21 @@
     to: home
     entity_id: device_tracker.mi9lite
   action:
-    - service: telegram_bot.send_message
+    - service: light.turn_on
       data:
-        message: "Добро пожаловать домой!"
+        entity_id: light.midesklamp1s_f86f
+        brightness: 35
+        color_temp: 350
+
+- alias: My phone tracker out
+  trigger:
+    platform: state
+    to: not_home
+    entity_id: device_tracker.mi9lite
+    for: input_datetime.minimum_time_for_stable_value
+  action:
+    - service: light.turn_off
+      entity_id: light.midesklamp1s_f86f
 
 - alias: Mom phone tracker
   trigger:
