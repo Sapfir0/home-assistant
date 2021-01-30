@@ -46,7 +46,7 @@ switch:
       - light.midesklamp1s_f86f
     name: Fluxer
     start_time: '10:00'
-    stop_time: '0:00'
+    stop_time: '22:00'
     start_colortemp: 5000
     sunset_colortemp: 3700
     stop_colortemp: 2800

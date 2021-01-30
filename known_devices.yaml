@@ -54,3 +54,17 @@ homeassistant_2:
   icon:
   picture:
   track: true
+
+0c_54_15_82_59_e7:
+  name: 0c_54_15_82_59_e7
+  mac: 0C:54:15:82:59:E7
+  icon:
+  picture:
+  track: true
+
+homeassistant_3:
+  name: homeassistant
+  mac: DC:A6:32:F3:9F:01
+  icon:
+  picture:
+  track: true

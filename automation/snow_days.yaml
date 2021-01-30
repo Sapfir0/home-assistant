@@ -2,7 +2,7 @@
   use_blueprint:
     path: homeassistant/fallout_start_notification.yaml
     input:
-      fallout_sensor: sensor.openweathermap_snow
+      precipitation: sensor.openweathermap_snow
       message_start: "Пошел снежок. Уже накапало {{states('sensor.openweathermap_snow')}}мм."
 
 

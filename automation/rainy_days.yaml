@@ -2,7 +2,7 @@
   use_blueprint:
     path: homeassistant/fallout_start_notification.yaml
     input:
-      fallout_sensor: sensor.openweathermap_rain
+      precipitation: sensor.openweathermap_rain
       message_start: "Похоже, дождь начинается. Уже накапало {{states('sensor.openweathermap_rain')}}мм."
 
 

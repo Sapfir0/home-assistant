@@ -2,8 +2,8 @@ blueprint:
   name: Fallout start notification
   domain: automation
   input:
-    fallout_sensor:
-      name: Fallout sensor
+    precipitation:
+      name: Precipitation level
       selector:
         entity:
           domain: sensor
@@ -14,7 +14,7 @@ blueprint:
       
 trigger:
   - platform: numeric_state
-    entity_id: !input fallout_sensor
+    entity_id: !input precipitation
     above: 0.9
     for: input_datetime.minimum_time_for_stable_value
 action:
