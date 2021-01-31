@@ -33,9 +33,6 @@ input_datetime: !include input_datetime.yaml
 
 python_script:
 
-yandex_station:
-  username: !secret yandex_login
-  password: !secret yandex_password
 
 zone: !include configs/zones.yaml
 
