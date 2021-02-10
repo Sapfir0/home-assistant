@@ -1,34 +1,19 @@
-homeassistant:
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  elevation: 80
-  name: Home
-  time_zone: Europe/Moscow
-  unit_system: metric
+homeassistant: !include configs/main.yaml
 
 default_config:
 
 logger:
   default: info
 
-recorder:
-  commit_interval: 1500
-  purge_keep_days: 5
-  exclude:
-    domains:
-      - updater
-    entity_globs:
-      - sensor.miwifi_router*
-    entities:
-      - sensor.date
-      - sensor.date_time
-      - sensor.time
+recorder: !include  configs/recorder.yaml
 
+frontend:
+  themes: !include_dir_merge_named themes
 
-device_tracker:
-  - platform: xiaomi
-    host: 192.168.31.1
-    password: !secret xiaomi_router_password
+mobile_app:
+
+device_tracker: !include configs/router_device_tracker.yaml
+
 
 notify: !include output/telegram_notifier.yaml
 telegram_bot: !include output/telegram_bot.yaml
@@ -47,3 +32,23 @@ input_boolean: !include input_boolean.yaml
 input_datetime: !include input_datetime.yaml
 
 python_script:
+
+
+zone: !include configs/zones.yaml
+
+
+switch:
+  - platform: flux
+    lights:
+      - light.midesklamp1s_f86f
+    name: Fluxer
+    start_time: '10:00'
+    stop_time: '22:00'
+    start_colortemp: 5000
+    sunset_colortemp: 3700
+    stop_colortemp: 2800
+    brightness: 25.5
+    disable_brightness_adjust: true
+    mode: mired
+    transition: 30
+    interval: 60

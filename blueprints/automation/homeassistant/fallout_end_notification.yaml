@@ -1,0 +1,26 @@
+blueprint:
+  name: Fallout end notification
+  domain: automation
+  input:
+    not_fallout_value:
+      name: If sensor == this value, then action triggered
+    fallout_sensor:
+      name: Fallout sensor
+      selector:
+        entity:
+          domain: sensor
+    message_end:
+      name: Telegram message
+      default: "No message"
+      
+
+trigger:
+  - platform: state
+    entity_id: !input fallout_sensor
+    to: !input not_fallout_value
+    for: 
+      minutes: input_number.minimum_time_for_stable_value
+action:
+  - service: telegram_bot.send_message
+    data:
+      message: !input message_end

@@ -1,0 +1,25 @@
+blueprint:
+  name: Fallout start notification
+  domain: automation
+  input:
+    precipitation:
+      name: Precipitation level
+      selector:
+        entity:
+          domain: sensor
+
+    message_start:
+      name: Telegram message
+      default: "No message"
+      
+trigger:
+  - platform: numeric_state
+    entity_id: !input precipitation
+    above: 0.9
+    for: 
+      minutes: input_number.minimum_time_for_stable_value
+action:
+  - service: telegram_bot.send_message
+    data:
+      message: !input message_start
+      

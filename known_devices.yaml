@@ -2,48 +2,69 @@
 desktop_346lj7p:
   name: DESKTOP-346LJ7P
   mac: 18:C0:4D:64:D5:C2
-  icon:
+  icon: mdi:desktop-mac
   picture:
-  track: true
+  track: false
 
 yeelink_light_lamp4_mibtf86f:
   name: yeelink-light-lamp4_mibtF86F
   mac: 44:23:7C:DD:F8:6F
-  icon:
+  icon: mdi:desk-lamp
   picture:
-  track: true
+  track: false
 
 samsung:
   name: Samsung
   mac: 64:E7:D8:C3:E4:0C
-  icon:
+  icon: mdi:television
   picture:
-  track: true
+  track: false
 
-mi9lite_miphone:
+mi9lite:
   name: Mi9Lite-MiPhone
   mac: 28:16:7F:61:E2:54
-  icon:
+  icon: mdi:cellphone-android
   picture:
   track: true
 
 homeassistant:
   name: homeassistant
   mac: 08:00:27:5A:91:30
-  icon:
+  icon: mdi:server
   picture:
-  track: true
+  track: false
 
-mi5s_miphone:
+mi5s:
   name: MI5s-MiPhone
   mac: 78:02:F8:29:EC:4A
+  icon: mdi:cellphone-android
+  picture:
+  track: true
+
+esp_home_params:
+  name: esp_home_params
+  mac: 3C:71:BF:2A:B0:77
+  icon: 
+  picture:
+  track: false
+
+homeassistant_2:
+  name: homeassistant
+  mac: 08:00:27:76:FF:19
   icon:
   picture:
   track: true
 
-3c_71_bf_2a_b0_77:
-  name: 3c_71_bf_2a_b0_77
-  mac: 3C:71:BF:2A:B0:77
+0c_54_15_82_59_e7:
+  name: 0c_54_15_82_59_e7
+  mac: 0C:54:15:82:59:E7
+  icon:
+  picture:
+  track: true
+
+homeassistant_3:
+  name: homeassistant
+  mac: DC:A6:32:F3:9F:01
   icon:
   picture:
   track: true

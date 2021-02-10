@@ -1,0 +1,13 @@
+
+commit_interval: 1500
+purge_keep_days: 5
+exclude:
+  domains:
+    - updater
+  entity_globs:
+    - sensor.miwifi_router*
+  entities:
+    - sensor.date
+    - sensor.date_time
+    - sensor.time
+    - sensor.openweathermap_forecast_time

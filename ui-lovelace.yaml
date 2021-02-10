@@ -2,48 +2,130 @@ title: Home
 views:
   - path: default_view
     title: Home
+    icon: 'mdi:home'
     badges:
       - entity: binary_sensor.updater
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - type: weather-forecast
-        entity: weather.home
-        show_forecast: false
-      - type: sensor
-        entity: sensor.living_room_humidity
-        graph: line
-      - type: sensor
-        entity: sensor.living_room_humidity
-        graph: line
+      - type: 'custom:weather-card'
+        entity: weather.openweathermap
+        hourly_forecast: true
+        forecast: true
+        details: true
+        current: true
+        number_of_forecasts: '3'
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
           - entity: input_boolean.alarmweekday
+      - type: entities
+        entities:
+          - entity: sensor.openweathermap_rain
+          - entity: sensor.openweathermap_snow
+          - entity: sensor.openweathermap_humidity
+          - entity: sensor.openweathermap_pressure
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.living_room_temperature
+            line_color: var(--accent-color)
+            line_width: 8
+            font_size: 75
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.living_room_humidity
+            line_color: green
+            line_width: 8
+            font_size: 75
+      - type: vertical-stack
+        cards:
+          - type: button
+            tap_action:
+              action: toggle
+            entity: light.midesklamp1s_f86f
+          - shorten_cards: false
+            consolidate_entities: false
+            color_wheel: true
+            persist_features: false
+            brightness: true
+            color_temp: true
+            white_value: true
+            color_picker: true
+            smooth_color_wheel: false
+            hide_header: true
+            child_card: false
+            show_slider_percent: false
+            full_width_sliders: false
+            brightness_icon: weather-sunny
+            white_icon: file-word-box
+            temperature_icon: thermometer
+            type: 'custom:light-entity-card'
+            header: Midesklamp1s_f86f
+            entity: light.midesklamp1s_f86f
+      - type: button
+        tap_action:
+          action: toggle
+        entity: switch.fluxer
+  - title: Weather
+    path: ''
+    icon: 'mdi:weather-cloudy'
+    badges: []
+    cards:
+      - type: markdown
+        content: >-
+          Тут должна быть информация о  погоде, но тогда на первом экране будет
+          слишком пусто
+      - type: history-graph
+        entities:
+          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi_9_lite
+        hours_to_show: 24
+        refresh_interval: 0
+  - title: Users
+    path: users
+    icon: 'mdi:account'
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi_9_lite
+      - type: map
+        entities:
+          - entity: device_tracker.mi_9_lite
+          - entity: device_tracker.mi5s_miphone
+        hours_to_show: 0
   - title: Media
     path: media
+    icon: 'mdi:television'
     badges: []
     cards:
       - type: media-control
         entity: media_player.samsung_lt24h390
   - title: Network
     path: router
+    icon: 'mdi:access-point'
     badges: []
     cards:
       - type: markdown
         content: 'Full router settings in http://router.miwifi.com/ '
         title: Info
-      - type: entities
-        entities:
-          - entity: sensor.speedtest_download
-          - entity: sensor.speedtest_upload
-          - entity: sensor.speedtest_ping
       - type: gauge
         entity: sensor.speedtest_download
         min: 0
         max: 100
+      - type: entities
+        entities:
+          - entity: sensor.speedtest_ping
+      - type: 'custom:mini-graph-card'
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
   - title: System
     path: system
+    icon: 'mdi:server'
     badges: []
     cards:
       - type: gauge
@@ -63,7 +145,7 @@ views:
           yellow: 50
           red: 75
       - type: gauge
-        entity: sensor.disk_use_percent_home
+        entity: sensor.disk_use_percent
         min: 0
         max: 100
         severity:
@@ -73,3 +155,6 @@ views:
       - type: entities
         entities:
           - sensor.time_online
+      - type: entities
+        entities:
+          - sensor.snapshot_backup
