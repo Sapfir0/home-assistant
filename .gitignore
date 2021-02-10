@@ -15,4 +15,4 @@ __pycache__
 custom_components/*
 www/
 themes
-./secrets.yaml
+secrets.yaml
