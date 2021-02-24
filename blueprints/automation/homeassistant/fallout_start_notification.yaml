@@ -17,7 +17,7 @@ trigger:
     entity_id: !input precipitation
     above: 0.9
     for: 
-      minutes: input_number.minimum_time_for_stable_value
+      minutes: 1
 action:
   - service: telegram_bot.send_message
     data:

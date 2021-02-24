@@ -27,4 +27,13 @@
   action:
     service: telegram_bot.send_message
     data:
-      message: "Доброе утро, сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. "
+      message: "{% if now().strftime('%H')|int < 7 %}
+        Доброй ночи,
+        {% elif now().strftime('%H')|int < 12 %}
+        Доброе утро,
+        {% elif now().strftime('%H')|int < 18 %}
+        Хорошего дня,
+        {% else %}
+        Хорошего вечера,
+        {% endif %}
+         сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. "
