@@ -18,8 +18,8 @@ trigger:
   - platform: state
     entity_id: !input fallout_sensor
     to: !input not_fallout_value
-    for: 
-      minutes: 1
+    for:
+      minutes: "{{ states('input_number.minimum_time_for_stable_value')|int }}"
 action:
   - service: telegram_bot.send_message
     data:
