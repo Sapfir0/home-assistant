@@ -16,8 +16,8 @@ trigger:
   - platform: numeric_state
     entity_id: !input precipitation
     above: 0.9
-    for: 
-      minutes: input_number.minimum_time_for_stable_value
+    for:
+      minutes: "{{ states('input_number.minimum_time_for_stable_value')|int }}"
 action:
   - service: telegram_bot.send_message
     data:

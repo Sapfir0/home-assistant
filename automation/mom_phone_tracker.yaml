@@ -1,0 +1,9 @@
+- alias: Mom phone tracker
+  trigger:
+    platform: state
+    to: home
+    entity_id: device_tracker.mi5s
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Мама пришла домой"
