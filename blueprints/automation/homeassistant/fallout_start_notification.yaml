@@ -2,8 +2,8 @@ blueprint:
   name: Fallout start notification
   domain: automation
   input:
-    precipitation:
-      name: Precipitation level
+    fallout_sensor:
+      name: Fallout sensor
       selector:
         entity:
           domain: sensor
@@ -14,10 +14,9 @@ blueprint:
       
 trigger:
   - platform: numeric_state
-    entity_id: !input precipitation
-    above: 0.9
-    for:
-      minutes: "{{ states('input_number.minimum_time_for_stable_value')|int }}"
+    entity_id: !input fallout_sensor
+    above: 2
+    for: input_datetime.minimum_time_for_stable_value['minutes']
 action:
   - service: telegram_bot.send_message
     data:
