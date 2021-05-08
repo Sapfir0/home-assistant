@@ -52,3 +52,25 @@ switch:
     mode: mired
     transition: 30
     interval: 60
+  - platform: rpi_gpio
+    ports:
+      4: RPI Cooling Fan
+
+
+
+climate:
+  - platform: generic_thermostat
+    name: RPI Cooling Fan Controller
+    heater: switch.rpi_cooling_fan
+    target_sensor: sensor.processor_temperature
+    min_temp: 45
+    max_temp: 80
+    ac_mode: true
+    target_temp: 45
+    cold_tolerance: 0.1
+    hot_tolerance: 0.1
+    min_cycle_duration:
+      seconds: 30
+    keep_alive:
+      minutes: 5
+    initial_hvac_mode: "cool"

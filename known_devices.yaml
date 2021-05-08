@@ -68,3 +68,10 @@ homeassistant_3:
   icon:
   picture:
   track: true
+
+80_30_49_4b_ad_33:
+  name: 80_30_49_4b_ad_33
+  mac: 80:30:49:4B:AD:33
+  icon:
+  picture:
+  track: true

@@ -1,6 +1,6 @@
 minimum_time_for_stable_value:
   name: Minimum time for stable value
-  initial: 1
+  initial: 3
   min: 0
   max: 59
   step: 1
