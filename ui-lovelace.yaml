@@ -2,13 +2,13 @@ title: Home
 views:
   - path: default_view
     title: Home
-    icon: 'mdi:home'
+    icon: mdi:home
     badges:
       - entity: binary_sensor.updater
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - type: 'custom:weather-card'
+      - type: custom:weather-card
         entity: weather.openweathermap
         hourly_forecast: true
         forecast: true
@@ -27,13 +27,13 @@ views:
           - entity: sensor.openweathermap_pressure
       - type: horizontal-stack
         cards:
-          - type: 'custom:mini-graph-card'
+          - type: custom:mini-graph-card
             entities:
               - sensor.living_room_temperature
             line_color: var(--accent-color)
             line_width: 8
             font_size: 75
-          - type: 'custom:mini-graph-card'
+          - type: custom:mini-graph-card
             entities:
               - sensor.living_room_humidity
             line_color: green
@@ -56,21 +56,29 @@ views:
             smooth_color_wheel: false
             hide_header: true
             child_card: false
-            show_slider_percent: false
+            show_slider_percent: true
             full_width_sliders: false
             brightness_icon: weather-sunny
             white_icon: file-word-box
             temperature_icon: thermometer
-            type: 'custom:light-entity-card'
+            type: custom:light-entity-card
             header: Midesklamp1s_f86f
             entity: light.midesklamp1s_f86f
       - type: button
         tap_action:
           action: toggle
         entity: switch.fluxer
+      - type: entities
+        entities:
+          - sensor.current_uv_index
+          - sensor.current_uv_level
+          - sensor.max_uv_index
+      - type: entities
+        entities:
+          - input_number.minimum_time_for_stable_value
   - title: Weather
     path: ''
-    icon: 'mdi:weather-cloudy'
+    icon: mdi:weather-cloudy
     badges: []
     cards:
       - type: markdown
@@ -81,32 +89,53 @@ views:
         entities:
           - entity: device_tracker.mi5s_miphone
           - entity: device_tracker.mi_9_lite
+          - entity: device_tracker.mi9lite
+          - entity: device_tracker.mi5s
         hours_to_show: 24
         refresh_interval: 0
+      - type: picture-elements
+        elements:
+          - type: state-badge
+            entity: sensor.living_room_temperature
+            style:
+              top: 32%
+              left: 40%
+          - type: state-badge
+            entity: sensor.living_room_humidity
+            style:
+              top: 32%
+              left: 55%
+        image: https://demo.home-assistant.io/stub_config/floorplan.png
   - title: Users
     path: users
-    icon: 'mdi:account'
+    icon: mdi:account
     badges: []
     cards:
       - type: entities
         entities:
-          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi5s
           - entity: device_tracker.mi_9_lite
+          - entity: device_tracker.mi_5s
+          - entity: device_tracker.mi9lite
       - type: map
         entities:
           - entity: device_tracker.mi_9_lite
-          - entity: device_tracker.mi5s_miphone
+          - entity: device_tracker.mi5s
         hours_to_show: 0
   - title: Media
     path: media
-    icon: 'mdi:television'
+    icon: mdi:television
     badges: []
     cards:
       - type: media-control
         entity: media_player.samsung_lt24h390
+      - type: markdown
+        content: |-
+          Plex media server hosted  at http://192.168.31.105:32400/web.
+          Server is hosted by main pc in bedroom.
   - title: Network
     path: router
-    icon: 'mdi:access-point'
+    icon: mdi:access-point
     badges: []
     cards:
       - type: markdown
@@ -119,13 +148,13 @@ views:
       - type: entities
         entities:
           - entity: sensor.speedtest_ping
-      - type: 'custom:mini-graph-card'
+      - type: custom:mini-graph-card
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
   - title: System
     path: system
-    icon: 'mdi:server'
+    icon: mdi:server
     badges: []
     cards:
       - type: gauge
@@ -157,4 +186,13 @@ views:
           - sensor.time_online
       - type: entities
         entities:
-          - sensor.snapshot_backup
+          - entity: sensor.snapshot_backup
+          - entity: binary_sensor.snapshots_stale
+      - type: entities
+        entities:
+          - sensor.disk_free
+      - type: entities
+        entities:
+          - sensor.processor_temperature
+      - type: thermostat
+        entity: climate.rpi_cooling_fan_controller

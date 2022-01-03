@@ -36,4 +36,4 @@
         {% else %}
         Хорошего вечера,
         {% endif %}
-         сейчас на улице {{states('sensor.openweathermap_temperature')}}°C. "
+         сейчас {{states('sensor.openweathermap_temperature_2')}}°C. в Санкт-Петербурге. В Волгограде {{states('sensor.openweathermap_temperature')}}°C"
