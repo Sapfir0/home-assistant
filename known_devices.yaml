@@ -75,3 +75,24 @@ homeassistant_3:
   icon:
   picture:
   track: true
+
+70_0b_c0_99_a5_71:
+  name: 70_0b_c0_99_a5_71
+  mac: 70:0B:C0:99:A5:71
+  icon:
+  picture:
+  track: true
+
+34_d2_70_f4_4c_7d:
+  name: 34_d2_70_f4_4c_7d
+  mac: 34:D2:70:F4:4C:7D
+  icon:
+  picture:
+  track: true
+
+34_e1_2d_95_b9_8d:
+  name: 34_e1_2d_95_b9_8d
+  mac: 34:E1:2D:95:B9:8D
+  icon:
+  picture:
+  track: true

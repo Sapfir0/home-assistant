@@ -1,10 +1,11 @@
-- name: Work
-  latitude: !secret latitude_work
-  longitude: !secret longitude_work
-  icon: mdi:desktop-mac
-
 - name: Univercity
   latitude: !secret latitude_univercity
   longitude: !secret longitude_univercity     
   radius: 250
   icon: mdi:book
+
+- name: Parent home
+  latitude: !secret latitude_parent_home
+  longitude: !secret longitude_parent_home     
+  radius: 50
+  icon: mdi:home
