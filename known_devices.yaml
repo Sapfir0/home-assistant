@@ -96,3 +96,10 @@ homeassistant_3:
   icon:
   picture:
   track: true
+
+be_ee_90_c5_16_c4:
+  name: be_ee_90_c5_16_c4
+  mac: BE:EE:90:C5:16:C4
+  icon:
+  picture:
+  track: true

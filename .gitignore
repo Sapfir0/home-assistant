@@ -1,6 +1,6 @@
 OZW_Log.txt
 /deps
-home-assistant.log
+home-assistant.log*
 home-assistant_v2.db*
 pyozw.sqlite
 options.xml
