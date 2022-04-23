@@ -2,7 +2,7 @@
   trigger:
     platform: state
     to: home
-    entity_id: device_tracker.mi9lite
+    entity_id: device_tracker.alexanders_phone
   action:
     - service: light.turn_on
       data:
@@ -14,7 +14,7 @@
   trigger:
     platform: state
     to: not_home
-    entity_id: device_tracker.mi9lite
+    entity_id: device_tracker.alexanders_phone
   action:
     - service: light.turn_off
       entity_id: light.midesklamp1s_f86f

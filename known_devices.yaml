@@ -103,3 +103,38 @@ be_ee_90_c5_16_c4:
   icon:
   picture:
   track: true
+
+5c_52_30_9c_ff_62:
+  name: 5c_52_30_9c_ff_62
+  mac: 5C:52:30:9C:FF:62
+  icon:
+  picture:
+  track: true
+
+da_86_db_64_9f_2d:
+  name: da_86_db_64_9f_2d
+  mac: DA:86:DB:64:9F:2D
+  icon:
+  picture:
+  track: true
+
+22_28_43_a4_37_3c:
+  name: 22_28_43_a4_37_3c
+  mac: 22:28:43:A4:37:3C
+  icon:
+  picture:
+  track: true
+
+fa_ad_ac_0b_ef_4f:
+  name: fa_ad_ac_0b_ef_4f
+  mac: FA:AD:AC:0B:EF:4F
+  icon:
+  picture:
+  track: true
+
+1a_56_3a_3e_f6_22:
+  name: 1a_56_3a_3e_f6_22
+  mac: 1A:56:3A:3E:F6:22
+  icon:
+  picture:
+  track: true
