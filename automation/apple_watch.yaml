@@ -1,0 +1,96 @@
+
+
+- alias: "Apple Watch: minimal lights bedroom"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Minimal lights bedroom
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.midesklamp1s_f86f
+      brightness: 98
+      color_name: red
+
+
+- alias: "Apple Watch: set sleep mode"
+  mode: parallel
+  
+  trigger:
+  platform: event
+  event_type: ios.action_fired
+  event_data:
+    # source may be one of:
+    # - appShortcut
+    # - preview
+    # - siriShortcut
+    # - urlHandler
+    # - watch
+    # - widget
+    actionID: 3423CC07-BD74-4A16-BFBC-5D8BA3740C02
+    actionName: Sleep mode
+    sourceDeviceID: alexanders_phone
+    sourceDeviceName: Alexander’s phone
+    sourceDevicePermanentID: C484419F-0B1C-482C-B055-58675B8E19FC
+    triggerSource: preview
+  action:
+    - service: notify.mobile_app_alexanders_phone
+      data:
+        message: "Apple Watch: set sleep mode."
+        data:
+          actions:
+            - action: SLEEP_OFF
+              title: "Off"
+            - action: SLEEP_HALF
+              title: Half
+            - action: SLEEP_TOTAL
+              title: Total
+    - wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_OFF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_HALF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_TOTAL
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        event: "{{ wait.trigger.event.data.action.lower().split('_')[1] }}"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sleep_mode
+        option: "{{ event }}"
+
+- alias: "Apple Watch: temperature report"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+        # source may be one of:
+        # - appShortcut
+        # - preview
+        # - siriShortcut
+        # - urlHandler
+        # - watch
+        # - widget
+        actionID: 055B2E49-D03C-4AE9-B0AC-C52D12C080BB
+        actionName: Temperature report
+        sourceDeviceID: alexanders_phone
+        sourceDeviceName: Alexander's phone
+        sourceDevicePermanentID: C484419F-0B1C-482C-B055-58675B8E19FC
+        triggerSource: preview
+  action:
+    - service: notify.mobile_app_alexanders_phone
+      data:
+        title: "Temperature"
+        message: >
+          Living room: {{ states('sensor.living_room_temperature') }}°C

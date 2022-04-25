@@ -4,6 +4,6 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.persistent_notification
+    service: notify.mobile_app_alexanders_phone
     data:
       message: 'An update for Home Assistant is available.'

@@ -2,7 +2,7 @@
   trigger:
     platform: state
     to: not_home
-    entity_id: device_tracker.mi5s
+    entity_id: device_tracker.SM-A525F
   action:
     - service: telegram_bot.send_message
       data:
@@ -12,7 +12,7 @@
   trigger:
     platform: state
     to: home
-    entity_id: device_tracker.mi5s
+    entity_id: device_tracker.SM-A525F
   action:
     - service: telegram_bot.send_message
       data:
