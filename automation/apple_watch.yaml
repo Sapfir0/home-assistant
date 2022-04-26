@@ -17,24 +17,11 @@
 
 - alias: "Apple Watch: set sleep mode"
   mode: parallel
-  
   trigger:
-  platform: event
-  event_type: ios.action_fired
-  event_data:
-    # source may be one of:
-    # - appShortcut
-    # - preview
-    # - siriShortcut
-    # - urlHandler
-    # - watch
-    # - widget
-    actionID: 3423CC07-BD74-4A16-BFBC-5D8BA3740C02
-    actionName: Sleep mode
-    sourceDeviceID: alexanders_phone
-    sourceDeviceName: Alexander’s phone
-    sourceDevicePermanentID: C484419F-0B1C-482C-B055-58675B8E19FC
-    triggerSource: preview
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Set lights
   action:
     - service: notify.mobile_app_alexanders_phone
       data:
@@ -43,19 +30,15 @@
           actions:
             - action: SLEEP_OFF
               title: "Off"
-            - action: SLEEP_HALF
-              title: Half
+              icon: 'sfsymbols:sun.max.fill' # specific for apple https://developer.apple.com/sf-symbols/
             - action: SLEEP_TOTAL
               title: Total
+              icon: 'sfsymbols:moon.fill'
     - wait_for_trigger:
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
             action: SLEEP_OFF
-        - platform: event
-          event_type: mobile_app_notification_action
-          event_data:
-            action: SLEEP_HALF
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
@@ -75,22 +58,10 @@
     platform: event
     event_type: ios.action_fired
     event_data:
-        # source may be one of:
-        # - appShortcut
-        # - preview
-        # - siriShortcut
-        # - urlHandler
-        # - watch
-        # - widget
-        actionID: 055B2E49-D03C-4AE9-B0AC-C52D12C080BB
-        actionName: Temperature report
-        sourceDeviceID: alexanders_phone
-        sourceDeviceName: Alexander's phone
-        sourceDevicePermanentID: C484419F-0B1C-482C-B055-58675B8E19FC
-        triggerSource: preview
+      actionName: Temperature report
   action:
-    - service: notify.mobile_app_alexanders_phone
-      data:
-        title: "Temperature"
-        message: >
-          Living room: {{ states('sensor.living_room_temperature') }}°C
+    service: notify.mobile_app_alexanders_phone
+    data:
+      title: "Temperature"
+      message: >
+        Living room: {{ states('sensor.living_room_temperature') }}°C
