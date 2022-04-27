@@ -1,4 +1,4 @@
-homeassistant: !include configs/main.yaml
+homeassistant: !include homeassistant.yaml
 
 default_config:
 

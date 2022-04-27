@@ -2,7 +2,7 @@
 - alias: Entering home
   trigger:
     platform: state
-    to: Parent home
+    to: home
     entity_id: device_tracker.alexanders_phone
   action:
     - service: light.turn_on
