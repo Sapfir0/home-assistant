@@ -1,12 +1,16 @@
-- alias: Mom exiting tracker
+
+- alias: Entering home
   trigger:
     platform: state
-    to: not_home
-    entity_id: device_tracker.SM-A525F
+    to: Parent home
+    entity_id: device_tracker.alexanders_phone
   action:
-    - service: telegram_bot.send_message
+    - service: light.turn_on
       data:
-        message: "Мама вышла из дома"
+        entity_id: light.midesklamp1s_f86f
+        brightness: 35
+        color_temp: 350
+
 
 - alias: Mom entering tracker
   trigger:
