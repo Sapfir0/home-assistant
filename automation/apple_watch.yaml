@@ -1,0 +1,67 @@
+
+
+- alias: "Apple Watch: minimal lights bedroom"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Minimal lights bedroom
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.midesklamp1s_f86f
+      brightness: 98
+      color_name: red
+
+
+- alias: "Apple Watch: set sleep mode"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Set lights
+  action:
+    - service: notify.mobile_app_alexanders_phone
+      data:
+        message: "Apple Watch: set sleep mode."
+        data:
+          actions:
+            - action: SLEEP_OFF
+              title: "Off"
+              icon: 'sfsymbols:sun.max.fill' # specific for apple https://developer.apple.com/sf-symbols/
+            - action: SLEEP_TOTAL
+              title: Total
+              icon: 'sfsymbols:moon.fill'
+    - wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_OFF
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: SLEEP_TOTAL
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        event: "{{ wait.trigger.event.data.action.lower().split('_')[1] }}"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sleep_mode
+        option: "{{ event }}"
+
+- alias: "Apple Watch: temperature report"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Temperature report
+  action:
+    service: notify.mobile_app_alexanders_phone
+    data:
+      title: "Temperature"
+      message: >
+        Living room: {{ states('sensor.living_room_temperature') }}°C

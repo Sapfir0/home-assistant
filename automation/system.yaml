@@ -1,0 +1,37 @@
+- id: notification_update
+  alias: 'Notification - Update Available'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: telegram_bot.send_message
+    data:
+      message: 'An update for Home Assistant is available.'
+
+
+- alias: "System: warning about high CPU usage"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.processor_use_percent
+    above: 70
+    for:
+      hours: 4
+  action:
+    service: notify.mobile_app_alexanders_phone
+    data:
+      title: "System"
+      message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
+
+- alias: "System: warning about high CPU temperature"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.processor_temperature
+    above: 70
+    for:
+      hours: 4
+  action:
+    service: notify.mobile_app_alexanders_phone
+    data:
+      title: "System"
+      message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
+

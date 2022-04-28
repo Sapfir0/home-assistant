@@ -1,4 +1,4 @@
-- alias: 'Wake Me Up'
+- alias: 'Morning alarm'
   trigger:
     platform: time
     at: input_datetime.weather_notification
