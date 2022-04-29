@@ -1,6 +1,9 @@
 latitude: !secret latitude_home
 longitude: !secret longitude_home
 elevation: 80
-name: Home
+name: Parent_home
 time_zone: Europe/Moscow
 unit_system: metric
+currency: USD
+external_url: "https://sapfir0-homeassistant.duckdns.org"
+internal_url: "http://192.168.31.224:8123"

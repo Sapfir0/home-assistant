@@ -35,7 +35,7 @@ scene: !include includes/scenes.yaml
 ios: !include includes/ios.yaml
 switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml
-
+http: !include includes/http.yaml
 
 python_script:
 
