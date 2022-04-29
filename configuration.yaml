@@ -1,4 +1,4 @@
-homeassistant: !include  includes/homeassistant.yaml
+homeassistant: !include includes/homeassistant.yaml
 
 default_config:
 
@@ -6,20 +6,26 @@ logger:
   default: info
 
 recorder: !include configs/recorder.yaml
+zone: !include configs/zones.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
+
+
+input_select: !include includes/input_select.yaml
+input_number: !include includes/input_slider.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_datetime: !include includes/input_datetime.yaml
+
 
 mobile_app:
 
 device_tracker: !include configs/router_device_tracker.yaml
 
-
 notify: !include includes/output/telegram_notifier.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
 
 sensor: !include_dir_merge_list sensors
-
 group: !include includes/groups.yaml
 automation: !include_dir_merge_list automation
 
@@ -27,53 +33,10 @@ script: !include includes/scripts.yaml
 scene: !include includes/scenes.yaml
 
 ios: !include includes/ios.yaml
+switch: !include includes/switch.yaml
+climate: !include includes/climate.yaml
 
-input_select: !include includes/input_select.yaml
-input_number: !include includes/input_slider.yaml
-input_boolean: !include includes/input_boolean.yaml
-input_datetime: !include includes/input_datetime.yaml
 
 python_script:
 
 
-zone: !include configs/zones.yaml
-
-
-
-switch:
-  - platform: flux
-    lights:
-      - light.midesklamp1s_f86f
-    name: Fluxer
-    start_time: '10:00'
-    stop_time: '22:00'
-    start_colortemp: 5000
-    sunset_colortemp: 3700
-    stop_colortemp: 2800
-    brightness: 25.5
-    disable_brightness_adjust: true
-    mode: mired
-    transition: 30
-    interval: 60
-  - platform: rpi_gpio
-    ports:
-      4: RPI Cooling Fan
-
-
-
-climate:
-  - platform: generic_thermostat
-    name: RPI Cooling Fan Controller
-    heater: switch.rpi_cooling_fan
-    target_sensor: sensor.processor_temperature
-    min_temp: 45
-    max_temp: 80
-    ac_mode: true
-    target_temp: 45
-    cold_tolerance: 0.1
-    hot_tolerance: 0.1
-    min_cycle_duration:
-      seconds: 30
-    keep_alive:
-      minutes: 5
-    initial_hvac_mode: "cool"

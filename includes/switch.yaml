@@ -1,0 +1,22 @@
+
+- platform: flux
+  lights:
+    - light.midesklamp1s_f86f
+  name: Fluxer
+  start_time: "10:00"
+  stop_time: "22:00"
+  start_colortemp: 5000
+  sunset_colortemp: 3700
+  stop_colortemp: 2800
+  brightness: 25.5
+  disable_brightness_adjust: true
+  mode: mired
+  transition: 30
+  interval: 60
+
+
+- platform: rpi_gpio
+  switches:
+    - port: 4
+      name: "RPi Cooling Fan"
+      unique_id: "rpi_cooling_fan" 
