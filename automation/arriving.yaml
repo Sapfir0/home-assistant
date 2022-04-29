@@ -1,5 +1,5 @@
 
-- alias: Entering home
+- alias: "Entering: Alexander"
   trigger:
     platform: state
     to: home
@@ -12,7 +12,7 @@
         color_temp: 350
 
 
-- alias: Mom entering tracker
+- alias: "Entering: Mom"
   trigger:
     platform: state
     to: home

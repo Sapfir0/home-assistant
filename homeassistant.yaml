@@ -1,0 +1,6 @@
+latitude: !secret latitude_home
+longitude: !secret longitude_home
+elevation: 80
+name: Home
+time_zone: Europe/Moscow
+unit_system: metric
