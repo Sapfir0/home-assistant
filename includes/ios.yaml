@@ -1,0 +1,27 @@
+actions:
+  - name: Set sleep mode
+    background_color: "#000000"
+    label:
+      text: Set sleep mode
+      color: "#ff0000"
+    icon:
+      icon: sleep
+      color: "#ffffff"
+
+  - name: Temperature report
+    background_color: "#000000"
+    label:
+      text: Report
+      color: "#ff0000"
+    icon:
+      icon: temperature-celsius
+      color: "#ffffff"
+
+  - name: Set lights
+    background_color: "#000000"
+    label:
+      text: Set lights
+      color: "#ff0000"
+    icon:
+      icon: lamp
+      color: "#ffffff"

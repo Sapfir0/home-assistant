@@ -1,11 +1,11 @@
-homeassistant: !include homeassistant.yaml
+homeassistant: !include  includes/homeassistant.yaml
 
 default_config:
 
 logger:
   default: info
 
-recorder: !include  configs/recorder.yaml
+recorder: !include configs/recorder.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -15,26 +15,29 @@ mobile_app:
 device_tracker: !include configs/router_device_tracker.yaml
 
 
-notify: !include output/telegram_notifier.yaml
-telegram_bot: !include output/telegram_bot.yaml
+notify: !include includes/output/telegram_notifier.yaml
+telegram_bot: !include includes/output/telegram_bot.yaml
 
 sensor: !include_dir_merge_list sensors
 
-group: !include groups.yaml
+group: !include includes/groups.yaml
 automation: !include_dir_merge_list automation
 
-script: !include scripts.yaml
-scene: !include scenes.yaml
+script: !include includes/scripts.yaml
+scene: !include includes/scenes.yaml
 
-input_select: !include input_select.yaml
-input_number: !include input_slider.yaml
-input_boolean: !include input_boolean.yaml
-input_datetime: !include input_datetime.yaml
+ios: !include includes/ios.yaml
+
+input_select: !include includes/input_select.yaml
+input_number: !include includes/input_slider.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_datetime: !include includes/input_datetime.yaml
 
 python_script:
 
 
 zone: !include configs/zones.yaml
+
 
 
 switch:

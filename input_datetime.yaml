@@ -1,5 +1,0 @@
-weather_notification:
-  name: Weather notification
-  has_time: true
-  has_date: false
-  initial: '10:00:00'

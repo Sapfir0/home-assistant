@@ -11,7 +11,7 @@
   trigger:
     platform: state
     to: not_home
-    entity_id: device_tracker.SM-A525F
+    entity_id: device_tracker.irina_phone
   action:
     - service: telegram_bot.send_message
       data:
