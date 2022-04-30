@@ -2,7 +2,7 @@
 - alias: "Entering: Alexander"
   trigger:
     platform: state
-    to: Parent_home
+    to: home
     entity_id: person.alexander
   action:
     - service: light.turn_on
