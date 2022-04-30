@@ -69,72 +69,23 @@ homeassistant_3:
   picture:
   track: true
 
-80_30_49_4b_ad_33:
-  name: 80_30_49_4b_ad_33
-  mac: 80:30:49:4B:AD:33
-  icon:
-  picture:
-  track: true
-
-70_0b_c0_99_a5_71:
-  name: 70_0b_c0_99_a5_71
-  mac: 70:0B:C0:99:A5:71
-  icon:
-  picture:
-  track: true
-
-34_d2_70_f4_4c_7d:
-  name: 34_d2_70_f4_4c_7d
-  mac: 34:D2:70:F4:4C:7D
-  icon:
-  picture:
-  track: true
-
-34_e1_2d_95_b9_8d:
-  name: 34_e1_2d_95_b9_8d
-  mac: 34:E1:2D:95:B9:8D
-  icon:
-  picture:
-  track: true
-
-be_ee_90_c5_16_c4:
-  name: be_ee_90_c5_16_c4
-  mac: BE:EE:90:C5:16:C4
-  icon:
-  picture:
-  track: true
-
-5c_52_30_9c_ff_62:
-  name: 5c_52_30_9c_ff_62
-  mac: 5C:52:30:9C:FF:62
-  icon:
-  picture:
-  track: true
-
-da_86_db_64_9f_2d:
-  name: da_86_db_64_9f_2d
-  mac: DA:86:DB:64:9F:2D
-  icon:
-  picture:
-  track: true
-
-22_28_43_a4_37_3c:
-  name: 22_28_43_a4_37_3c
+AlexandersPhone:
+  name: iPhone13
   mac: 22:28:43:A4:37:3C
-  icon:
+  icon: mdi:cellphone-ios
   picture:
   track: true
 
-fa_ad_ac_0b_ef_4f:
-  name: fa_ad_ac_0b_ef_4f
+AlexandersWatch:
+  name: Apple-Watch
   mac: FA:AD:AC:0B:EF:4F
   icon:
   picture:
   track: true
 
-1a_56_3a_3e_f6_22:
-  name: 1a_56_3a_3e_f6_22
+IrinasPhone:
+  name: Samsung-A52
   mac: 1A:56:3A:3E:F6:22
-  icon:
+  icon: mdi:cellphone-android
   picture:
   track: true

@@ -14,7 +14,7 @@ views:
         forecast: true
         details: true
         current: true
-        number_of_forecasts: '3'
+        number_of_forecasts: "3"
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
@@ -77,7 +77,7 @@ views:
         entities:
           - input_number.minimum_time_for_stable_value
   - title: Weather
-    path: ''
+    path: ""
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -139,7 +139,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: 'Full router settings in http://router.miwifi.com/ '
+        content: "Full router settings in http://router.miwifi.com/ "
         title: Info
       - type: gauge
         entity: sensor.speedtest_download

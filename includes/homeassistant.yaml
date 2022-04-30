@@ -5,5 +5,5 @@ name: Parent_home
 time_zone: Europe/Moscow
 unit_system: metric
 currency: USD
-external_url: "https://sapfir0-homeassistant.duckdns.org"
-internal_url: "http://192.168.31.224:8123"
+external_url: https://sapfir0-homeassistant.duckdns.org
+internal_url: http://192.168.31.224:8123
