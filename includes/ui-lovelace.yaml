@@ -14,7 +14,7 @@ views:
         forecast: true
         details: true
         current: true
-        number_of_forecasts: "3"
+        number_of_forecasts: '3'
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
@@ -73,11 +73,8 @@ views:
           - sensor.current_uv_index
           - sensor.current_uv_level
           - sensor.max_uv_index
-      - type: entities
-        entities:
-          - input_number.minimum_time_for_stable_value
   - title: Weather
-    path: ""
+    path: ''
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -85,14 +82,6 @@ views:
         content: >-
           Тут должна быть информация о  погоде, но тогда на первом экране будет
           слишком пусто
-      - type: history-graph
-        entities:
-          - entity: device_tracker.mi5s_miphone
-          - entity: device_tracker.mi_9_lite
-          - entity: device_tracker.mi9lite
-          - entity: device_tracker.mi5s
-        hours_to_show: 24
-        refresh_interval: 0
       - type: picture-elements
         elements:
           - type: state-badge
@@ -106,21 +95,24 @@ views:
               top: 32%
               left: 55%
         image: https://demo.home-assistant.io/stub_config/floorplan.png
+      - type: glance
+        entities:
+          - entity: input_select.sleep_mode
   - title: Users
     path: users
     icon: mdi:account
     badges: []
     cards:
-      - type: entities
+      - type: history-graph
         entities:
-          - entity: device_tracker.mi5s
-          - entity: device_tracker.mi_9_lite
-          - entity: device_tracker.mi_5s
-          - entity: device_tracker.mi9lite
+          - entity: device_tracker.alexandersphone
+          - entity: device_tracker.irinasphone
+        hours_to_show: 15
+        refresh_interval: 0
       - type: map
         entities:
-          - entity: device_tracker.mi_9_lite
-          - entity: device_tracker.mi5s
+          - entity: person.alexander
+          - entity: person.irina
         hours_to_show: 0
   - title: Media
     path: media
@@ -139,7 +131,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: "Full router settings in http://router.miwifi.com/ "
+        content: 'Full router settings in http://router.miwifi.com/ '
         title: Info
       - type: gauge
         entity: sensor.speedtest_download
@@ -193,6 +185,7 @@ views:
           - sensor.disk_free
       - type: entities
         entities:
-          - sensor.processor_temperature
+          - entity: sensor.processor_temperature
+          - entity: binary_sensor.rpi_power_status
       - type: thermostat
         entity: climate.rpi_cooling_fan_controller
