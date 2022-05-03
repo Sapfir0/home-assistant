@@ -34,7 +34,7 @@
       - condition: and
         conditions:
           - condition: state
-            entity_id: input_boolean.alarmweekday
+            entity_id: input_boolean.weather_notification_weekdays
             state: 'on'
           - condition: time
             weekday:
@@ -46,7 +46,7 @@
       - condition: and
         conditions:
           - condition: state
-            entity_id: input_boolean.alarmweekday
+            entity_id: input_boolean.weather_notification_weekdays
             state: 'off'
     
   action:

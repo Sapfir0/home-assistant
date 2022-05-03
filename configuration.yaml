@@ -30,6 +30,7 @@ automation: !include_dir_merge_list automation
 script: !include includes/scripts.yaml
 scene: !include includes/scenes.yaml
 
+person: !include includes/person.yaml
 ios: !include includes/ios.yaml
 switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml

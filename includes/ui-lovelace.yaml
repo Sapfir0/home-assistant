@@ -18,7 +18,7 @@ views:
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
-          - entity: input_boolean.alarmweekday
+          - entity: input_boolean.weather_notification_weekdays
       - type: entities
         entities:
           - entity: sensor.openweathermap_rain

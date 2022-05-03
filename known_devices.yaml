@@ -84,8 +84,8 @@ AlexandersWatch:
   track: true
 
 IrinasPhone:
-  name: Samsung-A52
-  mac: 1A:56:3A:3E:F6:22
-  icon: mdi:cellphone-android
+  name: SamsungA52
+  mac: A4:C6:9A:68:77:57
+  icon:
   picture:
   track: true

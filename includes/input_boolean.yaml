@@ -1,4 +1,12 @@
-alarmweekday:
+weather_notification_weekdays:
   name: Weekdays Only
   initial: off
   icon: mdi:calendar
+
+guest_mode:
+  name: Guest mode
+  icon: mdi:human-male-female
+
+automatic_bedroom_lights:
+  name: Automatic bedroom lights
+  icon: mdi:lamp
