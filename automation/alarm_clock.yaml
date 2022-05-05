@@ -1,0 +1,40 @@
+
+- alias: 'Alarm clock: Weather notification'
+  trigger:
+    platform: time
+    at: input_datetime.weather_notification
+  # оповещение в выходные
+  # если включен, input_boolean.weather_notification_weekdays, то оповещение придет только в будни
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.weather_notification_weekdays
+            state: 'on'
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.weather_notification_weekdays
+            state: 'off'
+  action:
+    service: telegram_bot.send_message
+    data:
+      message: "{% if now().strftime('%H')|int < 7 %}
+        Доброй ночи,
+        {% elif now().strftime('%H')|int < 12 %}
+        Доброе утро,
+        {% elif now().strftime('%H')|int < 18 %}
+        Хорошего дня,
+        {% else %}
+        Хорошего вечера,
+        {% endif %}
+         сейчас в Санкт-Петербурге {{states('sensor.openweathermap_temperature_2')}}°C. В Волгограде {{states('sensor.openweathermap_temperature')}}°C"

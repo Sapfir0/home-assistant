@@ -8,7 +8,7 @@
 | DHT11 | 🌡 | 
 | Raspberry Pi 4, 4GB RAM | 🖥 | 
 | NodeMcu ESP8266 | 🖥 | 
-| Xiaomi Mi Router 4A Gigabit Edition | 🖥 | 
+| Xiaomi Mi Router 4A Gigabit Edition | 🎚 | 
 
 
 
