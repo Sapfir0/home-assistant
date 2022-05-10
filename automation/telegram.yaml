@@ -23,3 +23,21 @@
         Сейчас за бортом {{ states('sensor.openweathermap_temperature') }}°C, прогноз на ближайшее время: {{ states('sensor.openweathermap_forecast_temperature') }}°C. "
         
 
+- alias: "Telegram: Send media to Alisa"
+  trigger:
+    platform: event
+    event_type: telegram_text
+  action:
+    service: media_player.play_media
+    entity_id: media_player.yandex_station_mini 
+    data:
+      media_content_id: "{{ trigger.event.data.text }}"
+      media_content_type: "question:{{ trigger.event.data.chat_id }}"
+- trigger:
+    platform: event
+    event_type: yandex_station_response
+  action:
+    service: telegram_bot.send_message
+    data:
+      target: "{{ trigger.event.data.request_id }}"
+      message: "{{ trigger.event.data.text }}"

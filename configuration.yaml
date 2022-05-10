@@ -8,8 +8,7 @@ logger:
 recorder: !include configs/recorder.yaml
 zone: !include configs/zones.yaml
 
-frontend:
-  themes: !include_dir_merge_named themes
+frontend: !include includes/frontend.yaml
 
 input_select: !include includes/input_select.yaml
 input_number: !include includes/input_slider.yaml
@@ -20,7 +19,7 @@ mobile_app:
 
 device_tracker: !include configs/router_device_tracker.yaml
 
-notify: !include includes/output/telegram_notifier.yaml
+notify: !include includes/notify.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
 
 sensor: !include_dir_merge_list sensors

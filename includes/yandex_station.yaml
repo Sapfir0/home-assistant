@@ -1,0 +1,96 @@
+yandex_station:
+  username: !secret yandex_username
+  password: !secret yandex_password
+
+sensor:
+- platform: template
+  sensors:
+    alice_state:
+      value_template: "{{ state_attr('media_player.yandex_station_mini', 'alice_state') }}"
+
+script:
+  listening:
+    mode: queued
+    sequence:
+    - service: light.turn_on
+      entity_id: light.lamp1, light.lamp2
+      data:
+        rgb_color: [36, 36, 255]
+        transition: 1
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id: light.lamp1, light.lamp2
+      data:
+        rgb_color: [103, 57, 204]
+        transition: 1
+    - delay: '00:00:01'
+    - service: script.turn_on
+      entity_id: script.listening
+
+  speaking:
+    mode: queued
+    sequence:
+    - service: light.turn_on
+      entity_id: light.lamp1, light.lamp2
+      data:
+        brightness: 100
+        transition: 1
+    - delay: '00:00:01'
+    - service: light.turn_on
+      entity_id: light.lamp1, light.lamp2
+      data:
+        brightness: 255
+        transition: 1
+    - delay: '00:00:01'
+    - service: script.turn_on
+      entity_id: script.speaking
+
+automation:
+- trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: LISTENING
+  action:
+  - service: script.turn_off
+    entity_id: script.speaking
+  - service: light.turn_on
+    entity_id: light.lamp1, light.lamp2
+    data:
+      rgb_color: [103, 57, 204]
+      brightness: 255
+  - service: script.turn_on
+    entity_id: script.listening
+
+- trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: SPEAKING
+  action:
+  - service: script.turn_off
+    entity_id: script.listening
+  - service: light.turn_on
+    entity_id: light.lamp1, light.lamp2
+    data:
+      rgb_color: [103, 57, 204]
+      brightness: 255
+  - service: script.turn_on
+    entity_id: script.speaking
+
+- trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: IDLE
+  action:
+  - service: script.turn_off
+    entity_id: script.listening, script.speaking
+  - service: light.turn_off
+    entity_id: light.lamp1, light.lamp2
+
+yeelight:
+  devices:
+    192.168.1.123:
+      name: lamp1
+      use_music_mode: True
+    192.168.1.124:
+      name: lamp2
+      use_music_mode: True

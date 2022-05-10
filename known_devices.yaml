@@ -89,3 +89,17 @@ IrinasPhone:
   icon:
   picture:
   track: true
+
+mbp_alexander_2:
+  name: MBP-Alexander-2
+  mac: 5C:52:30:9C:FF:62
+  icon:
+  picture:
+  track: true
+
+Prestigio:
+  name: Prestigio
+  mac: 70:0B:C0:99:A5:71
+  icon:
+  picture:
+  track: true
