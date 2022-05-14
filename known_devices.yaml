@@ -41,8 +41,8 @@ mi5s:
   picture:
   track: true
 
-esp_home_params:
-  name: esp_home_params
+esp_home-params:
+  name: esp_home-params
   mac: 3C:71:BF:2A:B0:77
   icon: 
   picture:
@@ -86,6 +86,13 @@ AlexandersWatch:
 IrinasPhone:
   name: SamsungA52
   mac: A4:C6:9A:68:77:57
+  icon:
+  picture:
+  track: true
+
+alexanders_iphone:
+  name: alexanders_iphone
+  mac:
   icon:
   picture:
   track: true

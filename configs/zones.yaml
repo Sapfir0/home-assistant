@@ -1,15 +1,10 @@
 - name: Home
   latitude: !secret latitude_home
   longitude: !secret longitude_home
+  icon: mdi:home
 
 - name: Univercity
   latitude: !secret latitude_univercity
   longitude: !secret longitude_univercity     
   radius: 250
   icon: mdi:book
-
-- name: Parent_home
-  latitude: !secret latitude_parent_home
-  longitude: !secret longitude_parent_home     
-  radius: 70
-  icon: mdi:home

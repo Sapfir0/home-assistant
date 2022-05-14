@@ -9,22 +9,23 @@ views:
       - entity: sun.sun
     cards:
       - type: custom:weather-card
-        entity: weather.openweathermap
+        entity: weather.openweathermap_2
         hourly_forecast: true
         forecast: true
         details: true
         current: true
         number_of_forecasts: '3'
+        name: болотце
       - type: entities
         entities:
           - entity: input_datetime.weather_notification
           - entity: input_boolean.weather_notification_weekdays
       - type: entities
         entities:
-          - entity: sensor.openweathermap_rain
-          - entity: sensor.openweathermap_snow
-          - entity: sensor.openweathermap_humidity
-          - entity: sensor.openweathermap_pressure
+          - entity: sensor.openweathermap_rain_2
+          - entity: sensor.openweathermap_snow_2
+          - entity: sensor.openweathermap_humidity_2
+          - entity: sensor.openweathermap_pressure_2
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
@@ -41,38 +42,44 @@ views:
             font_size: 75
       - type: vertical-stack
         cards:
-          - type: button
+          - show_name: true
+            show_icon: true
+            type: button
             tap_action:
               action: toggle
-            entity: light.midesklamp1s_f86f
+            entity: light.mibedsidelamp2_7744
+            icon: ''
+            name: Ночник
+            show_state: false
           - shorten_cards: false
             consolidate_entities: false
+            child_card: true
+            hide_header: true
+            header: Midesklamp1s_f86f
             color_wheel: true
             persist_features: false
             brightness: true
             color_temp: true
             white_value: true
             color_picker: true
-            smooth_color_wheel: false
-            hide_header: true
-            child_card: false
+            smooth_color_wheel: true
+            speed: true
+            intensity: true
+            force_features: false
             show_slider_percent: true
             full_width_sliders: false
             brightness_icon: weather-sunny
             white_icon: file-word-box
             temperature_icon: thermometer
+            speed_icon: speedometer
+            intensity_icon: transit-connection-horizontal
             type: custom:light-entity-card
-            header: Midesklamp1s_f86f
-            entity: light.midesklamp1s_f86f
+            entity: light.mibedsidelamp2_7744
+            effects_list: false
       - type: button
         tap_action:
           action: toggle
         entity: switch.fluxer
-      - type: entities
-        entities:
-          - sensor.current_uv_index
-          - sensor.current_uv_level
-          - sensor.max_uv_index
   - title: Weather
     path: ''
     icon: mdi:weather-cloudy

@@ -1,3 +1,4 @@
-platform: xiaomi
-host: 192.168.31.1
-password: !secret xiaomi_router_password
+platform: ping
+hosts:
+  alexanders_iphone: 192.168.3.13
+

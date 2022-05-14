@@ -20,6 +20,6 @@
         {% else %}
         Хорошего вечера)
         {% endif %}
-        Сейчас за бортом {{ states('sensor.openweathermap_temperature') }}°C, прогноз на ближайшее время: {{ states('sensor.openweathermap_forecast_temperature') }}°C. "
+        Сейчас за бортом {{ states('sensor.openweathermap_temperature_2') }}°C, прогноз на ближайшее время: {{ states('sensor.openweathermap_forecast_temperature_2') }}°C. "
         
 

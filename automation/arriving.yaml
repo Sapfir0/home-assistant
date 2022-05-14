@@ -11,13 +11,3 @@
         brightness: 35
         color_temp: 350
 
-
-- alias: "Entering: Mom"
-  trigger:
-    platform: state
-    to: home
-    entity_id: person.irina
-  action:
-    - service: telegram_bot.send_message
-      data:
-        message: "Мама пришла домой"

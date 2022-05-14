@@ -1,4 +1,0 @@
-- name: Irina
-  id: irina
-  device_trackers:
-    - device_tracker.irinasphone

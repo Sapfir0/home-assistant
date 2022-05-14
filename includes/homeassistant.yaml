@@ -1,7 +1,7 @@
 latitude: !secret latitude_home
 longitude: !secret longitude_home
 elevation: 80
-name: Parent_home
+name: Home
 time_zone: Europe/Moscow
 unit_system: metric
 currency: USD
