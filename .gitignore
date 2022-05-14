@@ -16,3 +16,4 @@ custom_components/*
 www/
 themes
 secrets.yaml
+appdaemon/compiled

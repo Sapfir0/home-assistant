@@ -11,3 +11,10 @@ wake_up_ios:
   has_time: true
   has_date: false
   initial: '9:10:00'
+
+
+alarm_clock:
+  name: Alarm clock
+  has_date: false
+  has_time: true
+  initial: '08:55:00'

@@ -1,0 +1,11 @@
+---
+hello_world:
+  module: hello
+  class: HelloWorld
+
+wake_up_light:
+  module: wake_up_light
+  class: WakeUpLight
+  total_time: 900
+  lamp: "light.bedroom_lamp"
+  input_boolean: "input_boolean.wake_up_light"
