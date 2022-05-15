@@ -18,7 +18,10 @@ views:
         name: болотце
       - type: entities
         entities:
-          - entity: input_datetime.weather_notification
+          - entity: input_boolean.alarm_clock
+          - entity: input_datetime.alarm_clock
+          - entity: sensor.ten_minutes_before_alarm
+          - entity: sensor.weather_notifitcations
           - entity: input_boolean.weather_notification_weekdays
       - type: entities
         entities:
@@ -47,7 +50,7 @@ views:
             type: button
             tap_action:
               action: toggle
-            entity: light.mibedsidelamp2_7744
+            entity: light.bedroom_lamp
             icon: ''
             name: Ночник
             show_state: false
@@ -74,7 +77,7 @@ views:
             speed_icon: speedometer
             intensity_icon: transit-connection-horizontal
             type: custom:light-entity-card
-            entity: light.mibedsidelamp2_7744
+            entity: light.bedroom_lamp
             effects_list: false
       - type: button
         tap_action:

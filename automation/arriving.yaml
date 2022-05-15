@@ -7,7 +7,7 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.midesklamp1s_f86f
-        brightness: 35
-        color_temp: 350
+        entity_id: light.bedroom_lamp
+        brightness: 150
+        color_name: blue
 

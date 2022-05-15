@@ -1,6 +1,6 @@
 
 
-- alias: "Apple Watch: minimal lights bedroom"
+- alias: "Apple Watch: Minimal lights bedroom"
   trigger:
     platform: event
     event_type: ios.action_fired
@@ -15,7 +15,7 @@
       color_name: red
 
 
-- alias: "Apple Watch: set sleep mode"
+- alias: "Apple Watch: Set sleep mode"
   mode: parallel
   trigger:
     platform: event
@@ -52,7 +52,7 @@
         entity_id: input_select.sleep_mode
         option: "{{ event }}"
 
-- alias: "Apple Watch: temperature report"
+- alias: "Apple Watch: Temperature report"
   mode: parallel
   trigger:
     platform: event

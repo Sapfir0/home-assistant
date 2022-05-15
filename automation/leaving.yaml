@@ -5,4 +5,4 @@
     entity_id: person.alexander
   action:
     - service: light.turn_off
-      entity_id: light.midesklamp1s_f86f
+      entity_id: light.bedroom_lamp
