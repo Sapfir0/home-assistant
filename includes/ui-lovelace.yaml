@@ -4,45 +4,21 @@ views:
     title: Home
     icon: mdi:home
     badges:
-      - entity: binary_sensor.updater
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - type: custom:weather-card
+      - show_current: true
+        show_forecast: true
+        type: weather-forecast
         entity: weather.openweathermap_2
-        hourly_forecast: true
-        forecast: true
-        details: true
-        current: true
-        number_of_forecasts: '3'
-        name: болотце
+        name: Болотце
       - type: entities
         entities:
           - entity: input_boolean.alarm_clock
           - entity: input_datetime.alarm_clock
-          - entity: sensor.ten_minutes_before_alarm
+          - entity: sensor.wake_up_light_start_time
           - entity: sensor.weather_notifitcations
           - entity: input_boolean.weather_notification_weekdays
-      - type: entities
-        entities:
-          - entity: sensor.openweathermap_rain_2
-          - entity: sensor.openweathermap_snow_2
-          - entity: sensor.openweathermap_humidity_2
-          - entity: sensor.openweathermap_pressure_2
-      - type: horizontal-stack
-        cards:
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.living_room_temperature
-            line_color: var(--accent-color)
-            line_width: 8
-            font_size: 75
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.living_room_humidity
-            line_color: green
-            line_width: 8
-            font_size: 75
       - type: vertical-stack
         cards:
           - show_name: true
@@ -79,6 +55,26 @@ views:
             type: custom:light-entity-card
             entity: light.bedroom_lamp
             effects_list: false
+      - type: entities
+        entities:
+          - entity: sensor.openweathermap_rain_2
+          - entity: sensor.openweathermap_snow_2
+          - entity: sensor.openweathermap_humidity_2
+          - entity: sensor.openweathermap_pressure_2
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.living_room_temperature
+            line_color: var(--accent-color)
+            line_width: 8
+            font_size: 75
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.living_room_humidity
+            line_color: green
+            line_width: 8
+            font_size: 75
       - type: button
         tap_action:
           action: toggle
