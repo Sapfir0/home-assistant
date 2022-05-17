@@ -1,30 +1,10 @@
 
 - alias: 'Alarm clock: Weather notification'
+  id: "alarm_clock_weather_notification"
   trigger:
-    platform: time
-    at: input_datetime.weather_notification
-  # оповещение в выходные
-  # если включен, input_boolean.weather_notification_weekdays, то оповещение придет только в будни
-  condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.weather_notification_weekdays
-            state: 'on'
-          - condition: time
-            weekday:
-              - mon
-              - tue
-              - wed
-              - thu
-              - fri
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.weather_notification_weekdays
-            state: 'off'
+    platform: template
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.weather_notifitcations") }}
   action:
     service: telegram_bot.send_message
     data:
@@ -38,3 +18,22 @@
         Хорошего вечера,
         {% endif %}
          сейчас в Санкт-Петербурге {{states('sensor.openweathermap_temperature_2')}}°C. В Волгограде {{states('sensor.openweathermap_temperature')}}°C"
+
+
+- alias: "Alarm clock: Sunrise wake up"
+  id: "alarm_clock_sunrise"
+  trigger:
+    platform: template
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.wake_up_light_start_time") }}
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock
+    state: "on"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.wake_up_light
+    - service: input_select.select_option
+      entity_id: input_select.sleep_mode
+      data:
+        option: "off"

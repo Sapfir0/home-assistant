@@ -1,13 +1,21 @@
-weather_notification:
-  name: Weather notification
-  has_time: true
-  has_date: false
-  initial: '9:00:00'
-
-
 # тестовый будильник, который синхронизируется с телефона
 wake_up_ios:
   name: Alarm 
   has_time: true
   has_date: false
   initial: '9:10:00'
+
+
+alarm_clock:
+  name: Alarm clock
+  has_date: false
+  has_time: true
+  initial: '08:55:00'
+
+
+
+wind_down:
+  name: Wind down
+  has_date: false
+  has_time: true
+  initial: '22:30:00'

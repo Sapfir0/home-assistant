@@ -7,6 +7,12 @@ guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
 
-automatic_bedroom_lights:
-  name: Automatic bedroom lights
-  icon: mdi:lamp
+
+wake_up_light:
+  name: Start wake up light
+  initial: off
+  icon: mdi:weather-sunset-up
+
+alarm_clock:
+  name: Alarm clock is on
+  icon: mdi:alarm

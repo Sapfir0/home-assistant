@@ -12,13 +12,12 @@ frontend:
   themes: !include_dir_merge_named themes
 
 input_select: !include includes/input_select.yaml
-input_number: !include includes/input_slider.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_datetime: !include includes/input_datetime.yaml
 
 mobile_app:
 
-device_tracker: !include configs/router_device_tracker.yaml
+# device_tracker: !include configs/router_device_tracker.yaml
 
 notify: !include includes/output/telegram_notifier.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
@@ -27,7 +26,8 @@ sensor: !include_dir_merge_list sensors
 group: !include includes/groups.yaml
 automation: !include_dir_merge_list automation
 
-script: !include includes/scripts.yaml
+script: !include_dir_merge_named scripts
+
 scene: !include includes/scenes.yaml
 
 person: !include includes/person.yaml

@@ -1,4 +1,7 @@
 platform: ping
+scan_interval: 180
+count: 3
+consider_home: 120
 hosts:
   alexanders_iphone: 192.168.3.13
-
+  alexander_watch: 192.168.3.21

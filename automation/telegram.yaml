@@ -1,5 +1,4 @@
-- id: "Get current weather"
-  alias: "Telegram: Get current weather"
+- alias: "Telegram: Get current weather"
   description: "Получение температуры"
   trigger:
     - platform: event

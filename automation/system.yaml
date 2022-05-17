@@ -1,5 +1,5 @@
 - id: notification_update
-  alias: 'System: update Available'
+  alias: 'System: Update Available'
   trigger:
     platform: state
     entity_id: updater.updater
@@ -9,7 +9,7 @@
       message: 'An update for Home Assistant is available.'
 
 
-- alias: "System: warning about high CPU usage"
+- alias: "System: Warning about high CPU usage"
   trigger:
     platform: numeric_state
     entity_id: sensor.processor_use_percent
@@ -22,7 +22,7 @@
       title: "System"
       message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
 
-- alias: "System: warning about high CPU temperature"
+- alias: "System: Warning about high CPU temperature"
   trigger:
     platform: numeric_state
     entity_id: sensor.processor_temperature

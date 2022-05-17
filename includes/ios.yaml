@@ -17,7 +17,7 @@ actions:
       icon: temperature-celsius
       color: "#ffffff"
 
-  - name: Set lights
+  - name: Set minimal lights bedroom
     background_color: "#000000"
     label:
       text: Set lights
