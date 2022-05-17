@@ -1,8 +1,10 @@
 
 - alias: 'Alarm clock: Weather notification'
+  id: "alarm_clock_weather_notification"
   trigger:
-    platform: time
-    at: input_datetime.weather_notification
+    platform: template
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.weather_notifitcations") }}
   action:
     service: telegram_bot.send_message
     data:
@@ -19,10 +21,11 @@
 
 
 - alias: "Alarm clock: Sunrise wake up"
+  id: "alarm_clock_sunrise"
   trigger:
     platform: template
     value_template: >
-      {{ states("sensor.time")[0:5] == states("sensor.ten_minutes_before_alarm") }}
+      {{ states("sensor.time")[0:5] == states("sensor.wake_up_light_start_time") }}
   condition:
     condition: state
     entity_id: input_boolean.alarm_clock
