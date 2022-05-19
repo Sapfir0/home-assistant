@@ -5,18 +5,23 @@
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
       unit_of_measurement: "s"
 
+    # будильник, который синхронизируется с телефона
+    alarm_clock:
+      friendly_name: Alarm clock
+      value_template: "8:55"
+
     wake_up_light_start_time:
       friendly_name: Wake up light start time
       value_template: >
-        {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
-        {% set t_start = states("sensor.timestamp_start_of_today") | int %}
-        {% set before_alarm = t_alarm + t_start - 60 * 10 %}
+        {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
+        {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
+        {% set before_alarm = t_start - 60 * 10 %}
         {{ before_alarm | timestamp_custom("%H:%M", True) }}
 
     weather_notifitcations:
       friendly_name: Time for forecast
       value_template: >
-        {% set t_alarm = state_attr("input_datetime.alarm_clock", "timestamp") | int %}
-        {% set t_start = states("sensor.timestamp_start_of_today") | int %}
-        {% set after_alarm = t_alarm + t_start + 60 * 1 %}
-        {{ after_alarm | timestamp_custom("%H:%M", True) }}
+        {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
+        {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
+        {% set before_alarm = t_start + 60 * 1 %}
+        {{ before_alarm | timestamp_custom("%H:%M", True) }}

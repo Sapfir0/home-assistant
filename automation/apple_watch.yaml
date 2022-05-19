@@ -11,32 +11,32 @@
         message: "Apple Watch: set sleep mode."
         data:
           actions:
-            - action: SLEEP_OFF
+            - action: "OFF"
               title: "Off"
               icon: 'sfsymbols:sun.max.fill' # specific for apple https://developer.apple.com/sf-symbols/
-            - action: WIND_DOWN
+            - action: "WIND_DOWN"
               title: "Wind down"
               icon: 'sfsymbols:moon.fill'
-            - action: SLEEP_TOTAL
-              title: Total
+            - action: "ON"
+              title: Sleep
               icon: 'sfsymbols:moon.fill'
     - wait_for_trigger:
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SLEEP_OFF
+            action: "OFF"
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: WIND_DOWN
+            action: "WIND_DOWN"
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
-            action: SLEEP_TOTAL
+            action: "ON"
       timeout: "00:00:20"
       continue_on_timeout: false
     - variables:
-        event: "{{ wait.trigger.event.data.action.lower().split('_')[1] }}"
+        event: "{{ wait.trigger.event.data.action.lower() }}"
     - service: input_select.select_option
       data:
         entity_id: input_select.sleep_mode

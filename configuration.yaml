@@ -36,4 +36,7 @@ switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml
 http: !include includes/http.yaml
 
+
+adaptive_lighting: !include includes/adaptive_lighting.yaml
+
 python_script:

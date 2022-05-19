@@ -1,0 +1,8 @@
+- name: bed room
+  lights:
+    - light.bedroom_lamp
+  min_brightness: 70
+  sleep_brightness: 20
+  prefer_rgb_color: true
+  detect_non_ha_changes: true
+  interval: 30

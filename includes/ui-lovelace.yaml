@@ -27,7 +27,7 @@ views:
             tap_action:
               action: toggle
             entity: light.bedroom_lamp
-            icon: ''
+            icon: ""
             name: Ночник
             show_state: false
           - shorten_cards: false
@@ -75,12 +75,8 @@ views:
             line_color: green
             line_width: 8
             font_size: 75
-      - type: button
-        tap_action:
-          action: toggle
-        entity: switch.fluxer
   - title: Weather
-    path: ''
+    path: ""
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -137,7 +133,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: 'Full router settings in http://router.miwifi.com/ '
+        content: "Full router settings in http://router.miwifi.com/ "
         title: Info
       - type: gauge
         entity: sensor.speedtest_download

@@ -1,6 +1,6 @@
 sleep_mode:
   options:
-    - "sleep"
-    - "wind down"
+    - "on"
+    - "wind_down"
     - "off"
   icon: mdi:bed-king
