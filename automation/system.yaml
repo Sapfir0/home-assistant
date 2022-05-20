@@ -17,7 +17,7 @@
     for:
       hours: 4
   action:
-    service: notify.mobile_app_alexanders_phone
+    service: telegram_bot.send_message
     data:
       title: "System"
       message: "CPU usage has been above 70% for 4 hours! ⚠️🖥"
@@ -30,7 +30,7 @@
     for:
       hours: 4
   action:
-    service: notify.mobile_app_alexanders_phone
+    service: telegram_bot.send_message
     data:
       title: "System"
       message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"

@@ -10,15 +10,23 @@ views:
       - show_current: true
         show_forecast: true
         type: weather-forecast
-        entity: weather.openweathermap_2
-        name: Болотце
+        entity: weather.home
+        secondary_info_attribute: wind_speed
+      - type: entities
+        entities:
+          - entity: sensor.openweathermap_rain_2
+          - entity: sensor.openweathermap_snow_2
+          - entity: sensor.openweathermap_humidity_2
+          - entity: sensor.openweathermap_pressure_2
       - type: entities
         entities:
           - entity: input_boolean.alarm_clock
-          - entity: input_datetime.alarm_clock
+          - entity: sensor.alarm_clock
           - entity: sensor.wake_up_light_start_time
           - entity: sensor.weather_notifitcations
           - entity: input_boolean.weather_notification_weekdays
+          - entity: input_select.sleep_mode
+            secondary_info: none
       - type: vertical-stack
         cards:
           - show_name: true
@@ -27,7 +35,7 @@ views:
             tap_action:
               action: toggle
             entity: light.bedroom_lamp
-            icon: ""
+            icon: mdi:lamp
             name: Ночник
             show_state: false
           - shorten_cards: false
@@ -55,12 +63,6 @@ views:
             type: custom:light-entity-card
             entity: light.bedroom_lamp
             effects_list: false
-      - type: entities
-        entities:
-          - entity: sensor.openweathermap_rain_2
-          - entity: sensor.openweathermap_snow_2
-          - entity: sensor.openweathermap_humidity_2
-          - entity: sensor.openweathermap_pressure_2
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
@@ -75,8 +77,20 @@ views:
             line_color: green
             line_width: 8
             font_size: 75
+      - type: entities
+        entities:
+          - entity: switch.adaptive_lighting_bed_room
+          - entity: switch.adaptive_lighting_sleep_mode_bed_room
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: automation.sleep_mode_lights
+        icon: mdi:lightbulb-variant-outline
+        name: Автоматизация света в зависимости от sleep mode
   - title: Weather
-    path: ""
+    path: ''
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -121,8 +135,6 @@ views:
     icon: mdi:television
     badges: []
     cards:
-      - type: media-control
-        entity: media_player.samsung_lt24h390
       - type: markdown
         content: |-
           Plex media server hosted  at http://192.168.31.105:32400/web.
@@ -133,7 +145,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: "Full router settings in http://router.miwifi.com/ "
+        content: 'Full router settings in http://router.miwifi.com/ '
         title: Info
       - type: gauge
         entity: sensor.speedtest_download

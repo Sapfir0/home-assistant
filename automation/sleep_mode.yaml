@@ -1,13 +1,3 @@
-- alias: "Sleep mode: Turn off sleep mode at morning"
-  trigger:
-    - platform: template
-      value_template: >
-        {{ states("sensor.time")[0:5] == states("sensor.alarm_clock") }}
-  action:
-    entity_id: input_select.sleep_mode
-    service: input_select.select_option
-    data:
-      option: "off"
 
 - alias: "Sleep mode: Set wind down"
   trigger:
@@ -33,20 +23,14 @@
         sequence:
           - service: switch.turn_off
             entity_id:
-              # sleep_modes
               - switch.adaptive_lighting_sleep_mode_bed_room
-          - service: switch.turn_on
-            entity_id:
-              - switch.adaptive_lighting_bed_room
+          - service: light.turn_on
+            entity_id: light.bedroom_lamp  
 
       - conditions: "{{ sleep_mode == 'wind_down' }}"
         sequence:
-          - service: switch.turn_off
-            entity_id:
-              - switch.adaptive_lighting_bed_room
           - service: switch.turn_on
             entity_id:
-              # sleep_modes
               - switch.adaptive_lighting_sleep_mode_bed_room
 
       - conditions: "{{ sleep_mode == 'on' }}"

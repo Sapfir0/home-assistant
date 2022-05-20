@@ -17,7 +17,7 @@
         {% else %}
         Хорошего вечера,
         {% endif %}
-         сейчас в Санкт-Петербурге {{states('sensor.openweathermap_temperature_2')}}°C. В Волгограде {{states('sensor.openweathermap_temperature')}}°C"
+         сейчас в Санкт-Петербурге {{ state_attr('weather.home','temperature') }}°C. Ветер {{ state_attr('weather.home','wind_speed') }}м/с."
 
 
 - alias: "Alarm clock: Sunrise wake up"
@@ -33,6 +33,14 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.wake_up_light
+
+
+- alias: "Alarm clock: Turn off sleep mode at morning"
+  trigger:
+    - platform: template
+      value_template: >
+        {{ states("sensor.time")[0:5] == states("sensor.alarm_clock") }}
+  action:
     - service: input_select.select_option
       entity_id: input_select.sleep_mode
       data:

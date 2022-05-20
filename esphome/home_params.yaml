@@ -4,8 +4,8 @@ esphome:
   board: nodemcuv2
 
 wifi:
-  ssid: !secret xiaomi_router_ssid
-  password: !secret xiaomi_router_password
+  ssid: !secret router_ssid
+  password: !secret router_password
 
 # Enable logging
 logger:

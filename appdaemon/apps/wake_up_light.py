@@ -102,7 +102,7 @@ def rgb_and_brightness(total_time, rgb_sequence):
     hsvs = zip(*[colorsys.rgb_to_hsv(*rgb) for rgb in rgb_sequence])
     hue, saturation, value = [Interpolate(xs, ys) for ys in hsvs]
     # start at brightness=2 because it considers 1 to be off...
-    _brightness = Interpolate([0, total_time], [2, 255])
+    _brightness = Interpolate([0, total_time], [5, 255])
 
     def rgb(t):
         rgb = colorsys.hsv_to_rgb(hue(t), saturation(t), value(t))
@@ -118,6 +118,9 @@ class WakeUpLight(hass.Hass):
     def initialize(self):
         self.input_boolean = self.args.get("input_boolean", DEFAULT_INPUT_BOOLEAN)
         self.listen_state(self.start_cb, self.input_boolean, new="on")
+        # cancel when turning off input boolean
+        self.listen_state(self.cancel_cb, self.input_boolean, oneshot=True, new="off")
+
         self.todos = []
 
     def start_cb(self, entity, attribute, old, new, kwargs):
@@ -166,6 +169,7 @@ class WakeUpLight(hass.Hass):
             self.listen_state(
                 self.cancel_cb, l, oneshot=True, new="off", timeout=total_time
             )
+
 
     def set_state_cb(self, kwargs):
         service_kwargs = kwargs.pop("service_kwargs")
