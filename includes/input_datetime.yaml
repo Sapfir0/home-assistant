@@ -1,9 +1,3 @@
-alarm_clock:
-  name: Alarm clock
-  has_date: false
-  has_time: true
-  initial: '08:55:00'
-
 
 wind_down:
   name: Wind down

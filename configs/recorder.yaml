@@ -11,3 +11,4 @@ exclude:
     - sensor.date_time
     - sensor.time
     - sensor.openweathermap_forecast_time
+    - switch.rpi_cooling_fan

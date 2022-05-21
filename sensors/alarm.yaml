@@ -8,7 +8,7 @@
     # будильник, который синхронизируется с телефона
     alarm_clock:
       friendly_name: Alarm clock
-      value_template: "8:55"
+      value_template: "08:55"
 
     wake_up_light_start_time:
       friendly_name: Wake up light start time
