@@ -17,7 +17,7 @@ input_datetime: !include includes/input_datetime.yaml
 
 mobile_app:
 
-# device_tracker: !include configs/router_device_tracker.yaml
+device_tracker: !include configs/router_device_tracker.yaml
 
 notify: !include includes/output/telegram_notifier.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
