@@ -1,0 +1,15 @@
+extends: default
+
+rules:
+  line-length: disable
+  comments: disable
+  comments-indentation: disable
+
+ignore: |
+  lovelace-ui.yaml
+  custom_components/
+  rhasspy/
+  notebooks/
+  .git
+  .github/workflows/yaml-lint.yaml
+  scenes.yaml
