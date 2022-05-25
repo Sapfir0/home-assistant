@@ -1,6 +1,6 @@
 platform: ping
-scan_interval: 260
+scan_interval: 360
 count: 10
-consider_home: 0:11:00
+consider_home: 0:18:00
 hosts:
   alexanders_iphone: 192.168.3.13

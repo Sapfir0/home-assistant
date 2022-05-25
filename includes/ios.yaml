@@ -1,11 +1,12 @@
 actions:
-  - name: Set sleep mode
+  # лучше вынести на физическую кнопку
+  - name: Go to sleep
     background_color: "#000000"
     label:
-      text: Set sleep mode
+      text: Go to sleep
       color: "#ff0000"
     icon:
-      icon: sleep
+      icon: bed-king
       color: "#ffffff"
 
   - name: Temperature report
@@ -17,11 +18,11 @@ actions:
       icon: temperature-celsius
       color: "#ffffff"
 
-  - name: Set minimal lights bedroom
+  - name: Set sleep mode
     background_color: "#000000"
     label:
-      text: Set lights
+      text: Set sleep mode
       color: "#ff0000"
     icon:
-      icon: lamp
+      icon: sleep
       color: "#ffffff"

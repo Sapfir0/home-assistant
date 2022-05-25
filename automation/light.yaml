@@ -1,3 +1,5 @@
+# нужно, чтобы лампа не включалась, если свет моргнет
+
 - alias: "Light: Auto turn off after power reboot"
   trigger:
   - platform: state
