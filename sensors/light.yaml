@@ -1,0 +1,10 @@
+- platform: template
+  sensors:
+    bed_room_light_brightness:
+      friendly_name: "Bed room light brightness"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('light.bedroom_lamp','brightness')}}"
+
+    bed_room_light_color_temperature:
+      friendly_name: "Bed room light color temperature"
+      value_template: "{{ state_attr('light.bedroom_lamp','rgb_color')}}"

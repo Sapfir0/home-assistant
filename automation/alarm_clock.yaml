@@ -31,17 +31,26 @@
     entity_id: input_boolean.alarm_clock
     state: "on"
   action:
+    - service: input_boolean.turn_off
+      entity_id:
+        - switch.adaptive_lighting_sleep_mode_bed_room
+        - switch.adaptive_lighting_bed_room
     - service: input_boolean.turn_on
       entity_id: input_boolean.wake_up_light
 
 
-- alias: "Alarm clock: Turn off sleep mode at morning"
+
+- alias: "Alarm clock: Actions exactly at alarm time"
   trigger:
     - platform: template
       value_template: >
         {{ states("sensor.time")[0:5] == states("sensor.alarm_clock") }}
   action:
-    - service: input_select.select_option
-      entity_id: input_select.sleep_mode
-      data:
-        option: "off"
+    - service: input_boolean.turn_on
+      entity_id:
+        - switch.adaptive_lighting_bed_room
+        # можно выключить режим сна здесь, но лучше выключить через shortcuts, когда сработает событие wake up
+    # - service: input_select.select_option
+    #   entity_id: input_select.sleep_mode
+    #   data:
+    #     option: "off"

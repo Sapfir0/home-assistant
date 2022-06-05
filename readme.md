@@ -4,11 +4,18 @@
 
 | Device      | Type           | 
 | ------------- |:-------------:|
-| Xiaomi Mi LED Desk Lamp 1S | 💡  | 
+| Xiaomi Mi Bed lamp 2 | 💡  | 
 | DHT11 | 🌡 | 
 | Raspberry Pi 4, 4GB RAM | 🖥 | 
 | NodeMcu ESP8266 | 🖥 | 
-| Xiaomi Mi Router 4A Gigabit Edition | 🎚 | 
+| HUAWEI WiFi WS5200 | 🎚 | 
+| iPhone 13 | 🔍  | 
+| Apple Watch SE | 🔍  | 
+| Яндекс Алиса | 🔈  | 
+| Siri (only for ios automations) | 🔈  | 
+
+
+
 
 
 

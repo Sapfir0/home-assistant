@@ -1,7 +1,11 @@
 ---
-hello_world:
-  module: hello
-  class: HelloWorld
+Interpolate:
+  module: Interpolate
+  class: Interpolate
+
+RGB:
+  module: RGB
+
 
 wake_up_light:
   module: wake_up_light
@@ -9,3 +13,13 @@ wake_up_light:
   total_time: 900
   lamp: "light.bedroom_lamp"
   input_boolean: "input_boolean.wake_up_light"
+
+# flow:
+#   module: flow
+#   class: Flow
+#   brightness: 900
+#   lamp: "light.bedroom_lamp"
+#   input_boolean: "input_boolean.flow"
+#   dependencies:
+#     - Interpolate
+#     - RGB

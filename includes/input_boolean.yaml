@@ -16,3 +16,4 @@ wake_up_light:
 alarm_clock:
   name: Alarm clock is on
   icon: mdi:alarm
+

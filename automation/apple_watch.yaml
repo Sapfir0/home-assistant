@@ -69,3 +69,29 @@
       data:
         entity_id: input_select.sleep_mode
         option: "on"
+
+
+- alias: "Apple Watch: Turn on gradient"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Flow
+  action:
+    - service: switch.turn_on
+      entity_id: switch.animated_scene_flow
+
+
+- alias: "Apple Watch: Turn on adaptive light"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Adaptive light
+  action:
+    - service: switch.turn_off
+      entity_id: switch.animated_scene_flow
+    - service: switch.turn_on
+      entity_id: switch.adaptive_lighting_adapt_color_bed_room
