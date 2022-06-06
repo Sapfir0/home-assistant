@@ -1,0 +1,15 @@
+daily_energy_yard_room:
+  source: sensor.smart_plug_bedroom_month_energy
+  cycle: daily
+
+monthly_energy_yard_room:
+  source: sensor.smart_plug_bedroom_month_energy
+  cycle: monthly
+
+
+daily_energy_yard_room_tariff:
+  source: sensor.smart_plug_bedroom_month_energy
+  cycle: daily
+  tariffs:
+    - day
+    - night
