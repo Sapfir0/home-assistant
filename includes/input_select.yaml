@@ -4,10 +4,3 @@ sleep_mode:
     - "wind_down"
     - "off"
   icon: mdi:bed-king
-
-
-energy_tariff:
-  options:
-    - day
-    - night
-  icon: mdi:energy

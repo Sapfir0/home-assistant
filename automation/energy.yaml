@@ -10,13 +10,7 @@
         tariff: "night"
   action:
     - service: select.select_option
-      target:
-        entity_id: input_select.energy_tariff
-      data:
-        option: "{{ tariff }}"
-    
-    - service: select.select_option
-      entity_id: utility_meter.daily_energy_yard_room_tariff
+      entity_id: select.daily_energy_yard_room_tariff
       data:
         option: "{{ tariff }}"
 
