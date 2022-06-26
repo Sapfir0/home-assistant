@@ -32,6 +32,7 @@
   variables:
     sleep_mode: "{{ states('input_select.sleep_mode') }}"
     temperature: "{{ states('sensor.living_room_temperature')|int }}"
+    max_ideal_temperature: 24
   action:
     choose:
       - conditions: "{{ sleep_mode == 'off' }}"
@@ -41,6 +42,8 @@
               - switch.adaptive_lighting_sleep_mode_bed_room
           - service: light.turn_on
             entity_id: light.bedroom_lamp  
+          - service: switch.turn_on
+            entity_id: switch.smart_plug_bedroom
 
       - conditions: "{{ sleep_mode == 'wind_down' }}"
         sequence:
@@ -52,13 +55,19 @@
         sequence:
           - service: light.turn_off
             entity_id: light.bedroom_lamp
+          - service: switch.turn_off
+            entity_id: switch.smart_plug_bedroom
           - service: telegram_bot.send_message
             data:
               message: "Пора спать! В комнате {{ temperature }}°C. 
-                {% if temperature > 20 %}
-                К сожалению, ты не охладил комнату. Желательно понизить температуру на {{ temperature - 20 }}°C.
+                {% if temperature > max_ideal_temperature %}
+                К сожалению, ты не охладил комнату. Желательно понизить температуру на {{ temperature - max_ideal_temperature }}°C.
                 {% elif temperature < 13  %}
                 Ты не нагрел комнату, ты умираешь.
                 {% else %}
                 Отлично! Это идельная температура для сна, спокойной ночи!
                 {% endif %}"
+
+
+
+# можно включать успокаивающую музыку на колонке 

@@ -34,4 +34,3 @@
     data:
       title: "System"
       message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
-

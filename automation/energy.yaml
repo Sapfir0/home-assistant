@@ -1,0 +1,37 @@
+- alias: "Energy: Switch tariff"
+  trigger:
+    - platform: time
+      at: "07:00:00"
+      variables:
+        tariff: "day"
+    - platform: time
+      at: "23:00:00"
+      variables:
+        tariff: "night"
+  action:
+    - service: select.select_option
+      entity_id: select.daily_energy_yard_room_tariff
+      data:
+        option: "{{ tariff }}"
+
+
+
+- alias: "Energy Debug: Set day tariff"
+  trigger:
+    - platform: time
+      at: "07:00:00"
+  action:
+    - service: select.select_option
+      entity_id: select.daily_energy_yard_room_tariff
+      data:
+        option: day
+
+- alias: "Energy Debug: Set night tariff"
+  trigger:
+    - platform: time
+      at: "23:00:00"
+  action:
+    - service: select.select_option
+      entity_id: select.daily_energy_yard_room_tariff
+      data:
+        option: night

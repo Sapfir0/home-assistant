@@ -35,7 +35,7 @@ ios: !include includes/ios.yaml
 switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml
 http: !include includes/http.yaml
-
+utility_meter: !include includes/utility_meter.yaml
 
 adaptive_lighting: !include includes/adaptive_lighting.yaml
 

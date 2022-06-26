@@ -14,17 +14,10 @@ views:
         secondary_info_attribute: wind_speed
       - type: entities
         entities:
-          - entity: sensor.openweathermap_rain_2
-          - entity: sensor.openweathermap_snow_2
-          - entity: sensor.openweathermap_humidity_2
-          - entity: sensor.openweathermap_pressure_2
-      - type: entities
-        entities:
           - entity: input_boolean.alarm_clock
           - entity: sensor.alarm_clock
           - entity: sensor.wake_up_light_start_time
           - entity: sensor.weather_notifitcations
-          - entity: input_boolean.weather_notification_weekdays
           - entity: input_select.sleep_mode
             secondary_info: none
       - type: vertical-stack
@@ -63,6 +56,14 @@ views:
             type: custom:light-entity-card
             entity: light.bedroom_lamp
             effects_list: false
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: automation.sleep_mode_lights
+        icon: mdi:lightbulb-variant-outline
+        name: Автоматизация света в зависимости от sleep mode
       - type: horizontal-stack
         cards:
           - type: custom:mini-graph-card
@@ -81,16 +82,20 @@ views:
         entities:
           - entity: switch.adaptive_lighting_bed_room
           - entity: switch.adaptive_lighting_sleep_mode_bed_room
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: automation.sleep_mode_lights
-        icon: mdi:lightbulb-variant-outline
-        name: Автоматизация света в зависимости от sleep mode
+      - type: history-graph
+        entities:
+          - entity: sensor.bed_room_light_color_temperature
+        title: Debug color temperature for lamp
+      - hours_to_show: 24
+        graph: line
+        type: sensor
+        entity: sensor.bed_room_light_brightness
+        detail: 1
+      - type: entities
+        entities:
+          - entity: switch.animated_scene_flow
   - title: Weather
-    path: ''
+    path: ""
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -111,9 +116,11 @@ views:
               top: 32%
               left: 55%
         image: https://demo.home-assistant.io/stub_config/floorplan.png
-      - type: glance
-        entities:
-          - entity: input_select.sleep_mode
+      - hours_to_show: 24
+        graph: line
+        type: sensor
+        entity: sensor.smart_plug_bedroom_current_energy
+        detail: 1
   - title: Users
     path: users
     icon: mdi:account
@@ -130,6 +137,16 @@ views:
           - entity: person.alexander
           - entity: person.irina
         hours_to_show: 0
+      - type: gauge
+        entity: sensor.alexanders_phone_battery_level
+      - type: history-graph
+        entities:
+          - entity: sensor.alexanders_phone_battery_state
+      - hours_to_show: 24
+        graph: line
+        type: sensor
+        entity: sensor.alexanders_phone_battery_level
+        detail: 1
   - title: Media
     path: media
     icon: mdi:television
@@ -139,13 +156,36 @@ views:
         content: |-
           Plex media server hosted  at http://192.168.31.105:32400/web.
           Server is hosted by main pc in bedroom.
+      - type: markdown
+        content: >-
+          ## Расписание
+
+
+          | Tables        | Are           |
+
+          | ------------- |:-------------:| 
+
+          | {{ states("sensor.wake_up_light_start_time") }} | Включается
+          лампа-рассвет |  
+
+          | {{ states("sensor.alarm_clock") }} | Отключатеся режим сна  | 
+
+          | {{ states("sensor.weather_notifitcations") }} | Отправляется
+          уведомление о погоде |
+
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: toggle
+        entity: input_boolean.flow
   - title: Network
     path: router
     icon: mdi:access-point
     badges: []
     cards:
       - type: markdown
-        content: 'Full router settings in http://router.miwifi.com/ '
+        content: "Full router settings in http://router.miwifi.com/ "
         title: Info
       - type: gauge
         entity: sensor.speedtest_download
