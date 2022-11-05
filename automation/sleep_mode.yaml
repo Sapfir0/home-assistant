@@ -6,6 +6,7 @@
     at: input_datetime.wind_down
   variables:
     temperature: "{{ states('sensor.living_room_temperature')|int }}"
+    max_ideal_temperature: 24
   action:
     - service: input_select.select_option
       entity_id: input_select.sleep_mode
@@ -14,8 +15,8 @@
     - service: telegram_bot.send_message
       data:
         message: "В комнате {{ temperature }}°C.
-          {% if temperature > 20 %}
-          Это жарковато для сна, проветри комнату. Нужно охладить комнату на {{ temperature - 20 }}°C.
+          {% if temperature > max_ideal_temperature %}
+          Это жарковато для сна, проветри комнату. Нужно охладить комнату на {{ temperature - max_ideal_temperature }}°C.
           {% elif temperature < 13  %}
           В комнате беспросветный дубак, ты умираешь.
           {% else %}
