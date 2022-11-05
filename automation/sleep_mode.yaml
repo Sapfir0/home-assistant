@@ -6,6 +6,7 @@
     at: input_datetime.wind_down
   variables:
     temperature: "{{ states('sensor.living_room_temperature')|int }}"
+    max_ideal_temperature: 24
   action:
     - service: input_select.select_option
       entity_id: input_select.sleep_mode
@@ -14,8 +15,8 @@
     - service: telegram_bot.send_message
       data:
         message: "В комнате {{ temperature }}°C.
-          {% if temperature > 20 %}
-          Это жарковато для сна, проветри комнату. Нужно охладить комнату на {{ temperature - 20 }}°C.
+          {% if temperature > max_ideal_temperature %}
+          Это жарковато для сна, проветри комнату. Нужно охладить комнату на {{ temperature - max_ideal_temperature }}°C.
           {% elif temperature < 13  %}
           В комнате беспросветный дубак, ты умираешь.
           {% else %}
@@ -37,13 +38,14 @@
     choose:
       - conditions: "{{ sleep_mode == 'off' }}"
         sequence:
+          - service: switch.turn_on
+            entity_id: switch.smart_plug_bedroom
+          - delay: 20 # ждем после включения розетки
           - service: switch.turn_off
             entity_id:
               - switch.adaptive_lighting_sleep_mode_bed_room
           - service: light.turn_on
             entity_id: light.bedroom_lamp  
-          - service: switch.turn_on
-            entity_id: switch.smart_plug_bedroom
 
       - conditions: "{{ sleep_mode == 'wind_down' }}"
         sequence:
@@ -55,6 +57,7 @@
         sequence:
           - service: light.turn_off
             entity_id: light.bedroom_lamp
+          - delay: 20 # ждем перед выключением розетки
           - service: switch.turn_off
             entity_id: switch.smart_plug_bedroom
           - service: telegram_bot.send_message

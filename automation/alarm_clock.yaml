@@ -54,3 +54,19 @@
     #   entity_id: input_select.sleep_mode
     #   data:
     #     option: "off"
+
+
+
+- alias: "Alarm clock: Charging time"
+  trigger:
+    platform: template
+    value_template: >
+      {{ states("sensor.time")[0:5] == states("sensor.charging_time") }}
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock
+    state: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.smart_plug_bedroom
+
