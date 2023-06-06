@@ -4,24 +4,11 @@
   trigger:
     platform: time
     at: input_datetime.wind_down
-  variables:
-    temperature: "{{ states('sensor.living_room_temperature')|int }}"
-    max_ideal_temperature: 24
   action:
     - service: input_select.select_option
       entity_id: input_select.sleep_mode
       data:
         option: "wind_down"
-    - service: telegram_bot.send_message
-      data:
-        message: "В комнате {{ temperature }}°C.
-          {% if temperature > max_ideal_temperature %}
-          Это жарковато для сна, проветри комнату. Нужно охладить комнату на {{ temperature - max_ideal_temperature }}°C.
-          {% elif temperature < 13  %}
-          В комнате беспросветный дубак, ты умираешь.
-          {% else %}
-          Все хорошо, спокойной ночи! 
-          {% endif %}"
 
 
 - alias: "Sleep mode: Lights"
@@ -59,7 +46,6 @@
           - delay: 20 # ждем перед выключением розетки
           - service: switch.turn_off
             entity_id: switch.smart_plug_bedroom
-
 
 
 # можно включать успокаивающую музыку на колонке 

@@ -9,15 +9,6 @@ actions:
       icon: bed-king
       color: "#ffffff"
 
-  - name: Temperature report
-    background_color: "#000000"
-    label:
-      text: Report
-      color: "#ff0000"
-    icon:
-      icon: temperature-celsius
-      color: "#ffffff"
-
   - name: Set sleep mode
     background_color: "#000000"
     label:

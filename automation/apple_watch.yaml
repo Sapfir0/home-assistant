@@ -42,20 +42,6 @@
         entity_id: input_select.sleep_mode
         option: "{{ event }}"
         
-- alias: "Apple Watch: Temperature report"
-  mode: parallel
-  trigger:
-    platform: event
-    event_type: ios.action_fired
-    event_data:
-      actionName: Temperature report
-  action:
-    service: notify.mobile_app_alexanders_phone
-    data:
-      title: "Temperature"
-      message: >
-        Living room: {{ states('sensor.living_room_temperature') }}°C
-
 
 - alias: "Apple Watch: Go to sleep"
   mode: parallel
