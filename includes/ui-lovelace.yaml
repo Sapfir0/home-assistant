@@ -119,7 +119,7 @@ views:
       - hours_to_show: 24
         graph: line
         type: sensor
-        entity: sensor.smart_plug_bedroom_current_energy
+        entity: sensor.smart_plug_bedroom_current_power
         detail: 1
   - title: Users
     path: users

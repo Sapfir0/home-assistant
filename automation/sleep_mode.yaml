@@ -25,6 +25,7 @@
 
 
 - alias: "Sleep mode: Lights"
+  id: "sleep_mode_changes"
   trigger:
     - platform: state
       entity_id: input_select.sleep_mode
@@ -32,8 +33,6 @@
       event: start # in case the states aren't properly restored
   variables:
     sleep_mode: "{{ states('input_select.sleep_mode') }}"
-    temperature: "{{ states('sensor.living_room_temperature')|int }}"
-    max_ideal_temperature: 24
   action:
     choose:
       - conditions: "{{ sleep_mode == 'off' }}"
@@ -60,16 +59,6 @@
           - delay: 20 # ждем перед выключением розетки
           - service: switch.turn_off
             entity_id: switch.smart_plug_bedroom
-          - service: telegram_bot.send_message
-            data:
-              message: "Пора спать! В комнате {{ temperature }}°C. 
-                {% if temperature > max_ideal_temperature %}
-                К сожалению, ты не охладил комнату. Желательно понизить температуру на {{ temperature - max_ideal_temperature }}°C.
-                {% elif temperature < 13  %}
-                Ты не нагрел комнату, ты умираешь.
-                {% else %}
-                Отлично! Это идельная температура для сна, спокойной ночи!
-                {% endif %}"
 
 
 
