@@ -64,38 +64,13 @@ views:
         entity: automation.sleep_mode_lights
         icon: mdi:lightbulb-variant-outline
         name: Автоматизация света в зависимости от sleep mode
-      - type: horizontal-stack
-        cards:
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.living_room_temperature
-            line_color: var(--accent-color)
-            line_width: 8
-            font_size: 75
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.living_room_humidity
-            line_color: green
-            line_width: 8
-            font_size: 75
       - type: entities
         entities:
           - entity: switch.adaptive_lighting_bed_room
           - entity: switch.adaptive_lighting_sleep_mode_bed_room
-      - type: history-graph
-        entities:
-          - entity: sensor.bed_room_light_color_temperature
-        title: Debug color temperature for lamp
-      - hours_to_show: 24
-        graph: line
-        type: sensor
-        entity: sensor.bed_room_light_brightness
-        detail: 1
-      - type: entities
-        entities:
           - entity: switch.animated_scene_flow
   - title: Weather
-    path: ""
+    path: ''
     icon: mdi:weather-cloudy
     badges: []
     cards:
@@ -106,46 +81,41 @@ views:
       - type: picture-elements
         elements:
           - type: state-badge
-            entity: sensor.living_room_temperature
+            entity: sensor.temperature
             style:
               top: 32%
               left: 40%
           - type: state-badge
-            entity: sensor.living_room_humidity
+            entity: sensor.humidity
             style:
               top: 32%
               left: 55%
         image: https://demo.home-assistant.io/stub_config/floorplan.png
-      - hours_to_show: 24
-        graph: line
+      - graph: line
+        hours_to_show: 24
         type: sensor
         entity: sensor.smart_plug_bedroom_current_power
         detail: 1
+      - type: entities
+        entities:
+          - switch.smart_plug_bedroom
+        title: Smart Plug
   - title: Users
     path: users
     icon: mdi:account
     badges: []
     cards:
-      - type: history-graph
-        entities:
-          - entity: device_tracker.alexandersphone
-          - entity: device_tracker.irinasphone
-        hours_to_show: 15
-        refresh_interval: 0
-      - type: map
-        entities:
-          - entity: person.alexander
-          - entity: person.irina
-        hours_to_show: 0
-      - type: gauge
-        entity: sensor.alexanders_phone_battery_level
-      - type: history-graph
-        entities:
-          - entity: sensor.alexanders_phone_battery_state
-      - hours_to_show: 24
-        graph: line
+      - graph: line
         type: sensor
-        entity: sensor.alexanders_phone_battery_level
+        entity: sensor.humidity
+        detail: 1
+      - graph: line
+        type: sensor
+        entity: sensor.temperature
+        detail: 1
+      - graph: line
+        type: sensor
+        entity: sensor.co2
         detail: 1
   - title: Media
     path: media
@@ -165,27 +135,26 @@ views:
 
           | ------------- |:-------------:| 
 
+          | {{ states("sensor.charging_time") }} | Включается розетка для
+          зарядки всякого разного |  
+
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
           лампа-рассвет |  
 
           | {{ states("sensor.alarm_clock") }} | Отключатеся режим сна  | 
 
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
-          уведомление о погоде |
+          уведомление о погоде |  
 
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: input_boolean.flow
+
+           
   - title: Network
     path: router
     icon: mdi:access-point
     badges: []
     cards:
       - type: markdown
-        content: "Full router settings in http://router.miwifi.com/ "
+        content: 'Full router settings in http://router.miwifi.com/ '
         title: Info
       - type: gauge
         entity: sensor.speedtest_download
@@ -232,8 +201,8 @@ views:
           - sensor.time_online
       - type: entities
         entities:
-          - entity: sensor.snapshot_backup
-          - entity: binary_sensor.snapshots_stale
+          - entity: binary_sensor.backups_stale
+          - entity: sensor.backup_state
       - type: entities
         entities:
           - sensor.disk_free
