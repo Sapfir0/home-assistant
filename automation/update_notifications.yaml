@@ -1,0 +1,41 @@
+- id: '1689093433943'
+  alias: Update notifications
+  description: ''
+  use_blueprint:
+    path: mdegat01/update_notifications.yaml
+    input:
+      update_entities:
+      - update.appdaemon_update
+      - update.duck_dns_update
+      - update.file_editor_update
+      - update.home_assistant_core_update
+      - update.home_assistant_google_drive_backup_update
+      - update.home_assistant_operating_system_update
+      - update.home_assistant_supervisor_update
+      - update.mariadb_update
+      - update.nginx_proxy_manager_update
+      - update.samba_share_update
+      - update.terminal_ssh_update
+      mobile_app_device: 9c96760f55bb2f84c62e961d9bba533c
+      send_to_ha: true
+      only_after: '10:00:00'
+- id: '1689093610301'
+  alias: Updater
+  description: ''
+  use_blueprint:
+    path: mdegat01/update_notifications.yaml
+    input:
+      update_entities:
+      - update.appdaemon_update
+      - update.duck_dns_update
+      - update.file_editor_update
+      - update.home_assistant_core_update
+      - update.home_assistant_google_drive_backup_update
+      - update.home_assistant_operating_system_update
+      - update.terminal_ssh_update
+      - update.nginx_proxy_manager_update
+      - update.mariadb_update
+      - update.home_assistant_supervisor_update
+      - update.samba_share_update
+      send_to_ha: true
+      only_after: '10:00:00'

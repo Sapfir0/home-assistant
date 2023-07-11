@@ -15,6 +15,8 @@ input_select: !include includes/input_select.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_datetime: !include includes/input_datetime.yaml
 
+binary_sensor: !include includes/binary_sensor.yaml
+
 mobile_app:
 
 device_tracker: !include configs/router_device_tracker.yaml
@@ -36,6 +38,7 @@ switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml
 http: !include includes/http.yaml
 utility_meter: !include includes/utility_meter.yaml
+
 
 adaptive_lighting: !include includes/adaptive_lighting.yaml
 

@@ -1,13 +1,3 @@
-- id: notification_update
-  alias: 'System: Update Available'
-  trigger:
-    platform: state
-    entity_id: updater.updater
-  action:
-    service: telegram_bot.send_message
-    data:
-      message: 'An update for Home Assistant is available.'
-
 
 - alias: "System: Warning about high CPU usage"
   trigger:

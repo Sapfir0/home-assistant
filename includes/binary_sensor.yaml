@@ -1,0 +1,11 @@
+
+- platform: template
+  sensors:
+    cleargrass_air:
+      friendly_name: "Cleargrass Air, плохой воздух"
+      value_template: >-
+        {{ states('sensor.co2')|float > 1500 
+            or states('sensor.pm2_5')|float > 100 
+            or states('sensor.tvoc')|float > 220 }}
+      icon_template: >-
+        mdi:biohazard

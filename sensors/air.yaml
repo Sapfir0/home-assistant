@@ -1,0 +1,43 @@
+- platform: qingping_air_wifi
+  client_id: !secret qingping_client_id
+  client_secret: !secret qingping_client_secret
+# TODO возможно нужно отрефакторить
+# https://github.com/like-a-freedom/home_assistant_qingping_air_wifi/blob/master/custom_components/qingping_air_wifi/
+
+# - platform: template
+#   sensors:
+#     cleargrass_air_co2a:
+#       friendly_name: 'Cleargrass air CO2a - '
+#       value_template: "{{ state_attr('sensor.co2', 'carbon_dioxide') }}"  
+#       icon_template: mdi:periodic-table-co2
+#       entity_id: air_quality.cleargrass_air_monitor
+#       unit_of_measurement: 'ppm'
+      
+#     cleargrass_air_tvoc:
+#       friendly_name: 'Cleargrass air ЛОВ - '
+#       value_template: "{{ state_attr('air_quality.cleargrass_air_monitor', 'total_volatile_organic_compounds') }}"
+#       icon_template: mdi:alpha-t
+#       entity_id: air_quality.cleargrass_air_monitor
+#       unit_of_measurement: 'ppb'
+      
+#     cleargrass_air_pm25:
+#       friendly_name: 'Cleargrass air PM 2.5 - '
+#       value_template: "{{ state_attr('air_quality.cleargrass_air_monitor', 'particulate_matter_2_5') }}"  
+#       icon_template: mdi:alpha-p
+#       entity_id: air_quality.cleargrass_air_monitor
+#       unit_of_measurement: 'ppm'
+      
+#     cleargrass_air_temperature:
+#       friendly_name: 'Cleargrass air температура - '
+#       value_template: "{{ state_attr('air_quality.cleargrass_air_monitor', 'temperature') }}"  
+#       icon_template: mdi:temperature-celsius
+#       entity_id: air_quality.cleargrass_air_monitor
+#       unit_of_measurement: '°C'
+      
+#     cleargrass_air_humidity:
+#       friendly_name: 'Cleargrass air влажность - '
+#       value_template: "{{ state_attr('air_quality.cleargrass_air_monitor', 'humidity') }}"  
+#       icon_template: mdi:water-percent
+#       entity_id: air_quality.cleargrass_air_monitor
+#       unit_of_measurement: '%'
+
