@@ -1,0 +1,37 @@
+- platform: template
+  sensors:
+    wind_description:
+      friendly_name: "Wind Bofort description" 
+      value_template: >
+        {% set wind_speed = state_attr('weather.yandex_weather','wind_speed') / 3.6 %} 
+
+        {% if wind_speed <= 0.2 %}
+        Штиль
+        {% elif wind_speed >= 0.3 and wind_speed <= 1.5  %}
+        Очень легкий ветер
+        {% elif wind_speed >= 1.6 and wind_speed <= 3.3  %}
+        Легкий ветер
+        {% elif wind_speed >= 3.4 and wind_speed <= 5.4  %}
+        Слабый
+        {% elif wind_speed >= 5.5 and wind_speed <= 7.9  %}
+        Умеренный
+        {% elif wind_speed >= 8.0 and wind_speed <= 10.7  %}
+        Свежий
+        {% elif wind_speed >= 10.8 and wind_speed <= 13.8  %}
+        Сильный
+        {% elif wind_speed >= 13.9 and wind_speed <= 17.1  %}
+        Крепкий
+        {% elif wind_speed >= 17.2 and wind_speed <= 20.7  %}
+        Очень крепкий
+        {% elif wind_speed >= 20.8 and wind_speed <= 24.4  %}
+        Шторм
+        {% elif wind_speed >= 28.5 and wind_speed <= 32.6  %}
+        Сильный шторм
+        {% elif wind_speed >= 8.0 and wind_speed <= 10.7  %}
+        Жестокий шторм
+        {% elif wind_speed >= 32.7  %}
+        Ураган
+        {% else %}
+        undefined
+        {% endif %}
+

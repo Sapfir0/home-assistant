@@ -17,3 +17,6 @@ alarm_clock:
   name: Alarm clock is on
   icon: mdi:alarm
 
+vacation_mode:
+  name: On Vacation
+  icon: mdi:airplane

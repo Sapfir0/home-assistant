@@ -5,19 +5,19 @@
     platform: template
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.weather_notifitcations") }}
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
   action:
     service: telegram_bot.send_message
     data:
-      message: "{% if now().strftime('%H')|int < 7 %}
-        Доброй ночи,
-        {% elif now().strftime('%H')|int < 12 %}
-        Доброе утро,
-        {% elif now().strftime('%H')|int < 18 %}
-        Хорошего дня,
-        {% else %}
-        Хорошего вечера,
-        {% endif %}
-         сейчас в Санкт-Петербурге {{ state_attr('weather.home','temperature') }}°C. Ветер {{ state_attr('weather.home','wind_speed') }}м/с."
+      message: "
+         ** {{ states('sensor.yandex_weather_condition_yandex') }} ** \n
+         🌡️ {{ state_attr('weather.yandex_weather','temperature') }}{{ state_attr('weather.yandex_weather','temperature_unit') }}, по ощущению {{ state_attr('weather.yandex_weather','feels_like') }}{{ state_attr('weather.yandex_weather','temperature_unit') }} \n
+         💨 {{ states('sensor.wind_description') }} {{ state_attr('weather.yandex_weather','wind_speed') / 3.6 }}м/с
+         
+         "
 
 
 - alias: "Alarm clock: Sunrise wake up"
