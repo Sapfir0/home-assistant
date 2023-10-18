@@ -42,3 +42,8 @@ utility_meter: !include includes/utility_meter.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
 
 python_script:
+
+yandex_station:
+  include:
+    - Чайник
+    - Пылесос

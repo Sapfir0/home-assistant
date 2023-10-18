@@ -68,5 +68,5 @@
     state: "on"
   action:
     - service: switch.turn_on
-      entity_id: switch.smart_plug_bedroom
+      entity_id: switch.smart_plug
 

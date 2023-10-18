@@ -25,7 +25,7 @@
       - conditions: "{{ sleep_mode == 'off' }}"
         sequence:
           - service: switch.turn_on
-            entity_id: switch.smart_plug_bedroom
+            entity_id: switch.smart_plug
           - delay: 20 # ждем после включения розетки
           - service: switch.turn_off
             entity_id:
@@ -45,7 +45,7 @@
             entity_id: light.bedroom_lamp
           - delay: 20 # ждем перед выключением розетки
           - service: switch.turn_off
-            entity_id: switch.smart_plug_bedroom
+            entity_id: switch.smart_plug
 
 
 # можно включать успокаивающую музыку на колонке 

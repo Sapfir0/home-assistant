@@ -11,7 +11,6 @@ views:
         show_forecast: true
         type: weather-forecast
         entity: weather.home
-        secondary_info_attribute: wind_speed
       - type: entities
         entities:
           - entity: input_boolean.alarm_clock
@@ -69,6 +68,13 @@ views:
           - entity: switch.adaptive_lighting_bed_room
           - entity: switch.adaptive_lighting_sleep_mode_bed_room
           - entity: switch.animated_scene_flow
+      - type: entities
+        entities:
+          - input_boolean.vacation_mode
+      - graph: line
+        type: sensor
+        entity: sensor.co2
+        detail: 1
   - title: Weather
     path: ''
     icon: mdi:weather-cloudy
@@ -94,11 +100,11 @@ views:
       - graph: line
         hours_to_show: 24
         type: sensor
-        entity: sensor.smart_plug_bedroom_current_power
+        entity: sensor.smart_plug_current_power
         detail: 1
       - type: entities
         entities:
-          - switch.smart_plug_bedroom
+          - entity: switch.smart_plug
         title: Smart Plug
   - title: Users
     path: users
@@ -117,6 +123,9 @@ views:
         type: sensor
         entity: sensor.co2
         detail: 1
+      - type: sensor
+        entity: sensor.tvoc
+        graph: line
   - title: Media
     path: media
     icon: mdi:television
