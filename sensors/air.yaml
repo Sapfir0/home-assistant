@@ -1,6 +1,0 @@
-- platform: qingping_air_wifi
-  client_id: !secret qingping_client_id
-  client_secret: !secret qingping_client_secret
-# TODO возможно нужно отрефакторить
-# https://github.com/like-a-freedom/home_assistant_qingping_air_wifi/blob/master/custom_components/qingping_air_wifi/
-

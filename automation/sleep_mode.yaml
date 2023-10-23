@@ -22,30 +22,13 @@
     sleep_mode: "{{ states('input_select.sleep_mode') }}"
   action:
     choose:
-      - conditions: "{{ sleep_mode == 'off' }}"
-        sequence:
-          - service: switch.turn_on
-            entity_id: switch.smart_plug
-          - delay: 20 # ждем после включения розетки
-          - service: switch.turn_off
-            entity_id:
-              - switch.adaptive_lighting_sleep_mode_bed_room
-          - service: light.turn_on
-            entity_id: light.bedroom_lamp  
-
-      - conditions: "{{ sleep_mode == 'wind_down' }}"
-        sequence:
-          - service: switch.turn_on
-            entity_id:
-              - switch.adaptive_lighting_sleep_mode_bed_room
-
       - conditions: "{{ sleep_mode == 'on' }}"
         sequence:
           - service: light.turn_off
             entity_id: light.bedroom_lamp
           - delay: 20 # ждем перед выключением розетки
-          - service: switch.turn_off
-            entity_id: switch.smart_plug
+          # - service: switch.turn_off
+          #   entity_id: switch.smart_plug
 
 
 # можно включать успокаивающую музыку на колонке 

@@ -1,9 +1,10 @@
 homeassistant: !include includes/homeassistant.yaml
 
 default_config:
-
 logger:
   default: info
+  # logs:
+  #   homeassistant.components.rest: debug
 
 recorder: !include configs/recorder.yaml
 zone: !include configs/zones.yaml
@@ -14,12 +15,9 @@ frontend:
 input_select: !include includes/input_select.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_datetime: !include includes/input_datetime.yaml
+input_text: !include includes/input_text.yaml
 
 binary_sensor: !include includes/binary_sensor.yaml
-
-mobile_app:
-
-device_tracker: !include configs/router_device_tracker.yaml
 
 notify: !include includes/output/telegram_notifier.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
@@ -36,9 +34,9 @@ person: !include includes/person.yaml
 ios: !include includes/ios.yaml
 switch: !include includes/switch.yaml
 climate: !include includes/climate.yaml
-http: !include includes/http.yaml
 utility_meter: !include includes/utility_meter.yaml
-
+rest: !include includes/rest.yaml
+light: !include includes/light.yaml
 adaptive_lighting: !include includes/adaptive_lighting.yaml
 
 python_script:
@@ -47,3 +45,6 @@ yandex_station:
   include:
     - Чайник
     - Пылесос
+
+
+yandex_smart_home: !include includes/output/yandex_house_exporter.yaml

@@ -1,8 +1,11 @@
-- name: bed room
-  lights:
-    - light.bedroom_lamp
-  min_brightness: 70
+
+- name: living room
+  lights: 
+    - light.living_room_lights
+  min_brightness: 100
+  min_color_temp: 3500
+  max_color_temp: 6493
   sleep_brightness: 50
-  prefer_rgb_color: true
+  prefer_rgb_color: false
   detect_non_ha_changes: true
   interval: 30

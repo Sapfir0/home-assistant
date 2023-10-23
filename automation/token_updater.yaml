@@ -1,0 +1,14 @@
+- id: 'QingpingUpdateToken'
+  alias: Update Token Bearer
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.api_access_token_bearer
+  condition: []
+  action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.api_token_bearer
+      value: '{{ trigger.to_state.state }}'
+  mode: single

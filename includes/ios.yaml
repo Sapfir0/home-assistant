@@ -18,22 +18,4 @@ actions:
       icon: sleep
       color: "#ffffff"
 
-  - name: Flow
-    background_color: "#000000"
-    label:
-      text: Turn on gradient
-      color: "#ff0000"
-    icon:
-      icon: lava-lamp
-      color: "#ffffff"
-
-  - name: Adaptive light
-    background_color: "#000000"
-    label:
-      text: Turn on adaptive light
-      color: "#ff0000"
-    icon:
-      icon: ceiling-light
-      color: "#ffffff"
-
 

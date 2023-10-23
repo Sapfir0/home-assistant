@@ -7,24 +7,3 @@ homeassistant:
   picture:
   track: false
 
-
-esp_home-params:
-  name: esp_home-params
-  mac: 3C:71:BF:2A:B0:77
-  icon: 
-  picture:
-  track: false
-
-alexanders_iphone:
-  name: alexanders_iphone
-  mac:
-  icon:
-  picture:
-  track: true
-
-alexander_watch:
-  name: alexander_watch
-  mac:
-  icon:
-  picture:
-  track: true

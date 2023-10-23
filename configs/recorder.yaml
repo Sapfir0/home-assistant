@@ -5,7 +5,7 @@ exclude:
     - updater
   entity_globs:
     - automation*
-    - sensor.huawei_wifi*
+
   entities:
     - sensor.date
     - sensor.date_time

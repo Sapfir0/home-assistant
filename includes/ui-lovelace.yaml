@@ -13,128 +13,29 @@ views:
         entity: weather.home
       - type: entities
         entities:
+          - binary_sensor.cleargrass_air
+      - type: entities
+        entities:
           - entity: input_boolean.alarm_clock
           - entity: sensor.alarm_clock
           - entity: sensor.wake_up_light_start_time
           - entity: sensor.weather_notifitcations
           - entity: input_select.sleep_mode
             secondary_info: none
-      - type: vertical-stack
-        cards:
-          - show_name: true
-            show_icon: true
-            type: button
-            tap_action:
-              action: toggle
-            entity: light.bedroom_lamp
-            icon: mdi:lamp
-            name: Ночник
-            show_state: false
-          - shorten_cards: false
-            consolidate_entities: false
-            child_card: true
-            hide_header: true
-            header: Midesklamp1s_f86f
-            color_wheel: true
-            persist_features: false
-            brightness: true
-            color_temp: true
-            white_value: true
-            color_picker: true
-            smooth_color_wheel: true
-            speed: true
-            intensity: true
-            force_features: false
-            show_slider_percent: true
-            full_width_sliders: false
-            brightness_icon: weather-sunny
-            white_icon: file-word-box
-            temperature_icon: thermometer
-            speed_icon: speedometer
-            intensity_icon: transit-connection-horizontal
-            type: custom:light-entity-card
-            entity: light.bedroom_lamp
-            effects_list: false
-      - show_name: true
-        show_icon: true
-        type: button
-        tap_action:
-          action: toggle
-        entity: automation.sleep_mode_lights
-        icon: mdi:lightbulb-variant-outline
-        name: Автоматизация света в зависимости от sleep mode
-      - type: entities
-        entities:
-          - entity: switch.adaptive_lighting_bed_room
-          - entity: switch.adaptive_lighting_sleep_mode_bed_room
-          - entity: switch.animated_scene_flow
-      - type: entities
-        entities:
-          - input_boolean.vacation_mode
-      - graph: line
-        type: sensor
-        entity: sensor.co2
-        detail: 1
-  - title: Weather
-    path: ''
-    icon: mdi:weather-cloudy
-    badges: []
-    cards:
-      - type: markdown
-        content: >-
-          Тут должна быть информация о  погоде, но тогда на первом экране будет
-          слишком пусто
       - type: picture-elements
         elements:
           - type: state-badge
-            entity: sensor.temperature
+            entity: sensor.temperature_2
             style:
               top: 32%
-              left: 40%
+              left: 15%
           - type: state-badge
-            entity: sensor.humidity
+            entity: sensor.humidity_2
             style:
               top: 32%
-              left: 55%
-        image: https://demo.home-assistant.io/stub_config/floorplan.png
-      - graph: line
-        hours_to_show: 24
-        type: sensor
-        entity: sensor.smart_plug_current_power
-        detail: 1
-      - type: entities
-        entities:
-          - entity: switch.smart_plug
-        title: Smart Plug
-  - title: Users
-    path: users
-    icon: mdi:account
-    badges: []
-    cards:
-      - graph: line
-        type: sensor
-        entity: sensor.humidity
-        detail: 1
-      - graph: line
-        type: sensor
-        entity: sensor.temperature
-        detail: 1
-      - graph: line
-        type: sensor
-        entity: sensor.co2
-        detail: 1
-      - type: sensor
-        entity: sensor.tvoc
-        graph: line
-  - title: Media
-    path: media
-    icon: mdi:television
-    badges: []
-    cards:
-      - type: markdown
-        content: |-
-          Plex media server hosted  at http://192.168.31.105:32400/web.
-          Server is hosted by main pc in bedroom.
+              left: 30%
+        image: >-
+          https://sun9-41.userapi.com/impg/ZBqlsc2qDP_hYy7xnqwhCQEXYbvwYvRA_UsNwQ/_P5IL7LPGRk.jpg?size=1406x662&quality=95&sign=8f29b2d623ae0182a0dced2b0a6e5add&type=album
       - type: markdown
         content: >-
           ## Расписание
@@ -155,8 +56,141 @@ views:
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
           уведомление о погоде |  
 
+          | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
 
            
+      - type: entities
+        entities:
+          - entity: sensor.air_recomendation
+          - entity: sensor.humidity_recomendation
+          - entity: sensor.humidity_recomendation
+  - title: Living room
+    path: users
+    icon: mdi:television
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.temperature_2
+          - entity: sensor.humidity_2
+          - entity: sensor.co2_2
+          - entity: sensor.tvoc_2
+          - entity: sensor.pm25
+          - entity: sensor.pm10_2
+      - type: vertical-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.living_room_lights
+          - shorten_cards: false
+            consolidate_entities: true
+            child_card: false
+            hide_header: false
+            show_header_icon: false
+            header: ''
+            color_wheel: true
+            persist_features: false
+            brightness: true
+            color_temp: true
+            white_value: true
+            color_picker: true
+            speed: true
+            intensity: true
+            force_features: false
+            show_slider_percent: false
+            full_width_sliders: false
+            brightness_icon: weather-sunny
+            white_icon: file-word-box
+            temperature_icon: thermometer
+            speed_icon: speedometer
+            intensity_icon: transit-connection-horizontal
+            type: custom:light-entity-card
+            entity: light.living_room_lights
+            effects_list: false
+      - type: entities
+        entities:
+          - entity: switch.adaptive_lighting_living_room
+          - entity: switch.adaptive_lighting_sleep_mode_living_room
+      - type: grid
+        cards:
+          - graph: line
+            type: sensor
+            entity: sensor.temperature_2
+            detail: 1
+          - graph: line
+            type: sensor
+            entity: sensor.humidity_2
+            detail: 1
+          - graph: line
+            type: sensor
+            entity: sensor.co2_2
+            detail: 1
+          - graph: line
+            type: sensor
+            entity: sensor.tvoc_2
+            detail: 1
+          - graph: line
+            type: sensor
+            entity: sensor.pm25
+            detail: 1
+          - graph: line
+            type: sensor
+            entity: sensor.pm10_2
+            detail: 1
+      - type: vertical-stack
+        cards:
+          - graph: line
+            type: sensor
+            entity: sensor.smart_plug_current_power
+            detail: 1
+          - type: entities
+            entities:
+              - entity: switch.smart_plug
+  - title: Bedroom
+    path: ''
+    icon: mdi:bed-queen
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.bedroom_lamp
+            icon: mdi:lamp
+            name: Ночник
+            show_state: false
+          - shorten_cards: false
+            consolidate_entities: false
+            child_card: true
+            hide_header: true
+            show_header_icon: false
+            header: Midesklamp1s_f86f
+            color_wheel: true
+            persist_features: false
+            brightness: true
+            color_temp: true
+            white_value: true
+            color_picker: true
+            speed: true
+            intensity: true
+            force_features: false
+            show_slider_percent: true
+            full_width_sliders: false
+            brightness_icon: weather-sunny
+            white_icon: file-word-box
+            temperature_icon: thermometer
+            speed_icon: speedometer
+            intensity_icon: transit-connection-horizontal
+            smooth_color_wheel: true
+            type: custom:light-entity-card
+            entity: light.bedroom_lamp
+            effects_list: false
   - title: Network
     path: router
     icon: mdi:access-point

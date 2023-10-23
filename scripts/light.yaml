@@ -9,8 +9,6 @@ red_light:
         brightness: 98
         color_name: red
 
-
-
 blue_light:
   alias: Set blue lights
   mode: parallel

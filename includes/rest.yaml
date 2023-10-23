@@ -1,0 +1,55 @@
+- resource: "https://oauth.cleargrass.com/oauth2/token"
+  scan_interval: 6000
+  timeout: 60
+  method: "POST"
+  headers:
+    Authorization: !secret qingping_auth
+    Content-Type: "application/x-www-form-urlencoded"
+  payload: 'grant_type=client_credentials&scope=device_full_access'
+  sensor:
+    - name: "API Access Token Bearer"
+      unique_id: "api_access_token_bearer"
+      value_template: "Bearer {{ value_json['access_token'] }}"
+      
+- resource: "https://apis.cleargrass.com/v1/apis/devices"
+  scan_interval: 60
+  timeout: 60
+  method: "GET"
+  headers:
+    Authorization: "{{ states('sensor.api_access_token_bearer') }}"
+    Content-Type: "application/json"
+  sensor:
+    - name: "QingPing Battery"
+      unique_id: "582D366666B9"
+      device_class: "battery"
+      value_template: "{{ value_json.devices.0.data.battery.value }}"
+    - name: "Temperature"
+      unique_id: "582D366666B9T"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.devices.0.data.temperature.value | round(2) }}"
+    - name: "Humidity"
+      unique_id: "582D366666B9H"
+      device_class: "humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.devices.0.data.humidity.value | round(2) }}"
+    - name: "tVoc"
+      unique_id: "582D366666B9Tvoc"
+      device_class: "volatile_organic_compounds"
+      unit_of_measurement: "mg/m^3"
+      value_template: "{{ value_json.devices.0.data.tvoc.value | round(1) }}"
+    - name: "co2"
+      unique_id: "582D366666B9C"
+      device_class: "carbon_dioxide"
+      unit_of_measurement: "ppm"
+      value_template: "{{ value_json.devices.0.data.co2.value }}"
+    - name: "pm25"
+      unique_id: "582D366666B9pm25"
+      device_class: "pm25"
+      unit_of_measurement: "μg/m^3"
+      value_template: "{{ value_json.devices.0.data.pm25.value }}"
+    - name: "pm10"
+      unique_id: "582D366666B9pm10"
+      device_class: "pm10"
+      unit_of_measurement: "μg/m^3"
+      value_template: "{{ value_json.devices.0.data.pm10.value }}"

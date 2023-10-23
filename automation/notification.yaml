@@ -1,0 +1,10 @@
+- alias: "Heater: End boiling"
+  trigger:
+  - platform: state
+    entity_id: water_heater.chainik
+    from: 'on'
+    to: 'off'
+  action:
+    service: telegram_bot.send_message
+    data:
+      message: "Чайник закипел"

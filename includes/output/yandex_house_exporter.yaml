@@ -1,0 +1,16 @@
+entity_config:
+  sensor.air_monitor:
+    name: Погода в комнате
+    properties:
+      - type: temperature
+        entity: sensor.temperature_2
+      - type: humidity
+        entity: sensor.humidity_2
+      - type: co2_level
+        entity: sensor.co2_2
+      # - type: tvoc
+      #   entity: sensor.tvoc_2
+      # - type: pm2.5_density
+      #   entity: sensor.pm25
+      # - type: pm10_density
+      #   entity: sensor.pm10_2
