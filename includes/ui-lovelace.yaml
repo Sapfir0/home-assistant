@@ -51,7 +51,8 @@ views:
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
           лампа-рассвет |  
 
-          | {{ states("sensor.alarm_clock") }} | Отключатеся режим сна  | 
+          | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
+          сна  | 
 
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
           уведомление о погоде |  
@@ -62,7 +63,7 @@ views:
       - type: entities
         entities:
           - entity: sensor.air_recomendation
-          - entity: sensor.humidity_recomendation
+          - entity: sensor.temperature_recomendation
           - entity: sensor.humidity_recomendation
   - title: Living room
     path: users
@@ -114,7 +115,8 @@ views:
         entities:
           - entity: switch.adaptive_lighting_living_room
           - entity: switch.adaptive_lighting_sleep_mode_living_room
-      - type: grid
+      - square: false
+        type: grid
         cards:
           - graph: line
             type: sensor
@@ -132,20 +134,16 @@ views:
             type: sensor
             entity: sensor.tvoc_2
             detail: 1
-          - graph: line
-            type: sensor
-            entity: sensor.pm25
-            detail: 1
-          - graph: line
-            type: sensor
-            entity: sensor.pm10_2
-            detail: 1
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.pm10_2
+              - sensor.pm25
+        columns: 2
       - type: vertical-stack
         cards:
-          - graph: line
-            type: sensor
-            entity: sensor.smart_plug_current_power
-            detail: 1
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.smart_plug_current_power
           - type: entities
             entities:
               - entity: switch.smart_plug

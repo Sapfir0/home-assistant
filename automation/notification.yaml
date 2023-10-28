@@ -4,7 +4,13 @@
     entity_id: water_heater.chainik
     from: 'on'
     to: 'off'
+  condition:
+    # не будем уведомлять, когда меня нет дома
+    condition: state
+    entity_id: person.alexander
+    state: "hone"
   action:
     service: telegram_bot.send_message
     data:
       message: "Чайник закипел"
+      disable_notification: true # но и сделаем без звука уведомление

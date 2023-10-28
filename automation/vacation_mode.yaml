@@ -1,0 +1,42 @@
+- alias: "Vacation mode: auto turn on"
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: group.persons
+    from: home
+    to: not_home
+    for: "24:00:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacation_mode
+    - service: telegram_bot.send_message
+      data:
+        title: "Vacation mode"
+        message: "No one at home for 24 hours, switching on vacation mode."
+
+
+- alias: "Vacation mode: auto turn off"
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: group.persons
+    from: not_home
+    to: home
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "on"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: "off"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacation_mode
+    - service: telegram_bot.send_message
+      data:
+        title: "Vacation mode"
+        message: "Welcome back! Switching off the vacation mode."

@@ -16,7 +16,6 @@
          ** {{ states('sensor.yandex_weather_condition_yandex') }} ** \n
          🌡️ {{ state_attr('weather.yandex_weather','temperature') }}{{ state_attr('weather.yandex_weather','temperature_unit') }}, по ощущению {{ state_attr('weather.yandex_weather','feels_like') }}{{ state_attr('weather.yandex_weather','temperature_unit') }} \n
          💨 {{ states('sensor.wind_description') }} {{ state_attr('weather.yandex_weather','wind_speed') / 3.6 }}м/с
-         
          "
 
 

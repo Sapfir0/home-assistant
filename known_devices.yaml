@@ -7,3 +7,10 @@ homeassistant:
   picture:
   track: false
 
+
+alexanders_iphone:
+  name: alexanders_iphone
+  mac:
+  icon:
+  picture:
+  track: true

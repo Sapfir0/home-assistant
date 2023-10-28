@@ -15,7 +15,7 @@
       value_template: >
         {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
         {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
-        {% set before_alarm = t_start - 60 * 10 %}
+        {% set before_alarm = t_start - 60 * 15 %}
         {{ before_alarm | timestamp_custom("%H:%M", True) }}
 
     weather_notifitcations:

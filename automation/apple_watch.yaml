@@ -1,3 +1,122 @@
+- alias: "Apple Watch: Go to sleep"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Go to sleep
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sleep_mode
+        option: "on"
+
+- alias: "Apple Watch: minimal lights living room"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Minimal lights living room
+  action:
+    service: light.turn_on
+    data:
+      entity_id:
+        - light.living_room_lights
+      brightness: 1
+      color_name: red
+
+- alias: "Apple Watch: Turn on adaptive light"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Adaptive light
+  action:
+    - service: switch.turn_off
+      entity_id: switch.animated_scene_flow
+    - service: switch.turn_on
+      entity_id: switch.adaptive_lighting_adapt_color_bed_room
+
+
+
+- alias: "Apple Watch: send vacuum cleaner"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Vacuum
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "Apple Watch: vacuum"
+        data:
+          actions:
+            - action: VACUUM_LIVING_ROOM
+              title: Living room
+            - action: VACUUM_BEDROOM
+              title: Bedroom
+            - action: VACUUM_OFFICE
+              title: Office
+            - action: VACUUM_HALL
+              title: Hall
+            - action: VACUUM_KITCHEN
+              title: Kitchen
+            - action: VACUUM_ALL
+              title: All
+            - action: VACUUM_STOP
+              title: Stop and return
+    - wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_LIVING_ROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_BEDROOM
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_HALL
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_KITCHEN
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_ALL
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: VACUUM_STOP
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        location: "{{ wait.trigger.event.data.action.lower().split('vacuum_')[1] }}"
+    - service: script.vacuum_command
+      data:
+        option: "{{ location }}"
+
+
+- alias: "Apple Watch: movie time"
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Movie time
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room_lights
+        brightness: 5
+        color_name: red
+
+
+
 - alias: "Apple Watch: Set sleep mode"
   mode: parallel
   trigger:
@@ -42,42 +161,3 @@
         entity_id: input_select.sleep_mode
         option: "{{ event }}"
         
-
-- alias: "Apple Watch: Go to sleep"
-  mode: parallel
-  trigger:
-    platform: event
-    event_type: ios.action_fired
-    event_data:
-      actionName: Go to sleep
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.sleep_mode
-        option: "on"
-
-
-- alias: "Apple Watch: Turn on gradient"
-  mode: parallel
-  trigger:
-    platform: event
-    event_type: ios.action_fired
-    event_data:
-      actionName: Flow
-  action:
-    - service: switch.turn_on
-      entity_id: switch.animated_scene_flow
-
-
-- alias: "Apple Watch: Turn on adaptive light"
-  mode: parallel
-  trigger:
-    platform: event
-    event_type: ios.action_fired
-    event_data:
-      actionName: Adaptive light
-  action:
-    - service: switch.turn_off
-      entity_id: switch.animated_scene_flow
-    - service: switch.turn_on
-      entity_id: switch.adaptive_lighting_adapt_color_bed_room

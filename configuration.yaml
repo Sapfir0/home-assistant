@@ -8,6 +8,7 @@ logger:
 
 recorder: !include configs/recorder.yaml
 zone: !include configs/zones.yaml
+device_tracker: !include configs/router_device_tracker.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -41,10 +42,16 @@ adaptive_lighting: !include includes/adaptive_lighting.yaml
 
 python_script:
 
+# http:
+#   server_port: 8123
+#   ssl_certificate: /ssl/fullchain.pem
+#   ssl_key: /ssl/privkey.pem
+#   ip_ban_enabled: True
+#   login_attempts_threshold: 3
+
 yandex_station:
   include:
     - Чайник
-    - Пылесос
 
 
 yandex_smart_home: !include includes/output/yandex_house_exporter.yaml

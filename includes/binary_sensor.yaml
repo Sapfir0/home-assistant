@@ -1,4 +1,3 @@
-
 - platform: template
   sensors:
     cleargrass_air:
@@ -10,3 +9,4 @@
             or states('sensor.tvoc_2')|float > 220 }}
       icon_template: >-
         mdi:biohazard
+   

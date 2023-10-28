@@ -1,13 +1,11 @@
-
-
-- alias: "Air quality: Co2"
-  trigger:
-  - platform: state
-    entity_id: water_heater.chainik
-    from: 'on'
-    to: 'off'
-  action:
-    service: telegram_bot.send_message
-    data:
-      message: "Чайник закипел"
-      disable_notification: true
+# - alias: "Air quality: Co2"
+#   trigger:
+#   - platform: state
+#     entity_id: water_heater.chainik
+#     from: 'on'
+#     to: 'off'
+#   action:
+#     service: telegram_bot.send_message
+#     data:
+#       message: "Чайник закипел"
+#       disable_notification: true
