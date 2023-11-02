@@ -3,7 +3,7 @@
     air_recomendation:
       friendly_name: "Качество воздуха" 
       value_template: >
-        {% if states("binary_sensor.cleargrass_air") %} 
+        {% if states("binary_sensor.cleargrass_air") == 'on' %} 
         Требуется проветривание 
         {% endif %}
     temperature_recomendation:

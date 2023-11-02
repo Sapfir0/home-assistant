@@ -8,7 +8,7 @@
     # не будем уведомлять, когда меня нет дома
     condition: state
     entity_id: person.alexander
-    state: "hone"
+    state: "home"
   action:
     service: telegram_bot.send_message
     data:
