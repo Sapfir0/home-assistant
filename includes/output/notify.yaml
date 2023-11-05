@@ -1,0 +1,11 @@
+- name: telegram_notifier
+  platform: telegram
+  chat_id: !secret telegram_chat_id
+
+- name: voice_alert
+  platform: yandex_station
+  data:
+    entity_id: media_player.yandex_station
+    media_content_id: >-
+      {% if title is defined %}<speaker effect="megaphone">{{ title }}<speaker effect="-"> sil <[200]>{% endif %}{{ message }}
+    media_content_type: dialog
