@@ -4,9 +4,9 @@
       friendly_name: "Cleargrass Air, плохой воздух"
       device_class: "problem"
       value_template: >
-        {{ states('sensor.co2_2')|float > 1500 
-            or states('sensor.pm25')|float > 100 
-            or states('sensor.tvoc_2')|float > 220 }}
+        {{ states('sensor.air_co2')|float > 1500 
+            or states('sensor.air_pm25')|float > 100 
+            or states('sensor.air_tvoc')|float > 220 }}
       icon_template: >-
         mdi:biohazard
    

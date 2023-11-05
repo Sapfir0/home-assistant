@@ -1,5 +1,15 @@
 - platform: template
   sensors:
+
+    sun_elevation:
+      value_template: >
+        {{ state_attr('sun.sun', 'elevation') | float }}
+    outside_humidity: 
+      value_template: >
+        {{ state_attr('weather.yandex_weather', 'humidity') }}
+    outside_temperature: 
+      value_template: >
+        {{ state_attr('weather.yandex_weather', 'temperature') }}
     wind_description:
       friendly_name: "Wind Bofort description" 
       value_template: >

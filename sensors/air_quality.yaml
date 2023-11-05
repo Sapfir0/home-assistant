@@ -9,7 +9,7 @@
     temperature_recomendation:
       friendly_name: "Температура в комнате" 
       value_template: >
-        {% set temperature = states("sensor.temperature_2")|float %}
+        {% set temperature = states("sensor.air_temperature")|float %}
         {% if temperature < 22 %} 
           Холодно, включи подогрев
         {% elif temperature > 25 %}
@@ -18,7 +18,7 @@
     humidity_recomendation:
       friendly_name: "Влажность в комнате" 
       value_template: >
-        {% set humidity = states("sensor.humidity_2")|float %}
+        {% set humidity = states("sensor.air_humidity")|float %}
         {% if humidity < 30 %} 
           Суховато, нужно увлажнять
         {% endif %}

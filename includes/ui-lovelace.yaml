@@ -11,6 +11,8 @@ views:
         show_forecast: true
         type: weather-forecast
         entity: weather.home
+      - type: custom:mini-media-player
+        entity: media_player.kitchen_speakers
       - type: entities
         entities:
           - binary_sensor.cleargrass_air
@@ -25,15 +27,17 @@ views:
       - type: picture-elements
         elements:
           - type: state-badge
-            entity: sensor.temperature_2
+            entity: sensor.air_temperature
             style:
-              top: 32%
+              top: 35%
               left: 15%
+              scale: 85%
           - type: state-badge
-            entity: sensor.humidity_2
+            entity: sensor.air_humidity
             style:
-              top: 32%
+              top: 35%
               left: 30%
+              scale: 85%
         image: >-
           https://sun9-41.userapi.com/impg/ZBqlsc2qDP_hYy7xnqwhCQEXYbvwYvRA_UsNwQ/_P5IL7LPGRk.jpg?size=1406x662&quality=95&sign=8f29b2d623ae0182a0dced2b0a6e5add&type=album
       - type: markdown
@@ -65,6 +69,38 @@ views:
           - entity: sensor.air_recomendation
           - entity: sensor.temperature_recomendation
           - entity: sensor.humidity_recomendation
+      - type: media-control
+        entity: media_player.yandex_station
+      - type: custom:apexcharts-card
+        graph_span: 6h
+        header:
+          show: true
+        yaxis:
+          - max: 100
+            min: 0
+            decimals: 0
+        series:
+          - entity: sensor.outside_humidity
+            type: line
+            name: Outside Humidity
+            group_by:
+              func: avg
+              duration: 30min
+          - entity: sensor.air_humidity
+            type: column
+            name: Inside Humidity
+            group_by:
+              func: avg
+              duration: 30min
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: ApexCharts-Card
+          show_states: true
+          colorize_states: true
+        series:
+          - entity: sensor.sun_elevation
+          - entity: sensor.air_temperature
   - title: Living room
     path: users
     icon: mdi:television
@@ -72,12 +108,12 @@ views:
     cards:
       - type: entities
         entities:
-          - entity: sensor.temperature_2
-          - entity: sensor.humidity_2
-          - entity: sensor.co2_2
-          - entity: sensor.tvoc_2
-          - entity: sensor.pm25
-          - entity: sensor.pm10_2
+          - entity: sensor.air_temperature
+          - entity: sensor.air_humidity
+          - entity: sensor.air_co2
+          - entity: sensor.air_tvoc
+          - entity: sensor.air_pm25
+          - entity: sensor.air_pm10
       - type: vertical-stack
         cards:
           - show_name: true
@@ -120,24 +156,28 @@ views:
         cards:
           - graph: line
             type: sensor
-            entity: sensor.temperature_2
+            entity: sensor.air_temperature
             detail: 1
+            hours_to_show: 6
           - graph: line
             type: sensor
-            entity: sensor.humidity_2
+            entity: sensor.air_humidity
             detail: 1
+            hours_to_show: 6
           - graph: line
             type: sensor
-            entity: sensor.co2_2
+            entity: sensor.air_co2
             detail: 1
+            hours_to_show: 6
           - graph: line
             type: sensor
-            entity: sensor.tvoc_2
+            entity: sensor.air_tvoc
             detail: 1
+            hours_to_show: 6
           - type: custom:mini-graph-card
             entities:
-              - sensor.pm10_2
-              - sensor.pm25
+              - sensor.air_pm10
+              - sensor.air_pm25
         columns: 2
       - type: vertical-stack
         cards:
@@ -147,6 +187,12 @@ views:
           - type: entities
             entities:
               - entity: switch.smart_plug
+      - type: markdown
+        content: >-
+
+          Включить [Plex](http://127.0.0.1:32400/), сюда можно закинуть нужное
+          кино, чтобы смотреть с ТВ.
+        title: TV
   - title: Bedroom
     path: ''
     icon: mdi:bed-queen

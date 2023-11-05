@@ -6,11 +6,11 @@ entity_config:
     room: 'Гостиная'
     properties:
       - type: temperature
-        entity: sensor.temperature_2
+        entity: sensor.air_temperature
       - type: humidity
-        entity: sensor.humidity_2
+        entity: sensor.air_humidity
       - type: co2_level
-        entity: sensor.co2_2
+        entity: sensor.air_co2
   media_player.tv_pristavka_xiaomi:
     name: 'Телевизор'
     room: 'Гостиная'
