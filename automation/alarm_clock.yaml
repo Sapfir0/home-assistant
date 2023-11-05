@@ -34,7 +34,6 @@
       entity_id: input_boolean.wake_up_light
 
 
-
 # - alias: "Alarm clock: Actions exactly at alarm time"
 #   trigger:
 #     - platform: template
@@ -46,8 +45,6 @@
     #   entity_id: input_select.sleep_mode
     #   data:
     #     option: "off"
-
-
 
 - alias: "Alarm clock: Charging time"
   trigger:

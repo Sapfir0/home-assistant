@@ -22,8 +22,8 @@
     data:
       entity_id:
         - light.living_room_lights
-      brightness: 1
-      color_name: red
+      brightness: 30
+      color_name: pink
 
 - alias: "Apple Watch: Turn on adaptive light"
   mode: parallel

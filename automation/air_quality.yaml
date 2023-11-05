@@ -10,7 +10,12 @@
     entity_id: person.alexander
     state: "home"
   action:
-    service: telegram_bot.send_message
-    data:
-      message: "Проветри гостиную, качество воздуха уже не лучшее"
-      disable_notification: true
+    - service: telegram_bot.send_message
+      data:
+        message: "Проветри гостиную, качество воздуха уже не лучшее"
+        disable_notification: true
+    - service: media_player.play_media
+      entity_id: media_player.yandex_station
+      data:
+        media_content_id: "Проветри гостиную, качество воздуха уже не лучшее"
+        media_content_type: text

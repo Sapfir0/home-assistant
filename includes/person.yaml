@@ -1,4 +1,0 @@
-- name: Alexander
-  id: alexander
-  device_trackers:
-    - device_tracker.alexanders_iphone

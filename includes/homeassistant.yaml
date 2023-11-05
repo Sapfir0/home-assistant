@@ -5,5 +5,3 @@ name: Home
 time_zone: Europe/Moscow
 unit_system: metric
 currency: RUB
-# external_url: "https://sapfir0-homeassistant.duckdns.org:8123"
-# internal_url: "http://192.168.0.69:8123/"

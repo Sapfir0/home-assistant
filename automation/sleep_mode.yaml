@@ -30,5 +30,3 @@
           # - service: switch.turn_off
           #   entity_id: switch.smart_plug
 
-
-# можно включать успокаивающую музыку на колонке 

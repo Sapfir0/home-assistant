@@ -7,7 +7,6 @@ guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
 
-
 wake_up_light:
   name: Start wake up light
   initial: off

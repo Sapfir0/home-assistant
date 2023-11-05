@@ -1,6 +1,9 @@
+# настраиваем экспорт сущностей, которые указаны здесь как ключи в интеграции yandex_smart_home
+
 entity_config:
-  sensor.air_monitor:
-    name: Погода в комнате
+  sensor.temperature_2:
+    name: 'Климатический датчик'
+    room: 'Гостиная'
     properties:
       - type: temperature
         entity: sensor.temperature_2
@@ -8,9 +11,6 @@ entity_config:
         entity: sensor.humidity_2
       - type: co2_level
         entity: sensor.co2_2
-      # - type: tvoc
-      #   entity: sensor.tvoc_2
-      # - type: pm2.5_density
-      #   entity: sensor.pm25
-      # - type: pm10_density
-      #   entity: sensor.pm10_2
+  media_player.tv_pristavka_xiaomi:
+    name: 'Телевизор'
+    room: 'Гостиная'

@@ -3,12 +3,9 @@ homeassistant: !include includes/homeassistant.yaml
 default_config:
 logger:
   default: info
-  # logs:
-  #   homeassistant.components.rest: debug
 
 recorder: !include configs/recorder.yaml
 zone: !include configs/zones.yaml
-device_tracker: !include configs/router_device_tracker.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -20,7 +17,7 @@ input_text: !include includes/input_text.yaml
 
 binary_sensor: !include includes/binary_sensor.yaml
 
-notify: !include includes/output/telegram_notifier.yaml
+notify: !include includes/output/notify.yaml
 telegram_bot: !include includes/output/telegram_bot.yaml
 
 sensor: !include_dir_merge_list sensors
@@ -42,12 +39,7 @@ adaptive_lighting: !include includes/adaptive_lighting.yaml
 
 python_script:
 
-# http:
-#   server_port: 8123
-#   ssl_certificate: /ssl/fullchain.pem
-#   ssl_key: /ssl/privkey.pem
-#   ip_ban_enabled: True
-#   login_attempts_threshold: 3
+morph_numbers:
 
 yandex_station:
   include:
@@ -55,3 +47,89 @@ yandex_station:
 
 
 yandex_smart_home: !include includes/output/yandex_house_exporter.yaml
+
+# mqtt:
+#   - object_id: AIR_co2
+#     name: "Датчик CO2"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: carbon_dioxide
+#     unique_id: "qingping_dioxide"
+#     value_template: >-
+#       {{ value_json.sensorData.0.co2.value 
+#           if value_json.type=="12" }}
+#     unit_of_measurement: "ppm"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"
+#   - object_id: AIR_temp
+#     name: "Датчик температуры"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: temperature
+#     unique_id: "qingping_temp"
+#     value_template: >-
+#       {{ value_json.sensorData.0.temperature.value|round(2)
+#           if value_json.type=="12" and value_json.sensorData.0.temperature.status==0 }}
+#     unit_of_measurement: "°C"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"
+#   - object_id: AIR_hum
+#     name: "Датчик влажности"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: humidity
+#     unique_id: "qingping_hum"
+#     value_template: >-
+#       {{ value_json.sensorData.0.humidity.value|round(2)
+#           if value_json.type=="12" and value_json.sensorData.0.humidity.status==0 }}
+#     unit_of_measurement: "%"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"
+#   - object_id: AIR_tvoc
+#     name: "Датчик tvoc"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: volatile_organic_compounds
+#     unique_id: "qingping_tvoc"
+#     value_template: >-
+#       {{ (value_json.sensorData.0.tvoc.value/218.77)|round(3) 
+#           if value_json.type=="12" and value_json.sensorData.0.tvoc.status==0 }}
+#     unit_of_measurement: "µg/m³"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"
+#   - object_id: AIR_pm10
+#     name: "Датчик pm10"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: pm10
+#     unique_id: "qingping_pm10"
+#     value_template: >-
+#       {{ value_json.sensorData.0.pm10.value 
+#           if value_json.type=="12" }}
+#     unit_of_measurement: "µg/m³"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"
+#   - object_id: AIR_pm25
+#     name: "Датчик pm25"
+#     state_topic: "qingping/ВАШ_MAC/up"
+#     device_class: pm25
+#     unique_id: "qingping_pm25"
+#     value_template: >-
+#       {{ value_json.sensorData.0.pm25.value 
+#           if value_json.type=="12" and value_json.sensorData.0.pm25.status==0 }}
+#     unit_of_measurement: "µg/m³"
+#     device:
+#       identifiers: ["ВАШ_MAC"]
+#       name: "Air monitor"
+#       model: "CGS1"
+#       manufacturer: "qingping"

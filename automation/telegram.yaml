@@ -1,6 +1,10 @@
-- alias: "Telegram: Get current weather"
-  description: "Получение температуры"
+- alias: "Telegram: Help"
+  description: "Телеграм справка"
   trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: "/help"
     - platform: event
       event_type: telegram_command
       event_data:
@@ -9,16 +13,7 @@
   action:
     - service: telegram_bot.send_message
       data:
-        message: "
-        {% if now().strftime('%H')|int < 7 %}
-        Доброй ночи)
-        {% elif now().strftime('%H')|int < 12 %}
-        Доброе утро)
-        {% elif now().strftime('%H')|int < 18 %}
-        Хорошего дня)
-        {% else %}
-        Хорошего вечера)
-        {% endif %}
-        Сейчас за бортом {{ state_attr('weather.home','temperature') }}°C."
+        message: "Привет! Я Алиса с дополнениями, можешь мне писать любые сообщения и я отвечу. 
+        Можешь отправить ссылку на песню или видео, я воспроизведу её. Также доступны манипуляции 'Включи свет', 'Поменяй цвет' или 'Включи чайник'. Наслаждайся!"
         
 
