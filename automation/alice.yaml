@@ -1,0 +1,32 @@
+
+- alias: 'Alice: Listening'
+  trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: LISTENING
+  action:
+  - service: script.turn_off
+    entity_id: script.speaking
+  - service: script.turn_on
+    entity_id: script.listening
+
+
+- alias: 'Alice: Speaking'
+  trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: SPEAKING
+  action:
+  - service: script.turn_off
+    entity_id: script.listening
+  - service: script.turn_on
+    entity_id: script.speaking
+
+- alias: 'Alice: Idle'
+  trigger:
+    platform: state
+    entity_id: sensor.alice_state
+    to: IDLE
+  action:
+  - service: script.turn_off
+    entity_id: script.listening, script.speaking

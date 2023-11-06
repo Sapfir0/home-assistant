@@ -6,7 +6,7 @@ sensor:
     unique_id: "qingping_dioxide"
     value_template: >-
       {{ value_json.sensorData.0.co2.value 
-          if value_json.type=="12" }}
+          if value_json.type=="17" }}
     unit_of_measurement: "ppm"
     device:
       identifiers: ["582D347012AB"]
@@ -20,7 +20,7 @@ sensor:
     unique_id: "qingping_temp"
     value_template: >-
       {{ value_json.sensorData.0.temperature.value|round(2)
-          if value_json.type=="12" and value_json.sensorData.0.temperature.status==0 }}
+          if value_json.type=="17" and value_json.sensorData.0.temperature.status==0 }}
     unit_of_measurement: "°C"
     device:
       identifiers: ["582D347012AB"]
@@ -34,7 +34,7 @@ sensor:
     unique_id: "qingping_hum"
     value_template: >-
       {{ value_json.sensorData.0.humidity.value|round(2)
-          if value_json.type=="12" and value_json.sensorData.0.humidity.status==0 }}
+          if value_json.type=="17" and value_json.sensorData.0.humidity.status==0 }}
     unit_of_measurement: "%"
     device:
       identifiers: ["582D347012AB"]
@@ -48,7 +48,7 @@ sensor:
     unique_id: "qingping_tvoc"
     value_template: >-
       {{ (value_json.sensorData.0.tvoc.value)|round(3) 
-          if value_json.type=="12" and value_json.sensorData.0.tvoc.status==0 }}
+          if value_json.type=="17" and value_json.sensorData.0.tvoc.status==0 }}
     unit_of_measurement: "mg/m³"
     device:
       identifiers: ["582D347012AB"]
@@ -62,7 +62,7 @@ sensor:
     unique_id: "qingping_pm10"
     value_template: >-
       {{ value_json.sensorData.0.pm10.value 
-          if value_json.type=="12" }}
+          if value_json.type=="17" }}
     unit_of_measurement: "µg/m³"
     device:
       identifiers: ["582D347012AB"]
@@ -76,7 +76,7 @@ sensor:
     unique_id: "qingping_pm25"
     value_template: >-
       {{ value_json.sensorData.0.pm25.value 
-          if value_json.type=="12" and value_json.sensorData.0.pm25.status==0 }}
+          if value_json.type=="17" and value_json.sensorData.0.pm25.status==0 }}
     unit_of_measurement: "µg/m³"
     device:
       identifiers: ["582D347012AB"]

@@ -1,0 +1,4 @@
+- platform: template
+  sensors:
+    alice_state:
+      value_template: "{{ state_attr('media_player.yandex_station', 'alice_state') }}"
