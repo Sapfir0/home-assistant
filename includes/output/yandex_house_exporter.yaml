@@ -1,7 +1,7 @@
 # настраиваем экспорт сущностей, которые указаны здесь как ключи в интеграции yandex_smart_home
 
 entity_config:
-  sensor.temperature_2:
+  sensor.air_temperature:
     name: 'Климатический датчик'
     room: 'Гостиная'
     properties:

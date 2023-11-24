@@ -30,3 +30,7 @@
   action:
   - service: script.turn_off
     entity_id: script.listening, script.speaking
+  - service: media_player.volume_mute
+    entity_id: media_player.tv_pristavka_xiaomi
+    data:
+      is_volume_muted: false

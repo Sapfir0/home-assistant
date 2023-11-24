@@ -1,21 +1,21 @@
-- alias: "Air quality: Co2"
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.cleargrass_air
-    from: 'off'
-    to: 'on'
-  condition:
-    # не будем уведомлять, когда меня нет дома
-    condition: state
-    entity_id: person.alexander
-    state: "home"
-  action:
-    - service: telegram_bot.send_message
-      data:
-        message: "Проветри гостиную, качество воздуха уже не лучшее"
-        disable_notification: true
-    - service: media_player.play_media
-      entity_id: media_player.yandex_station
-      data:
-        media_content_id: "Проветри гостиную, качество воздуха уже не лучшее"
-        media_content_type: text
+# - alias: "Air quality: Co2"
+  # trigger:
+  # - platform: state
+  #   entity_id: binary_sensor.cleargrass_air
+  #   from: 'off'
+  #   to: 'on'
+  # condition:
+  #   # не будем уведомлять, когда меня нет дома
+  #   condition: state
+  #   entity_id: person.alexander
+  #   state: "home"
+  # action:
+  #   - service: telegram_bot.send_message
+  #     data:
+  #       message: "Проветри гостиную, качество воздуха уже не лучшее"
+  #       disable_notification: true
+    # - service: media_player.play_media
+    #   entity_id: media_player.yandex_station
+    #   data:
+    #     media_content_id: "Проветри гостиную, качество воздуха уже не лучшее"
+    #     media_content_type: text

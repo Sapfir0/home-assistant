@@ -30,9 +30,18 @@
     entity_id: input_boolean.alarm_clock
     state: "on"
   action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.wake_up_light
-
+    - service: light.turn_on
+      data:
+        brightness: 1
+        kelvin: 2700
+        transition: 0
+      entity_id: light.bedroom_lamp
+    - service: light.turn_on
+      data:
+        transition: 1800
+        brightness: 255
+        kelvin: 6000
+      entity_id: light.bedroom_lamp
 
 # - alias: "Alarm clock: Actions exactly at alarm time"
 #   trigger:
