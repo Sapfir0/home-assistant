@@ -10,7 +10,7 @@ homeassistant:
 
 alexanders_iphone:
   name: alexanders_iphone
-  mac:
+  mac: 36:a6:9c:63:08:2b
   icon:
   picture:
   track: true

@@ -19,29 +19,39 @@
          "
 
 
-- alias: "Alarm clock: Sunrise wake up"
-  id: "alarm_clock_sunrise"
-  trigger:
-    platform: template
-    value_template: >
-      {{ states("sensor.time")[0:5] == states("sensor.wake_up_light_start_time") }}
-  condition:
-    condition: state
-    entity_id: input_boolean.alarm_clock
-    state: "on"
-  action:
-    - service: light.turn_on
-      data:
-        brightness: 1
-        kelvin: 2700
-        transition: 0
-      entity_id: light.bedroom_lamp
-    - service: light.turn_on
-      data:
-        transition: 1800
-        brightness: 255
-        kelvin: 6000
-      entity_id: light.bedroom_lamp
+# - alias: "Alarm clock: Sunrise wake up"
+#   id: "alarm_clock_sunrise"
+#   trigger:
+#     platform: template
+#     value_template: >
+#       {{ states("sensor.time")[0:5] == states("sensor.wake_up_light_start_time") }}
+#   condition:
+#     condition: state
+#     entity_id: input_boolean.alarm_clock
+#     state: "on"
+#   action:
+#     - service: light.turn_on
+#       data:
+#         brightness: 1
+#         kelvin: 2700
+#         transition: 0
+#       entity_id: light.bedroom_lamp
+#     - service: light.turn_on
+#       data:
+#         transition: 1800
+#         brightness: 255
+#         kelvin: 6000
+#       entity_id: light.bedroom_lamp
+
+- id: '1710706561310'
+  alias: Wake-up light alarm with sunrise effect
+  description: ''
+  use_blueprint:
+    path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
+    input:
+      manual_time: 09:00:00
+      light_entity: light.bedroom_lamp
+
 
 # - alias: "Alarm clock: Actions exactly at alarm time"
 #   trigger:

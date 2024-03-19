@@ -3,3 +3,4 @@
     - 'time'
     - 'date'
     - 'date_time'
+    - 'date_time_iso'
