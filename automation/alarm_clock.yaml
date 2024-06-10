@@ -2,6 +2,10 @@
 - id: '1710706561310'
   alias: "Alarm: Wake-up light alarm with sunrise effect"
   description: ''
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
   use_blueprint:
     path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
     input:
@@ -15,9 +19,12 @@
     value_template: >
       {{ states("sensor.time")[0:5] == states("sensor.charging_time") }}
   condition:
-    condition: state
-    entity_id: input_boolean.alarm_clock
-    state: "on"
+    - condition: state
+      entity_id: input_boolean.alarm_clock
+      state: "on"
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
   action:
     - service: switch.turn_on
       entity_id: switch.smart_plug
