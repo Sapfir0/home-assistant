@@ -4,7 +4,7 @@ services:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - ~/homeapps/homeassistant/:/config # need to move all files to inner directory
+      - ~/homeapps/homeassistant/config:/config 
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 8123:8123
