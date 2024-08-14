@@ -8,7 +8,6 @@ red_light:
           - light.bedroom_lamp
         brightness: 98
         color_name: red
-
 blue_light:
   alias: Set blue lights
   mode: parallel
@@ -19,7 +18,6 @@ blue_light:
           - light.bedroom_lamp
         brightness: 98
         rgb_color: [76, 101, 224]
-
 white_lights:
   alias: Set white lights
   mode: parallel
@@ -42,27 +40,26 @@ warm_lights:
           - 26.725
           - 89.804
 
-
 listening:
   alias: "Listening Yandex station"
   mode: queued
   sequence:
-  - service: media_player.volume_mute
-    entity_id: media_player.tv_pristavka_xiaomi
-    data:
-      is_volume_muted: false
-  - delay: '00:00:01'
-  - service: script.turn_on
-    entity_id: script.listening
+    - service: media_player.volume_mute
+      entity_id: media_player.tv_pristavka_xiaomi
+      data:
+        is_volume_muted: false
+    - delay: "00:00:01"
+    - service: script.turn_on
+      entity_id: script.listening
 
 speaking:
   mode: queued
   alias: "Speaking Yandex station"
   sequence:
-  - service: media_player.volume_mute
-    entity_id: media_player.tv_pristavka_xiaomi
-    data:
-      is_volume_muted: true
-  - delay: '00:00:01'
-  - service: script.turn_on
-    entity_id: script.speaking
+    - service: media_player.volume_mute
+      entity_id: media_player.tv_pristavka_xiaomi
+      data:
+        is_volume_muted: true
+    - delay: "00:00:01"
+    - service: script.turn_on
+      entity_id: script.speaking

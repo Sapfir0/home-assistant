@@ -5,6 +5,6 @@
 
 - name: Univercity
   latitude: !secret latitude_univercity
-  longitude: !secret longitude_univercity     
+  longitude: !secret longitude_univercity
   radius: 250
   icon: mdi:book

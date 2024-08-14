@@ -1,6 +1,6 @@
 - platform: group
-  name: 'Living room lights'
+  name: "Living room lights"
   entities:
     - light.yeelink_color5_daf4_light
     - light.yeelink_color5_eb4d_light
-    - light.yeelink_color5_ef63_light  
+    - light.yeelink_color5_ef63_light

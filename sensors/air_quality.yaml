@@ -1,25 +1,24 @@
 - platform: template
   sensors:
     air_recomendation:
-      friendly_name: "Качество воздуха" 
+      friendly_name: "Качество воздуха"
       value_template: >
-        {% if states("binary_sensor.cleargrass_air") == 'on' %} 
-        Требуется проветривание 
+        {% if states("binary_sensor.cleargrass_air") == 'on' %}
+        Требуется проветривание
         {% endif %}
     temperature_recomendation:
-      friendly_name: "Температура в комнате" 
+      friendly_name: "Температура в комнате"
       value_template: >
         {% set temperature = states("sensor.air_temperature")|float %}
-        {% if temperature < 22 %} 
+        {% if temperature < 22 %}
           Холодно, включи подогрев
         {% elif temperature > 25 %}
           Жарковато, охлаждай
         {% endif %}
     humidity_recomendation:
-      friendly_name: "Влажность в комнате" 
+      friendly_name: "Влажность в комнате"
       value_template: >
         {% set humidity = states("sensor.air_humidity")|float %}
-        {% if humidity < 30 %} 
+        {% if humidity < 30 %}
           Суховато, нужно увлажнять
         {% endif %}
-

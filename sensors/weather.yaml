@@ -1,19 +1,18 @@
 - platform: template
   sensors:
-
     sun_elevation:
       value_template: >
         {{ state_attr('sun.sun', 'elevation') | float }}
-    outside_humidity: 
+    outside_humidity:
       value_template: >
         {{ state_attr('weather.yandex_weather', 'humidity') }}
-    outside_temperature: 
+    outside_temperature:
       value_template: >
         {{ state_attr('weather.yandex_weather', 'temperature') }}
     wind_description:
-      friendly_name: "Wind Bofort description" 
+      friendly_name: "Wind Bofort description"
       value_template: >
-        {% set wind_speed = state_attr('weather.yandex_weather','wind_speed') / 3.6 %} 
+        {% set wind_speed = state_attr('weather.yandex_weather','wind_speed') / 3.6 %}
 
         {% if wind_speed <= 0.2 %}
         Штиль
@@ -42,4 +41,3 @@
         {% else %}
         undefined
         {% endif %}
-

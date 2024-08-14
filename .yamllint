@@ -56,7 +56,7 @@ rules:
     present: false
   document-start:
     level: error
-    present: true
+    present: false
   empty-lines:
     level: error
     max: 1

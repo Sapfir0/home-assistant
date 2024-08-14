@@ -1,7 +1,6 @@
-
-- id: '1710706561310'
+- id: "1710706561310"
   alias: "Alarm: Wake-up light alarm with sunrise effect"
-  description: ''
+  description: ""
   condition:
     - condition: state
       entity_id: input_boolean.vacation_mode
@@ -14,7 +13,6 @@
     input:
       manual_time: "{{ states('sensor.wake_up_light_start_time')  + ':00' }}"
       light_entity: light.bedroom_lamp
-
 
 - alias: "Alarm clock: Charging time"
   trigger:
@@ -31,4 +29,3 @@
   action:
     - service: switch.turn_on
       entity_id: switch.smart_plug
-

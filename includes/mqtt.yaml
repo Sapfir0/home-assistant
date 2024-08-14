@@ -1,11 +1,11 @@
-sensor: 
+sensor:
   - object_id: AIR_co2
     name: "Датчик CO2"
     state_topic: "qingping/582D347012AB/up"
     device_class: carbon_dioxide
     unique_id: "qingping_dioxide"
     value_template: >-
-      {{ value_json.sensorData.0.co2.value 
+      {{ value_json.sensorData.0.co2.value
           if value_json.type=="17" }}
     unit_of_measurement: "ppm"
     device:
@@ -47,7 +47,7 @@ sensor:
     device_class: volatile_organic_compounds
     unique_id: "qingping_tvoc"
     value_template: >-
-      {{ (value_json.sensorData.0.tvoc.value)|round(3) 
+      {{ (value_json.sensorData.0.tvoc.value)|round(3)
           if value_json.type=="17" and value_json.sensorData.0.tvoc.status==0 }}
     unit_of_measurement: "mg/m³"
     device:
@@ -61,7 +61,7 @@ sensor:
     device_class: pm10
     unique_id: "qingping_pm10"
     value_template: >-
-      {{ value_json.sensorData.0.pm10.value 
+      {{ value_json.sensorData.0.pm10.value
           if value_json.type=="17" }}
     unit_of_measurement: "µg/m³"
     device:
@@ -75,7 +75,7 @@ sensor:
     device_class: pm25
     unique_id: "qingping_pm25"
     value_template: >-
-      {{ value_json.sensorData.0.pm25.value 
+      {{ value_json.sensorData.0.pm25.value
           if value_json.type=="17" and value_json.sensorData.0.pm25.status==0 }}
     unit_of_measurement: "µg/m³"
     device:
@@ -83,5 +83,3 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-
-      

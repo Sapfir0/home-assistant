@@ -6,7 +6,6 @@ monthly_energy_yard_room:
   source: sensor.smart_plug_month_energy
   cycle: monthly
 
-
 daily_energy_yard_room_tariff:
   source: sensor.smart_plug_month_energy
   cycle: daily

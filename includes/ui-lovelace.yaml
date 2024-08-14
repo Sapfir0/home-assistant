@@ -66,23 +66,22 @@ views:
 
           | Tables        | Are           |
 
-          | ------------- |:-------------:| 
+          | ------------- |:-------------:|
 
           | {{ states("sensor.charging_time") }} | Включается розетка для
-          зарядки всякого разного |  
+          зарядки всякого разного |
 
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
-          лампа-рассвет |  
+          лампа-рассвет |
 
           | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
-          сна  | 
+          сна  |
 
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
-          уведомление о погоде |  
+          уведомление о погоде |
 
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
 
-           
       - type: entities
         entities:
           - entity: sensor.air_recomendation
@@ -116,7 +115,7 @@ views:
             child_card: false
             hide_header: false
             show_header_icon: false
-            header: ''
+            header: ""
             color_wheel: true
             persist_features: false
             brightness: true
@@ -183,7 +182,7 @@ views:
           кино, чтобы смотреть с ТВ.
         title: TV
   - title: Bedroom
-    path: ''
+    path: ""
     icon: mdi:bed-queen
     badges: []
     cards:
@@ -291,12 +290,12 @@ views:
               - entity: sensor.template_udm_system_temp
               - type: custom:bar-card
                 entity_row: true
-                unit_of_measurement: '%'
+                unit_of_measurement: "%"
                 width: 50%
                 height: 2rem
                 positions:
                   icon: outside
-                  indicator: 'off'
+                  indicator: "off"
                   name: outside
                 entities:
                   - entity: sensor.template_udm_disk
@@ -351,7 +350,7 @@ views:
                     secondary_info:
                       entity: sensor.unifi_gateway_wan
                       attribute: isp_name
-                      name: 'ISP:'
+                      name: "ISP:"
                   - entity: sensor.unifi_gateway_wan
                     name: Gateways
                     type: custom:multiple-entity-row
@@ -360,16 +359,16 @@ views:
                     entities:
                       - attribute: num_gw
                         name: Devices
-                        unit: ' '
+                        unit: " "
                       - attribute: num_adopted
                         name: Adopted
-                        unit: ' '
+                        unit: " "
                       - attribute: num_disconnected
                         name: Disconnected
-                        unit: ' '
+                        unit: " "
                       - attribute: num_pending
                         name: Pending
-                        unit: ' '
+                        unit: " "
               - type: section
               - type: custom:fold-entity-row
                 card_mod:
@@ -400,16 +399,16 @@ views:
                     entities:
                       - attribute: num_sw
                         name: Devices
-                        unit: ' '
+                        unit: " "
                       - attribute: num_adopted
                         name: Adopted
-                        unit: ' '
+                        unit: " "
                       - attribute: num_disconnected
                         name: Disconnected
-                        unit: ' '
+                        unit: " "
                       - attribute: num_pending
                         name: Pending
-                        unit: ' '
+                        unit: " "
                   - type: section
                   - entity: sensor.unifipoller_usw_tx
                     icon: mdi:lan
@@ -419,10 +418,10 @@ views:
                     entities:
                       - entity: sensor.unifipoller_usw_tx
                         name: TX
-                        unit: ' '
+                        unit: " "
                       - entity: sensor.unifipoller_usw_rx
                         name: RX
-                        unit: ' '
+                        unit: " "
                   - entity: sensor.unifipoller_usw_1_tx
                     icon: mdi:lan
                     name: The Dream Police
@@ -431,10 +430,10 @@ views:
                     entities:
                       - entity: sensor.unifipoller_usw_1_tx
                         name: TX
-                        unit: ' '
+                        unit: " "
                       - entity: sensor.unifipoller_usw_1_rx
                         name: RX
-                        unit: ' '
+                        unit: " "
               - type: section
               - type: custom:fold-entity-row
                 card_mod:
@@ -467,16 +466,16 @@ views:
                     entities:
                       - attribute: num_ap
                         name: Devices
-                        unit: ' '
+                        unit: " "
                       - attribute: num_adopted
                         name: Adopted
-                        unit: ' '
+                        unit: " "
                       - attribute: num_disconnected
                         name: Disconnected
-                        unit: ' '
+                        unit: " "
                       - attribute: num_pending
                         name: Pending
-                        unit: ' '
+                        unit: " "
                   - type: section
                   - entity: sensor.unifipoller_uap_tx
                     icon: mdi:wifi
@@ -486,15 +485,15 @@ views:
                     entities:
                       - entity: sensor.unifipoller_uap_tx
                         name: TX
-                        unit: ' '
+                        unit: " "
                       - entity: sensor.unifipoller_uap_rx
                         name: RX
-                        unit: ' '
+                        unit: " "
               - type: custom:fold-entity-row
                 head:
                   type: custom:template-entity-row
                   name: Baxter WiFi
-                  state: ''
+                  state: ""
                   icon: mdi:wifi-alert
                 entities:
                   - entity: switch.baxter_wi_fi
@@ -505,13 +504,13 @@ views:
                 head:
                   type: custom:template-entity-row
                   name: IoT
-                  state: ''
+                  state: ""
                   icon: mdi:wifi-alert
                 entities:
                   - entity: image.baxter_wi_fi_qr_code
                     type: custom:template-entity-row
                     name: QR Code
-                    state: ''
+                    state: ""
                   - entity: switch.iot
                     name: WiFi Network On
                   - entity: sensor.iot
@@ -519,12 +518,12 @@ views:
                   - entity: image.iot_qr_code
                     type: custom:template-entity-row
                     name: QR Code
-                    state: ''
+                    state: ""
               - type: custom:fold-entity-row
                 head:
                   type: custom:template-entity-row
                   name: Test
-                  state: ''
+                  state: ""
                   icon: mdi:wifi-alert
                 entities:
                   - entity: switch.test
@@ -534,7 +533,7 @@ views:
                   - entity: image.test_qr_code
                     type: custom:template-entity-row
                     name: QR Code
-                    state: ''
+                    state: ""
               - type: section
               - type: custom:fold-entity-row
                 card_mod:
@@ -588,7 +587,7 @@ views:
                     filter:
                       include:
                         - group: group.updates_unifi
-                          state: 'on'
+                          state: "on"
                           options:
                             type: custom:template-entity-row
                             name: >-
@@ -618,7 +617,7 @@ views:
                     filter:
                       include:
                         - group: group.updates_unifi
-                          state: 'off'
+                          state: "off"
                           options:
                             type: custom:template-entity-row
                             name: >-

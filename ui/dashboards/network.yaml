@@ -1,4 +1,3 @@
----
 theme: geek_light
 icon: mdi:lan
 subview: true
@@ -7,7 +6,6 @@ title: Network
 type: custom:grid-layout
 layout: !include /config/ui/cards/layout/browser_grid.yaml
 cards:
-
   # Content
   - type: "custom:layout-card"
     view_layout:
