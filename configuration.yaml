@@ -44,8 +44,6 @@ yandex_station:
   include:
     - Чайник
 
-
 yandex_smart_home: !include includes/output/yandex_house_exporter.yaml
 
 mqtt: !include includes/mqtt.yaml
- 

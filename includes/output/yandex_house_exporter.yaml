@@ -2,8 +2,8 @@
 
 entity_config:
   sensor.air_temperature:
-    name: 'Климатический датчик'
-    room: 'Гостиная'
+    name: "Климатический датчик"
+    room: "Гостиная"
     properties:
       - type: temperature
         entity: sensor.air_temperature
@@ -12,5 +12,5 @@ entity_config:
       - type: co2_level
         entity: sensor.air_co2
   media_player.tv_pristavka_xiaomi:
-    name: 'Телевизор'
-    room: 'Гостиная'
+    name: "Телевизор"
+    room: "Гостиная"
