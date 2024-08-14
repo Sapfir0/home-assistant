@@ -7,10 +7,29 @@ views:
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - show_current: true
-        show_forecast: true
-        type: weather-forecast
+      - type: custom:clock-weather-card
         entity: weather.home
+        weather_icon_type: line
+        animated_icon: true
+        forecast_rows: 7
+        locale: ru
+        time_format: 24
+        date_pattern: P
+        hide_today_section: true
+        hide_forecast_section: false
+        hide_clock: true
+        hide_date: true
+        hourly_forecast: false
+        use_browser_time: false
+        card_mod:
+          style:
+            .: |
+              ha-card {
+                background: none;
+                border: 0;
+                --ha-card-box-shadow: 0px;
+                margin: -8px -4px -4px -8px;
+              }
       - type: custom:mini-media-player
         entity: media_player.kitchen_speakers
       - type: entities
@@ -71,36 +90,6 @@ views:
           - entity: sensor.humidity_recomendation
       - type: media-control
         entity: media_player.yandex_station
-      - type: custom:apexcharts-card
-        graph_span: 6h
-        header:
-          show: true
-        yaxis:
-          - max: 100
-            min: 0
-            decimals: 0
-        series:
-          - entity: sensor.outside_humidity
-            type: line
-            name: Outside Humidity
-            group_by:
-              func: avg
-              duration: 30min
-          - entity: sensor.air_humidity
-            type: column
-            name: Inside Humidity
-            group_by:
-              func: avg
-              duration: 30min
-      - type: custom:apexcharts-card
-        header:
-          show: true
-          title: ApexCharts-Card
-          show_states: true
-          colorize_states: true
-        series:
-          - entity: sensor.sun_elevation
-          - entity: sensor.air_temperature
   - title: Living room
     path: users
     icon: mdi:television
@@ -241,7 +230,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: 'Full router settings in http://router.miwifi.com/ '
+        content: Full router settings in http://192.168.1.1/
         title: Info
       - type: gauge
         entity: sensor.speedtest_download
@@ -254,6 +243,390 @@ views:
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: UniFi
+            icon: si:ubiquiti
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+                }
+          - type: entities
+            show_header_toggle: false
+            state_color: true
+            card_mod:
+              style: |
+                #states > * {
+                  margin: 0 !important;
+                }
+            entities:
+              - entity: binary_sensor.connected_wan
+                name: Internet Status
+                secondary_info: last-changed
+              - entity: binary_sensor.template_udm_internet
+              - type: section
+              - entity: script.update_udm_unifios
+                name: Update UniFi Command Line Sensor
+                secondary_info: last-triggered
+              - type: section
+              - type: button
+                name: Devices Dashboard
+                action_name: OPEN
+                icon: mdi:devices
+                tap_action:
+                  action: url
+                  url_path: http://192.168.1.1/controlPanel/devicesList
+              - type: button
+                name: System Settings
+                action_name: OPEN
+                icon: mdi:cog
+                tap_action:
+                  action: url
+                  url_path: http://192.168.1.1/controlPanel/system
+              - entity: sensor.template_udm_uptime
+              - entity: sensor.template_udm_cpu_temp
+              - entity: sensor.template_udm_system_temp
+              - type: custom:bar-card
+                entity_row: true
+                unit_of_measurement: '%'
+                width: 50%
+                height: 2rem
+                positions:
+                  icon: outside
+                  indicator: 'off'
+                  name: outside
+                entities:
+                  - entity: sensor.template_udm_disk
+                  - entity: sensor.template_udm_cpu
+                    severity:
+                      - color: var(--error-color)
+                        from: 85
+                        to: 100
+                      - color: var(--warning-color)
+                        from: 70
+                        to: 84
+                  - entity: sensor.template_udm_mem
+                    severity:
+                      - color: var(--error-color)
+                        from: 85
+                        to: 100
+                      - color: var(--warning-color)
+                        from: 70
+                        to: 84
+              - type: section
+              - entity: sensor.template_udm_availability
+              - entity: sensor.template_udm_avg_latency
+              - entity: sensor.template_udm_download_speed
+              - entity: sensor.template_udm_upload_speed
+              - entity: sensor.template_udm_lastwanip
+              - type: section
+              - type: custom:fold-entity-row
+                card_mod:
+                  style: |
+                    #items {
+                      padding-left: 12px !important;
+                      padding-right: 12px !important;
+                    }
+                    #measure {
+                      padding-top: 0 !important;
+                    }
+                    #measure > * {
+                      margin: 0 !important;
+                    }
+                padding: 0
+                head:
+                  entity: sensor.unifi_gateway_wan
+                  name: WAN
+                entities:
+                  - entity: sensor.unifi_gateway_wan_uptime
+                    icon: mdi:shield-outline
+                    name: Uptime
+                  - entity: sensor.unifi_gateway_wan_ip
+                    icon: mdi:shield-outline
+                    name: IP Address
+                    type: custom:multiple-entity-row
+                    secondary_info:
+                      entity: sensor.unifi_gateway_wan
+                      attribute: isp_name
+                      name: 'ISP:'
+                  - entity: sensor.unifi_gateway_wan
+                    name: Gateways
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - attribute: num_gw
+                        name: Devices
+                        unit: ' '
+                      - attribute: num_adopted
+                        name: Adopted
+                        unit: ' '
+                      - attribute: num_disconnected
+                        name: Disconnected
+                        unit: ' '
+                      - attribute: num_pending
+                        name: Pending
+                        unit: ' '
+              - type: section
+              - type: custom:fold-entity-row
+                card_mod:
+                  style: |
+                    #items {
+                      padding-left: 12px !important;
+                      padding-right: 12px !important;
+                    }
+                    #measure {
+                      padding-top: 0 !important;
+                    }
+                    #measure > * {
+                      margin: 0 !important;
+                    }
+                padding: 0
+                head:
+                  entity: sensor.unifi_gateway_lan
+                  name: LAN
+                entities:
+                  - entity: sensor.unifi_gateway_lan_num_user
+                    name: Devices Connected
+                    icon: mdi:lan
+                  - entity: sensor.unifi_gateway_lan
+                    name: Switches
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - attribute: num_sw
+                        name: Devices
+                        unit: ' '
+                      - attribute: num_adopted
+                        name: Adopted
+                        unit: ' '
+                      - attribute: num_disconnected
+                        name: Disconnected
+                        unit: ' '
+                      - attribute: num_pending
+                        name: Pending
+                        unit: ' '
+                  - type: section
+                  - entity: sensor.unifipoller_usw_tx
+                    icon: mdi:lan
+                    name: Hateful8
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    entities:
+                      - entity: sensor.unifipoller_usw_tx
+                        name: TX
+                        unit: ' '
+                      - entity: sensor.unifipoller_usw_rx
+                        name: RX
+                        unit: ' '
+                  - entity: sensor.unifipoller_usw_1_tx
+                    icon: mdi:lan
+                    name: The Dream Police
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    entities:
+                      - entity: sensor.unifipoller_usw_1_tx
+                        name: TX
+                        unit: ' '
+                      - entity: sensor.unifipoller_usw_1_rx
+                        name: RX
+                        unit: ' '
+              - type: section
+              - type: custom:fold-entity-row
+                card_mod:
+                  style: |
+                    #items {
+                      padding-left: 12px !important;
+                      padding-right: 12px !important;
+                    }
+                    #measure {
+                      padding-top: 0 !important;
+                    }
+                    #measure > * {
+                      margin: 0 !important;
+                    }
+                padding: 0
+                head:
+                  entity: sensor.unifi_gateway_wlan
+                  name: WLAN
+                entities:
+                  - entity: sensor.unifi_gateway_wlan
+                    name: Status
+                  - entity: sensor.unifi_gateway_wlan_num_user
+                    name: Devices Connected
+                    icon: mdi:wifi
+                  - entity: sensor.unifi_gateway_wlan
+                    name: Access Points
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - attribute: num_ap
+                        name: Devices
+                        unit: ' '
+                      - attribute: num_adopted
+                        name: Adopted
+                        unit: ' '
+                      - attribute: num_disconnected
+                        name: Disconnected
+                        unit: ' '
+                      - attribute: num_pending
+                        name: Pending
+                        unit: ' '
+                  - type: section
+                  - entity: sensor.unifipoller_uap_tx
+                    icon: mdi:wifi
+                    name: The Dream Police
+                    type: custom:multiple-entity-row
+                    show_state: false
+                    entities:
+                      - entity: sensor.unifipoller_uap_tx
+                        name: TX
+                        unit: ' '
+                      - entity: sensor.unifipoller_uap_rx
+                        name: RX
+                        unit: ' '
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:template-entity-row
+                  name: Baxter WiFi
+                  state: ''
+                  icon: mdi:wifi-alert
+                entities:
+                  - entity: switch.baxter_wi_fi
+                    name: WiFi Network On
+                  - entity: sensor.baxter_wi_fi
+                    name: Connected Clients
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:template-entity-row
+                  name: IoT
+                  state: ''
+                  icon: mdi:wifi-alert
+                entities:
+                  - entity: image.baxter_wi_fi_qr_code
+                    type: custom:template-entity-row
+                    name: QR Code
+                    state: ''
+                  - entity: switch.iot
+                    name: WiFi Network On
+                  - entity: sensor.iot
+                    name: Connected Clients
+                  - entity: image.iot_qr_code
+                    type: custom:template-entity-row
+                    name: QR Code
+                    state: ''
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:template-entity-row
+                  name: Test
+                  state: ''
+                  icon: mdi:wifi-alert
+                entities:
+                  - entity: switch.test
+                    name: WiFi Network On
+                  - entity: sensor.test
+                    name: Connected Clients
+                  - entity: image.test_qr_code
+                    type: custom:template-entity-row
+                    name: QR Code
+                    state: ''
+              - type: section
+              - type: custom:fold-entity-row
+                card_mod:
+                  style: |
+                    #items {
+                      padding-left: 12px !important;
+                      padding-right: 12px !important;
+                    }
+                    #measure {
+                      padding-top: 0 !important;
+                    }
+                    #measure > * {
+                      margin: 0 !important;
+                    }
+                padding: 0
+                head:
+                  entity: sensor.unifi_gateway_vpn
+                  name: VPN
+                entities:
+                  - entity: sensor.unifi_gateway_vpn
+              - type: section
+              - type: custom:fold-entity-row
+                padding: 5
+                head:
+                  type: custom:template-entity-row
+                  name: Updates
+                  icon: si:ubiquiti
+                  state: |
+                    {{expand('group.updates_unifi')
+                      |selectattr('state', 'eq', 'on')
+                      | list | count }} /
+                    {{expand('group.updates_unifi')
+                      |selectattr('state', 'eq', 'off')
+                      | list | count }}
+                entities:
+                  - type: custom:auto-entities
+                    card:
+                      type: custom:fold-entity-row
+                      padding: 5
+                      head:
+                        type: custom:template-entity-row
+                        name: Updates Available
+                        icon: mdi:update
+                        state: |
+                          {{expand('group.updates_unifi')
+                            |selectattr('state', 'eq', 'on')
+                            | list | count }}
+                    show_empty: true
+                    sort:
+                      method: friendly_name
+                    filter:
+                      include:
+                        - group: group.updates_unifi
+                          state: 'on'
+                          options:
+                            type: custom:template-entity-row
+                            name: >-
+                              {{ state_attr(config.entity,
+                              'friendly_name').split(':',1)[0] }}
+                            state: >-
+                              New: {{ state_attr(config.entity,
+                              'latest_version') }}
+                            secondary: >-
+                              Current: {{ state_attr(config.entity,
+                              'installed_version') }}
+                  - type: custom:auto-entities
+                    card:
+                      type: custom:fold-entity-row
+                      padding: 5
+                      head:
+                        type: custom:template-entity-row
+                        name: No Updates Available
+                        icon: mdi:update
+                        state: |
+                          {{expand('group.updates_unifi')
+                            |selectattr('state', 'eq', 'off')
+                            | list | count }}
+                    show_empty: true
+                    sort:
+                      method: friendly_name
+                    filter:
+                      include:
+                        - group: group.updates_unifi
+                          state: 'off'
+                          options:
+                            type: custom:template-entity-row
+                            name: >-
+                              {{ state_attr(config.entity,
+                              'friendly_name').split(':',1)[0] }}
+                            state: >-
+                              Current: {{ state_attr(config.entity,
+                              'installed_version') }}
   - title: System
     path: system
     icon: mdi:server
