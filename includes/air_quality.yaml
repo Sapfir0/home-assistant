@@ -1,0 +1,12 @@
+livingroom:
+  name: "Living Room"
+  sources:
+    temperature: sensor.air_temperature
+    humidity: sensor.air_humidity
+    co2: sensor.air_co2
+    tvoc: sensor.air_tvoc
+    pm:
+      - sensor.air_pm25
+      - sensor.air_pm10
+  sensors:
+    - iaq_level

@@ -47,3 +47,5 @@ yandex_station:
 yandex_smart_home: !include includes/output/yandex_house_exporter.yaml
 
 mqtt: !include includes/mqtt.yaml
+
+iaquk: !include includes/air_quality.yaml
