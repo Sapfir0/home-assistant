@@ -1,6 +1,6 @@
 
 - name: living room
-  lights: 
+  lights:
     - light.living_room_lights
   min_brightness: 100
   min_color_temp: 3500
