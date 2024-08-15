@@ -1,4 +1,3 @@
-
 - alias: "System: Warning about high CPU usage"
   trigger:
     platform: numeric_state
@@ -24,4 +23,3 @@
     data:
       title: "System"
       message: "CPU temperature has been above 70 °C for 4 hours! ⚠️"
-

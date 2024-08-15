@@ -18,7 +18,6 @@
         title: "Vacation mode"
         message: "Никого не было дома 12 часа, переключаю в отпускной режим."
 
-
 - alias: "Vacation mode: auto turn off"
   initial_state: true
   trigger:

@@ -1,36 +1,34 @@
-
-- alias: 'Alice: Listening'
+- alias: "Alice: Listening"
   trigger:
     platform: state
     entity_id: sensor.alice_state
     to: LISTENING
   action:
-  - service: script.turn_off
-    entity_id: script.speaking
-  - service: script.turn_on
-    entity_id: script.listening
+    - service: script.turn_off
+      entity_id: script.speaking
+    - service: script.turn_on
+      entity_id: script.listening
 
-
-- alias: 'Alice: Speaking'
+- alias: "Alice: Speaking"
   trigger:
     platform: state
     entity_id: sensor.alice_state
     to: SPEAKING
   action:
-  - service: script.turn_off
-    entity_id: script.listening
-  - service: script.turn_on
-    entity_id: script.speaking
+    - service: script.turn_off
+      entity_id: script.listening
+    - service: script.turn_on
+      entity_id: script.speaking
 
-- alias: 'Alice: Idle'
+- alias: "Alice: Idle"
   trigger:
     platform: state
     entity_id: sensor.alice_state
     to: IDLE
   action:
-  - service: script.turn_off
-    entity_id: script.listening, script.speaking
-  - service: media_player.volume_mute
-    entity_id: media_player.tv_pristavka_xiaomi
-    data:
-      is_volume_muted: false
+    - service: script.turn_off
+      entity_id: script.listening, script.speaking
+    - service: media_player.volume_mute
+      entity_id: media_player.tv_pristavka_xiaomi
+      data:
+        is_volume_muted: false
