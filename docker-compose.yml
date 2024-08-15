@@ -5,7 +5,6 @@ services:
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
       - ~/home/sapfir/homeapps/home-assistant/config:/config
-      - /etc/localtime:/etc/localtime:ro
     ports:
       - 8123:8123
     restart: unless-stopped
