@@ -43,24 +43,16 @@ views:
       - type: markdown
         content: >-
           | Tables        | Are           |
-
           | ------------- |:-------------:|
-
           | {{ states("sensor.charging_time") }} | Включается розетка для
           зарядки всякого разного |
-
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
           лампа-рассвет |
-
           | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
           сна  |
-
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
           уведомление о погоде |
-
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
-
-
         title: Расписание
       - type: media-control
         entity: media_player.yandex_station
