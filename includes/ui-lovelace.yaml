@@ -42,9 +42,6 @@ views:
             secondary_info: none
       - type: markdown
         content: >-
-          ## Расписание
-
-
           | Tables        | Are           |
 
           | ------------- |:-------------:|
@@ -64,6 +61,7 @@ views:
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
 
 
+        title: Расписание
       - type: media-control
         entity: media_player.yandex_station
       - type: entities
