@@ -34,31 +34,12 @@ views:
         entity: media_player.kitchen_speakers
       - type: entities
         entities:
-          - binary_sensor.cleargrass_air
-      - type: entities
-        entities:
           - entity: input_boolean.alarm_clock
           - entity: sensor.alarm_clock
           - entity: sensor.wake_up_light_start_time
           - entity: sensor.weather_notifitcations
           - entity: input_select.sleep_mode
             secondary_info: none
-      - type: picture-elements
-        elements:
-          - type: state-badge
-            entity: sensor.air_temperature
-            style:
-              top: 35%
-              left: 15%
-              scale: 85%
-          - type: state-badge
-            entity: sensor.air_humidity
-            style:
-              top: 35%
-              left: 30%
-              scale: 85%
-        image: >-
-          https://sun9-41.userapi.com/impg/ZBqlsc2qDP_hYy7xnqwhCQEXYbvwYvRA_UsNwQ/_P5IL7LPGRk.jpg?size=1406x662&quality=95&sign=8f29b2d623ae0182a0dced2b0a6e5add&type=album
       - type: markdown
         content: >-
           ## Расписание
@@ -82,26 +63,171 @@ views:
 
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
 
-      - type: entities
-        entities:
-          - entity: sensor.air_recomendation
-          - entity: sensor.temperature_recomendation
-          - entity: sensor.humidity_recomendation
+
       - type: media-control
         entity: media_player.yandex_station
+      - type: entities
+        entities:
+          - sensor.livingroom_iaq_level
+      - type: vertical-stack
+        view_layout:
+          grid-area: devices
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Network Connected Devices
+            icon: mdi:devices
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+              }
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: Wired
+                icon: mdi:check-network-outline
+                secondary: |-
+                  {{state_attr(entity, 'lan_devices')}} Devices
+                  0 Guest Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: WiFi
+                icon: mdi:access-point-network
+                secondary: |-
+                  {{state_attr(entity, 'wlan_devices')}} Devices
+                  {{state_attr(entity, 'wlan_guest_devices')}} Guest Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: IoT
+                icon: mdi:help-network-outline
+                secondary: |-
+                  {{state_attr(entity, 'lan_iot_devices')}} LAN Devices
+                  {{state_attr(entity, 'wlan_iot_devices')}} WLAN Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+      - type: vertical-stack
+        view_layout:
+          grid-area: devices
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Качество воздуха
+            icon: mdi:devices
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+              }
+          - square: false
+            type: grid
+            columns: 3
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: temperature_index
+                    name: Температура
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: humidity_index
+                    name: Влажность
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: co2_index
+                    name: CO2
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: tvoc_index
+                    name: TVoc
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: pm_index
+                    name: PM
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
   - title: Living room
     path: users
     icon: mdi:television
     badges: []
     cards:
-      - type: entities
-        entities:
-          - entity: sensor.air_temperature
-          - entity: sensor.air_humidity
-          - entity: sensor.air_co2
-          - entity: sensor.air_tvoc
-          - entity: sensor.air_pm25
-          - entity: sensor.air_pm10
       - type: vertical-stack
         cards:
           - show_name: true
@@ -115,7 +241,7 @@ views:
             child_card: false
             hide_header: false
             show_header_icon: false
-            header: ""
+            header: ''
             color_wheel: true
             persist_features: false
             brightness: true
@@ -139,34 +265,6 @@ views:
         entities:
           - entity: switch.adaptive_lighting_living_room
           - entity: switch.adaptive_lighting_sleep_mode_living_room
-      - square: false
-        type: grid
-        cards:
-          - graph: line
-            type: sensor
-            entity: sensor.air_temperature
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_humidity
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_co2
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_tvoc
-            detail: 1
-            hours_to_show: 6
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.air_pm10
-              - sensor.air_pm25
-        columns: 2
       - type: vertical-stack
         cards:
           - type: custom:mini-graph-card
@@ -182,7 +280,7 @@ views:
           кино, чтобы смотреть с ТВ.
         title: TV
   - title: Bedroom
-    path: ""
+    path: ''
     icon: mdi:bed-queen
     badges: []
     cards:
@@ -242,390 +340,9 @@ views:
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
-      - type: vertical-stack
-        cards:
-          - type: custom:bubble-card
-            card_type: separator
-            name: UniFi
-            icon: si:ubiquiti
-            styles: |-
-              .bubble-line {
-                background: var(--ha-card-background);
-                opacity: 1;
-                }
-          - type: entities
-            show_header_toggle: false
-            state_color: true
-            card_mod:
-              style: |
-                #states > * {
-                  margin: 0 !important;
-                }
-            entities:
-              - entity: binary_sensor.connected_wan
-                name: Internet Status
-                secondary_info: last-changed
-              - entity: binary_sensor.template_udm_internet
-              - type: section
-              - entity: script.update_udm_unifios
-                name: Update UniFi Command Line Sensor
-                secondary_info: last-triggered
-              - type: section
-              - type: button
-                name: Devices Dashboard
-                action_name: OPEN
-                icon: mdi:devices
-                tap_action:
-                  action: url
-                  url_path: http://192.168.1.1/controlPanel/devicesList
-              - type: button
-                name: System Settings
-                action_name: OPEN
-                icon: mdi:cog
-                tap_action:
-                  action: url
-                  url_path: http://192.168.1.1/controlPanel/system
-              - entity: sensor.template_udm_uptime
-              - entity: sensor.template_udm_cpu_temp
-              - entity: sensor.template_udm_system_temp
-              - type: custom:bar-card
-                entity_row: true
-                unit_of_measurement: "%"
-                width: 50%
-                height: 2rem
-                positions:
-                  icon: outside
-                  indicator: "off"
-                  name: outside
-                entities:
-                  - entity: sensor.template_udm_disk
-                  - entity: sensor.template_udm_cpu
-                    severity:
-                      - color: var(--error-color)
-                        from: 85
-                        to: 100
-                      - color: var(--warning-color)
-                        from: 70
-                        to: 84
-                  - entity: sensor.template_udm_mem
-                    severity:
-                      - color: var(--error-color)
-                        from: 85
-                        to: 100
-                      - color: var(--warning-color)
-                        from: 70
-                        to: 84
-              - type: section
-              - entity: sensor.template_udm_availability
-              - entity: sensor.template_udm_avg_latency
-              - entity: sensor.template_udm_download_speed
-              - entity: sensor.template_udm_upload_speed
-              - entity: sensor.template_udm_lastwanip
-              - type: section
-              - type: custom:fold-entity-row
-                card_mod:
-                  style: |
-                    #items {
-                      padding-left: 12px !important;
-                      padding-right: 12px !important;
-                    }
-                    #measure {
-                      padding-top: 0 !important;
-                    }
-                    #measure > * {
-                      margin: 0 !important;
-                    }
-                padding: 0
-                head:
-                  entity: sensor.unifi_gateway_wan
-                  name: WAN
-                entities:
-                  - entity: sensor.unifi_gateway_wan_uptime
-                    icon: mdi:shield-outline
-                    name: Uptime
-                  - entity: sensor.unifi_gateway_wan_ip
-                    icon: mdi:shield-outline
-                    name: IP Address
-                    type: custom:multiple-entity-row
-                    secondary_info:
-                      entity: sensor.unifi_gateway_wan
-                      attribute: isp_name
-                      name: "ISP:"
-                  - entity: sensor.unifi_gateway_wan
-                    name: Gateways
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    secondary_info: last-changed
-                    entities:
-                      - attribute: num_gw
-                        name: Devices
-                        unit: " "
-                      - attribute: num_adopted
-                        name: Adopted
-                        unit: " "
-                      - attribute: num_disconnected
-                        name: Disconnected
-                        unit: " "
-                      - attribute: num_pending
-                        name: Pending
-                        unit: " "
-              - type: section
-              - type: custom:fold-entity-row
-                card_mod:
-                  style: |
-                    #items {
-                      padding-left: 12px !important;
-                      padding-right: 12px !important;
-                    }
-                    #measure {
-                      padding-top: 0 !important;
-                    }
-                    #measure > * {
-                      margin: 0 !important;
-                    }
-                padding: 0
-                head:
-                  entity: sensor.unifi_gateway_lan
-                  name: LAN
-                entities:
-                  - entity: sensor.unifi_gateway_lan_num_user
-                    name: Devices Connected
-                    icon: mdi:lan
-                  - entity: sensor.unifi_gateway_lan
-                    name: Switches
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    secondary_info: last-changed
-                    entities:
-                      - attribute: num_sw
-                        name: Devices
-                        unit: " "
-                      - attribute: num_adopted
-                        name: Adopted
-                        unit: " "
-                      - attribute: num_disconnected
-                        name: Disconnected
-                        unit: " "
-                      - attribute: num_pending
-                        name: Pending
-                        unit: " "
-                  - type: section
-                  - entity: sensor.unifipoller_usw_tx
-                    icon: mdi:lan
-                    name: Hateful8
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    entities:
-                      - entity: sensor.unifipoller_usw_tx
-                        name: TX
-                        unit: " "
-                      - entity: sensor.unifipoller_usw_rx
-                        name: RX
-                        unit: " "
-                  - entity: sensor.unifipoller_usw_1_tx
-                    icon: mdi:lan
-                    name: The Dream Police
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    entities:
-                      - entity: sensor.unifipoller_usw_1_tx
-                        name: TX
-                        unit: " "
-                      - entity: sensor.unifipoller_usw_1_rx
-                        name: RX
-                        unit: " "
-              - type: section
-              - type: custom:fold-entity-row
-                card_mod:
-                  style: |
-                    #items {
-                      padding-left: 12px !important;
-                      padding-right: 12px !important;
-                    }
-                    #measure {
-                      padding-top: 0 !important;
-                    }
-                    #measure > * {
-                      margin: 0 !important;
-                    }
-                padding: 0
-                head:
-                  entity: sensor.unifi_gateway_wlan
-                  name: WLAN
-                entities:
-                  - entity: sensor.unifi_gateway_wlan
-                    name: Status
-                  - entity: sensor.unifi_gateway_wlan_num_user
-                    name: Devices Connected
-                    icon: mdi:wifi
-                  - entity: sensor.unifi_gateway_wlan
-                    name: Access Points
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    secondary_info: last-changed
-                    entities:
-                      - attribute: num_ap
-                        name: Devices
-                        unit: " "
-                      - attribute: num_adopted
-                        name: Adopted
-                        unit: " "
-                      - attribute: num_disconnected
-                        name: Disconnected
-                        unit: " "
-                      - attribute: num_pending
-                        name: Pending
-                        unit: " "
-                  - type: section
-                  - entity: sensor.unifipoller_uap_tx
-                    icon: mdi:wifi
-                    name: The Dream Police
-                    type: custom:multiple-entity-row
-                    show_state: false
-                    entities:
-                      - entity: sensor.unifipoller_uap_tx
-                        name: TX
-                        unit: " "
-                      - entity: sensor.unifipoller_uap_rx
-                        name: RX
-                        unit: " "
-              - type: custom:fold-entity-row
-                head:
-                  type: custom:template-entity-row
-                  name: Baxter WiFi
-                  state: ""
-                  icon: mdi:wifi-alert
-                entities:
-                  - entity: switch.baxter_wi_fi
-                    name: WiFi Network On
-                  - entity: sensor.baxter_wi_fi
-                    name: Connected Clients
-              - type: custom:fold-entity-row
-                head:
-                  type: custom:template-entity-row
-                  name: IoT
-                  state: ""
-                  icon: mdi:wifi-alert
-                entities:
-                  - entity: image.baxter_wi_fi_qr_code
-                    type: custom:template-entity-row
-                    name: QR Code
-                    state: ""
-                  - entity: switch.iot
-                    name: WiFi Network On
-                  - entity: sensor.iot
-                    name: Connected Clients
-                  - entity: image.iot_qr_code
-                    type: custom:template-entity-row
-                    name: QR Code
-                    state: ""
-              - type: custom:fold-entity-row
-                head:
-                  type: custom:template-entity-row
-                  name: Test
-                  state: ""
-                  icon: mdi:wifi-alert
-                entities:
-                  - entity: switch.test
-                    name: WiFi Network On
-                  - entity: sensor.test
-                    name: Connected Clients
-                  - entity: image.test_qr_code
-                    type: custom:template-entity-row
-                    name: QR Code
-                    state: ""
-              - type: section
-              - type: custom:fold-entity-row
-                card_mod:
-                  style: |
-                    #items {
-                      padding-left: 12px !important;
-                      padding-right: 12px !important;
-                    }
-                    #measure {
-                      padding-top: 0 !important;
-                    }
-                    #measure > * {
-                      margin: 0 !important;
-                    }
-                padding: 0
-                head:
-                  entity: sensor.unifi_gateway_vpn
-                  name: VPN
-                entities:
-                  - entity: sensor.unifi_gateway_vpn
-              - type: section
-              - type: custom:fold-entity-row
-                padding: 5
-                head:
-                  type: custom:template-entity-row
-                  name: Updates
-                  icon: si:ubiquiti
-                  state: |
-                    {{expand('group.updates_unifi')
-                      |selectattr('state', 'eq', 'on')
-                      | list | count }} /
-                    {{expand('group.updates_unifi')
-                      |selectattr('state', 'eq', 'off')
-                      | list | count }}
-                entities:
-                  - type: custom:auto-entities
-                    card:
-                      type: custom:fold-entity-row
-                      padding: 5
-                      head:
-                        type: custom:template-entity-row
-                        name: Updates Available
-                        icon: mdi:update
-                        state: |
-                          {{expand('group.updates_unifi')
-                            |selectattr('state', 'eq', 'on')
-                            | list | count }}
-                    show_empty: true
-                    sort:
-                      method: friendly_name
-                    filter:
-                      include:
-                        - group: group.updates_unifi
-                          state: "on"
-                          options:
-                            type: custom:template-entity-row
-                            name: >-
-                              {{ state_attr(config.entity,
-                              'friendly_name').split(':',1)[0] }}
-                            state: >-
-                              New: {{ state_attr(config.entity,
-                              'latest_version') }}
-                            secondary: >-
-                              Current: {{ state_attr(config.entity,
-                              'installed_version') }}
-                  - type: custom:auto-entities
-                    card:
-                      type: custom:fold-entity-row
-                      padding: 5
-                      head:
-                        type: custom:template-entity-row
-                        name: No Updates Available
-                        icon: mdi:update
-                        state: |
-                          {{expand('group.updates_unifi')
-                            |selectattr('state', 'eq', 'off')
-                            | list | count }}
-                    show_empty: true
-                    sort:
-                      method: friendly_name
-                    filter:
-                      include:
-                        - group: group.updates_unifi
-                          state: "off"
-                          options:
-                            type: custom:template-entity-row
-                            name: >-
-                              {{ state_attr(config.entity,
-                              'friendly_name').split(':',1)[0] }}
-                            state: >-
-                              Current: {{ state_attr(config.entity,
-                              'installed_version') }}
+      - type: entities
+        entities:
+          - entity: binary_sensor.keenetic_giga_kn_1011_connectivity
   - title: System
     path: system
     icon: mdi:server
@@ -662,9 +379,6 @@ views:
         entities:
           - entity: binary_sensor.backups_stale
           - entity: sensor.backup_state
-      - type: entities
-        entities:
-          - sensor.disk_free
       - type: entities
         entities:
           - entity: sensor.processor_temperature
