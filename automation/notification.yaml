@@ -1,9 +1,9 @@
 - alias: "Heater: End boiling"
   trigger:
-  - platform: state
-    entity_id: water_heater.chainik_2
-    from: 'on'
-    to: 'off'
+    - platform: state
+      entity_id: water_heater.chainik_2
+      from: "on"
+      to: "off"
   condition:
     # не будем уведомлять, когда меня нет дома
     condition: state

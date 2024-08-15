@@ -1,11 +1,10 @@
-version: '3'
+version: "3"
 services:
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - ~/home/sapfir/homeapps/home-assistant/config:/config 
-      - /etc/localtime:/etc/localtime:ro
+      - ~/home/sapfir/homeapps/home-assistant/config:/config
     ports:
       - 8123:8123
     restart: unless-stopped

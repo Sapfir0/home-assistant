@@ -1,4 +1,3 @@
-
 - alias: "Sleep mode: Set wind down"
   id: "sleep_mode_set_wind_down"
   trigger:
@@ -9,7 +8,6 @@
       entity_id: input_select.sleep_mode
       data:
         option: "wind_down"
-
 
 - alias: "Sleep mode: Lights"
   id: "sleep_mode_changes"
@@ -29,4 +27,3 @@
           - delay: 20 # ждем перед выключением розетки
           # - service: switch.turn_off
           #   entity_id: switch.smart_plug
-

@@ -38,8 +38,6 @@
     - service: switch.turn_on
       entity_id: switch.adaptive_lighting_adapt_color_bed_room
 
-
-
 - alias: "Apple Watch: send vacuum cleaner"
   mode: parallel
   trigger:
@@ -100,7 +98,6 @@
       data:
         option: "{{ location }}"
 
-
 - alias: "Apple Watch: movie time"
   trigger:
     platform: event
@@ -114,8 +111,6 @@
           - light.living_room_lights
         brightness: 5
         color_name: red
-
-
 
 - alias: "Apple Watch: Set sleep mode"
   mode: parallel
@@ -132,13 +127,13 @@
           actions:
             - action: "OFF"
               title: "Off"
-              icon: 'sfsymbols:sun.max.fill' # specific for apple https://developer.apple.com/sf-symbols/
+              icon: "sfsymbols:sun.max.fill" # specific for apple https://developer.apple.com/sf-symbols/
             - action: "WIND_DOWN"
               title: "Wind down"
-              icon: 'sfsymbols:moon.fill'
+              icon: "sfsymbols:moon.fill"
             - action: "ON"
               title: Sleep
-              icon: 'sfsymbols:moon.fill'
+              icon: "sfsymbols:moon.fill"
     - wait_for_trigger:
         - platform: event
           event_type: mobile_app_notification_action
@@ -160,4 +155,3 @@
       data:
         entity_id: input_select.sleep_mode
         option: "{{ event }}"
-        

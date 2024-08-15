@@ -1,15 +1,15 @@
-- alias: 'Text to yandex staton'
+- alias: "Text to yandex staton"
   trigger:
     platform: event
     event_type: telegram_text
   action:
     service: media_player.play_media
-    entity_id: media_player.yandex_station 
+    entity_id: media_player.yandex_station
     data:
       media_content_id: "{{ trigger.event.data.text }}"
       media_content_type: "question:{{ trigger.event.data.chat_id }}"
 
-- alias: 'Text from yandex station'
+- alias: "Text from yandex station"
   trigger:
     platform: event
     event_type: yandex_station_response

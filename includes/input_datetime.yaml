@@ -1,6 +1,5 @@
-
 wind_down:
   name: Wind down
   has_date: false
   has_time: true
-  initial: '22:30:00'
+  initial: "22:30:00"

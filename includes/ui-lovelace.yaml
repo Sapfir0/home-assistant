@@ -7,15 +7,31 @@ views:
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - show_current: true
-        show_forecast: true
-        type: weather-forecast
+      - type: custom:clock-weather-card
         entity: weather.home
+        weather_icon_type: line
+        animated_icon: true
+        forecast_rows: 7
+        locale: ru
+        time_format: 24
+        date_pattern: P
+        hide_today_section: true
+        hide_forecast_section: false
+        hide_clock: true
+        hide_date: true
+        hourly_forecast: false
+        use_browser_time: false
+        card_mod:
+          style:
+            .: |
+              ha-card {
+                background: none;
+                border: 0;
+                --ha-card-box-shadow: 0px;
+                margin: -8px -4px -4px -8px;
+              }
       - type: custom:mini-media-player
         entity: media_player.kitchen_speakers
-      - type: entities
-        entities:
-          - binary_sensor.cleargrass_air
       - type: entities
         entities:
           - entity: input_boolean.alarm_clock
@@ -24,96 +40,184 @@ views:
           - entity: sensor.weather_notifitcations
           - entity: input_select.sleep_mode
             secondary_info: none
-      - type: picture-elements
-        elements:
-          - type: state-badge
-            entity: sensor.air_temperature
-            style:
-              top: 35%
-              left: 15%
-              scale: 85%
-          - type: state-badge
-            entity: sensor.air_humidity
-            style:
-              top: 35%
-              left: 30%
-              scale: 85%
-        image: >-
-          https://sun9-41.userapi.com/impg/ZBqlsc2qDP_hYy7xnqwhCQEXYbvwYvRA_UsNwQ/_P5IL7LPGRk.jpg?size=1406x662&quality=95&sign=8f29b2d623ae0182a0dced2b0a6e5add&type=album
       - type: markdown
         content: >-
-          ## Расписание
-
-
           | Tables        | Are           |
-
-          | ------------- |:-------------:| 
-
+          | ------------- |:-------------:|
           | {{ states("sensor.charging_time") }} | Включается розетка для
-          зарядки всякого разного |  
-
+          зарядки всякого разного |
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
-          лампа-рассвет |  
-
+          лампа-рассвет |
           | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
-          сна  | 
-
+          сна  |
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
-          уведомление о погоде |  
-
+          уведомление о погоде |
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
-
-           
-      - type: entities
-        entities:
-          - entity: sensor.air_recomendation
-          - entity: sensor.temperature_recomendation
-          - entity: sensor.humidity_recomendation
+        title: Расписание
       - type: media-control
         entity: media_player.yandex_station
-      - type: custom:apexcharts-card
-        graph_span: 6h
-        header:
-          show: true
-        yaxis:
-          - max: 100
-            min: 0
-            decimals: 0
-        series:
-          - entity: sensor.outside_humidity
-            type: line
-            name: Outside Humidity
-            group_by:
-              func: avg
-              duration: 30min
-          - entity: sensor.air_humidity
-            type: column
-            name: Inside Humidity
-            group_by:
-              func: avg
-              duration: 30min
-      - type: custom:apexcharts-card
-        header:
-          show: true
-          title: ApexCharts-Card
-          show_states: true
-          colorize_states: true
-        series:
-          - entity: sensor.sun_elevation
-          - entity: sensor.air_temperature
+      - type: entities
+        entities:
+          - sensor.livingroom_iaq_level
+      - type: vertical-stack
+        view_layout:
+          grid-area: devices
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Network Connected Devices
+            icon: mdi:devices
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+              }
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: Wired
+                icon: mdi:check-network-outline
+                secondary: |-
+                  {{state_attr(entity, 'lan_devices')}} Devices
+                  0 Guest Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: WiFi
+                icon: mdi:access-point-network
+                secondary: |-
+                  {{state_attr(entity, 'wlan_devices')}} Devices
+                  {{state_attr(entity, 'wlan_guest_devices')}} Guest Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+              - entity: sensor.unifi_networkstats_connected_devices
+                type: custom:mushroom-template-card
+                primary: IoT
+                icon: mdi:help-network-outline
+                secondary: |-
+                  {{state_attr(entity, 'lan_iot_devices')}} LAN Devices
+                  {{state_attr(entity, 'wlan_iot_devices')}} WLAN Devices
+                fill_container: true
+                layout: vertical
+                multiline_secondary: true
+      - type: vertical-stack
+        view_layout:
+          grid-area: devices
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Качество воздуха
+            icon: mdi:devices
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+              }
+          - square: false
+            type: grid
+            columns: 3
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: temperature_index
+                    name: Температура
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: humidity_index
+                    name: Влажность
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: co2_index
+                    name: CO2
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: tvoc_index
+                    name: TVoc
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.livingroom_iaq_level
+                    attribute: pm_index
+                    name: PM
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 1
+                    color: '#ff0000'
+                  - value: 2
+                    color: '#ff8c00'
+                  - value: 3
+                    color: '#fcff00'
+                  - value: 4
+                    color: '#91ff00'
+                  - value: 5
+                    color: '#00ff23'
   - title: Living room
     path: users
     icon: mdi:television
     badges: []
     cards:
-      - type: entities
-        entities:
-          - entity: sensor.air_temperature
-          - entity: sensor.air_humidity
-          - entity: sensor.air_co2
-          - entity: sensor.air_tvoc
-          - entity: sensor.air_pm25
-          - entity: sensor.air_pm10
       - type: vertical-stack
         cards:
           - show_name: true
@@ -151,34 +255,6 @@ views:
         entities:
           - entity: switch.adaptive_lighting_living_room
           - entity: switch.adaptive_lighting_sleep_mode_living_room
-      - square: false
-        type: grid
-        cards:
-          - graph: line
-            type: sensor
-            entity: sensor.air_temperature
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_humidity
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_co2
-            detail: 1
-            hours_to_show: 6
-          - graph: line
-            type: sensor
-            entity: sensor.air_tvoc
-            detail: 1
-            hours_to_show: 6
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.air_pm10
-              - sensor.air_pm25
-        columns: 2
       - type: vertical-stack
         cards:
           - type: custom:mini-graph-card
@@ -241,7 +317,7 @@ views:
     badges: []
     cards:
       - type: markdown
-        content: 'Full router settings in http://router.miwifi.com/ '
+        content: Full router settings in http://192.168.1.1/
         title: Info
       - type: gauge
         entity: sensor.speedtest_download
@@ -254,6 +330,9 @@ views:
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
+      - type: entities
+        entities:
+          - entity: binary_sensor.keenetic_giga_kn_1011_connectivity
   - title: System
     path: system
     icon: mdi:server
@@ -290,9 +369,6 @@ views:
         entities:
           - entity: binary_sensor.backups_stale
           - entity: sensor.backup_state
-      - type: entities
-        entities:
-          - sensor.disk_free
       - type: entities
         entities:
           - entity: sensor.processor_temperature

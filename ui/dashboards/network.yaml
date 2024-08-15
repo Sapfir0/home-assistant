@@ -1,0 +1,33 @@
+theme: geek_light
+icon: mdi:lan
+subview: true
+path: network
+title: Network
+type: custom:grid-layout
+layout: !include /config/ui/cards/layout/browser_grid.yaml
+cards:
+  # Content
+  - type: "custom:layout-card"
+    view_layout:
+      grid-area: content
+    layout_type: custom:masonry-layout
+    layout:
+      max_cols: 4
+      width: 500
+      max_width: 1000
+    cards:
+      - !include /config/ui/cards/network/unifi/unifi_udm.yaml
+      - !include /config/ui/cards/network/unifi/conn_devices.yaml
+      - !include /config/ui/cards/network/unifi.yaml
+
+  # Actions
+  - !include /config/ui/cards/common/actions.yaml
+
+  # Footer
+  - type: custom:mod-card
+    view_layout:
+      grid-area: footer
+    card: !include /config/ui/cards/common/media_player.yaml
+
+  # Popups
+  - !include /config/ui/dashboards/shared/includes/popup.yaml

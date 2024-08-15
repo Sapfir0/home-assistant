@@ -1,5 +1,12 @@
 {
-    "files.associations": {
-        "*.yaml": "home-assistant"
-    }
+  "files.associations": {
+    "*.yaml": "home-assistant"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[home-assistant]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true
 }
