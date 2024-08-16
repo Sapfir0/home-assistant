@@ -1,0 +1,47 @@
+
+- platform: rest
+  name: Keenetic CPU Usage
+  unique_id: ded628f3-2510-4894-953a-247ad62de663
+  unit_of_measurement: "%"
+  resource: http://192.168.0.1:81/rci/show/system
+  value_template: "{{ value_json.cpuload }}"
+
+- platform: rest
+  name: Keenetic RAM Usage
+  unique_id: 3a225571-d10f-4405-8e0a-b3015a4273b4
+  unit_of_measurement: "%"
+  resource: http://192.168.0.1:81/rci/show/system
+  value_template: >
+    {%- set mem = value_json.memory-%}
+    {%- set memfree = mem.split('/')[0]|int(0)-%}
+    {%- set memtotal = mem.split('/')[1]|int(1)-%}
+    {{ (memfree*100/memtotal)| round(2) }}
+
+- platform: rest
+  name: Keenetic Uptime
+  resource: http://192.168.0.1:81/rci/show/system
+  value_template: "{{ value_json.uptime }}"
+
+- platform: rest
+  name: Keenetic MGTS Speed TX
+  unique_id: f454be65-7854-4e28-86cb-3300dd200468
+  resource: http://192.168.0.1:81/rci/show/interface/stat?name=GigabitEthernet1
+  scan_interval: 30
+  value_template: "{{ (value_json.txspeed / 1250000) | round(2) }}"
+  unit_of_measurement: 'Mbit/s'
+  json_attributes:
+    - txbytes
+    - txerrors
+    - txspeed
+
+- platform: rest
+  resource: http://192.168.0.1:81/rci/show/interface/stat?name=GigabitEthernet1
+  name: Keenetic MGTS Speed RX
+  unique_id: 0e5c3581-1e57-42c7-b60f-38141d76165e
+  scan_interval: 30
+  value_template: "{{ (value_json.rxspeed / 1250000) | round(2) }}"
+  unit_of_measurement: 'Mbit/s'
+  json_attributes:
+    - rxbytes
+    - rxerrors
+    - rxspeed

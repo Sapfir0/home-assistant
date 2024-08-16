@@ -49,7 +49,7 @@ sensor:
     value_template: >-
       {{ (value_json.sensorData.0.tvoc.value)|round(3)
           if value_json.type=="17" and value_json.sensorData.0.tvoc.status==0 }}
-    unit_of_measurement: "mg/m³"
+    unit_of_measurement: "µg/m³"
     device:
       identifiers: ["582D347012AB"]
       name: "Air monitor"
