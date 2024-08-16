@@ -2,9 +2,3 @@
   latitude: !secret latitude_home
   longitude: !secret longitude_home
   icon: mdi:home
-
-- name: Univercity
-  latitude: !secret latitude_univercity
-  longitude: !secret longitude_univercity
-  radius: 250
-  icon: mdi:book

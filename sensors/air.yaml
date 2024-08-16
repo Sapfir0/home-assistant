@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    temperature_index:
+      device_class: temperature
+      value_template: "{{ state_attr('sensor.livingroom_iaq_level','temperature_index')}}"
+    humidity_index:
+      device_class: humidity
+      value_template: "{{ state_attr('sensor.livingroom_iaq_level','humidity_index')}}"
+    co2_index:
+      device_class: carbon_dioxide
+      value_template: "{{ state_attr('sensor.livingroom_iaq_level','co2_index')}}"
+    tvoc_index:
+      device_class: volatile_organic_compounds
+      value_template: "{{ state_attr('sensor.livingroom_iaq_level','tvoc_index')}}"
+    pm_index:
+      device_class: pm10
+      value_template: "{{ state_attr('sensor.livingroom_iaq_level','pm_index')}}"
