@@ -17,3 +17,4 @@ www/
 themes
 secrets.yaml
 appdaemon/compiled
+known_devices.yaml
