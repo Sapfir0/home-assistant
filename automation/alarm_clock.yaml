@@ -6,6 +6,9 @@
       entity_id: input_boolean.vacation_mode
       state: "off"
     - condition: state
+      entity_id: person.alexander
+      state: home
+    - condition: state
       entity_id: input_boolean.alarm_clock
       state: "on"
   use_blueprint:

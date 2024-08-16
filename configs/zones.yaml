@@ -2,4 +2,3 @@
   latitude: !secret latitude_home
   longitude: !secret longitude_home
   icon: mdi:home
-https://github.com/Sapfir0/home-assistant/pull/11/conflict?name=docker-compose.yml&ancestor_oid=4add5a9d88c0dbcd670fb93f4bac04bcdb07498f&base_oid=f64fbc2ef36d9099c4dbe87b317a61518360639a&head_oid=248364e052175ca85f9be6afeb039f8594f80cb4

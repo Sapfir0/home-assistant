@@ -9,6 +9,7 @@ exclude:
   entities:
     - sensor.date
     - sensor.date_time
+    - sensor.date_time_iso
     - sensor.time
     - sensor.openweathermap_forecast_time
     - switch.rpi_cooling_fan
