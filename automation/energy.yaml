@@ -13,3 +13,28 @@
       entity_id: select.daily_energy_yard_room_tariff
       data:
         option: "{{ tariff }}"
+
+- id: "system_monitor_low_disk_space"
+  alias: "System: Low disk space"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.disk_free
+      below: "10"
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: ⚠ - Home Assistant server - Low disk space < 10Gb
+  mode: single
+
+- id: "systemmonitor_telegram_system_state"
+  alias: "System: Telegram - System state"
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: /sysmon
+  action:
+    - service: telegram_bot.send_message
+      data:
+        message: "CPU: {{ states('sensor.processor_use_percent') }}%, Mem Use: {{ states('sensor.memory_use_percent') }}%, Disk use: {{ states('sensor.disk_use_percent') }}%"
+  mode: single

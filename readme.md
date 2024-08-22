@@ -3,15 +3,12 @@
 
 ## Common
 
-
 | Device                          | Type |
 | ------------------------------- | :--: |
 | iPhone 15 Pro Max               |  🔍  |
 | Apple Watch SE                  |  🔍  |
 | Яндекс Алиса                    |  🔈  |
 | Siri (only for ios automations) |  🔈  |
-
-
 
 
 ## Bed room
@@ -93,4 +90,4 @@ Vactaion mode
 * Когда прибываю домой -> выставляю переменную
 * Когда ухожу тоже
 
-
+https://disk.yandex.ru/d/_XcysP1cJYXF7w

@@ -1,0 +1,10 @@
+namespace: hass
+filter:
+  include_domains:
+    - binary_sensor
+    - sensor
+  exclude_entity_globs:
+    - sensor.weather*
+    - sensor.time*
+    - sensor.sun*
+    - sensor.smart*

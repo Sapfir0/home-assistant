@@ -8,19 +8,12 @@ views:
       - entity: sun.sun
     cards:
       - type: custom:clock-weather-card
-        entity: weather.home
+        entity: weather.forecast_home
         weather_icon_type: line
         animated_icon: true
         forecast_rows: 7
         locale: ru
         time_format: 24
-        date_pattern: P
-        hide_today_section: true
-        hide_forecast_section: false
-        hide_clock: true
-        hide_date: true
-        hourly_forecast: false
-        use_browser_time: false
         card_mod:
           style:
             .: |
@@ -30,82 +23,34 @@ views:
                 --ha-card-box-shadow: 0px;
                 margin: -8px -4px -4px -8px;
               }
-      - type: custom:mini-media-player
-        entity: media_player.kitchen_speakers
       - type: entities
         entities:
           - entity: input_boolean.alarm_clock
-          - entity: sensor.alarm_clock
-          - entity: sensor.wake_up_light_start_time
-          - entity: sensor.weather_notifitcations
           - entity: input_select.sleep_mode
             secondary_info: none
       - type: markdown
         content: >-
           | Tables        | Are           |
+
           | ------------- |:-------------:|
+
           | {{ states("sensor.charging_time") }} | Включается розетка для
           зарядки всякого разного |
+
           | {{ states("sensor.wake_up_light_start_time") }} | Включается
           лампа-рассвет |
+
           | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
           сна  |
+
           | {{ states("sensor.weather_notifitcations") }} | Отправляется
           уведомление о погоде |
+
           | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
         title: Расписание
-      - type: media-control
-        entity: media_player.yandex_station
       - type: entities
         entities:
           - sensor.livingroom_iaq_level
-      - type: vertical-stack
-        view_layout:
-          grid-area: devices
-        cards:
-          - type: custom:bubble-card
-            card_type: separator
-            name: Network Connected Devices
-            icon: mdi:devices
-            styles: |-
-              .bubble-line {
-                background: var(--ha-card-background);
-                opacity: 1;
-              }
-          - type: grid
-            columns: 3
-            square: false
-            cards:
-              - entity: sensor.unifi_networkstats_connected_devices
-                type: custom:mushroom-template-card
-                primary: Wired
-                icon: mdi:check-network-outline
-                secondary: |-
-                  {{state_attr(entity, 'lan_devices')}} Devices
-                  0 Guest Devices
-                fill_container: true
-                layout: vertical
-                multiline_secondary: true
-              - entity: sensor.unifi_networkstats_connected_devices
-                type: custom:mushroom-template-card
-                primary: WiFi
-                icon: mdi:access-point-network
-                secondary: |-
-                  {{state_attr(entity, 'wlan_devices')}} Devices
-                  {{state_attr(entity, 'wlan_guest_devices')}} Guest Devices
-                fill_container: true
-                layout: vertical
-                multiline_secondary: true
-              - entity: sensor.unifi_networkstats_connected_devices
-                type: custom:mushroom-template-card
-                primary: IoT
-                icon: mdi:help-network-outline
-                secondary: |-
-                  {{state_attr(entity, 'lan_iot_devices')}} LAN Devices
-                  {{state_attr(entity, 'wlan_iot_devices')}} WLAN Devices
-                fill_container: true
-                layout: vertical
-                multiline_secondary: true
       - type: vertical-stack
         view_layout:
           grid-area: devices
@@ -213,6 +158,10 @@ views:
                     color: '#91ff00'
                   - value: 5
                     color: '#00ff23'
+      - type: entities
+        entities:
+          - entity: sensor.air_temperature
+          - entity: sensor.air_humidity
   - title: Living room
     path: users
     icon: mdi:television
@@ -263,12 +212,6 @@ views:
           - type: entities
             entities:
               - entity: switch.smart_plug
-      - type: markdown
-        content: >-
-
-          Включить [Plex](http://127.0.0.1:32400/), сюда можно закинуть нужное
-          кино, чтобы смотреть с ТВ.
-        title: TV
   - title: Bedroom
     path: ''
     icon: mdi:bed-queen
@@ -316,23 +259,27 @@ views:
     icon: mdi:access-point
     badges: []
     cards:
-      - type: markdown
-        content: Full router settings in http://192.168.1.1/
-        title: Info
-      - type: gauge
-        entity: sensor.speedtest_download
-        min: 0
-        max: 100
-      - type: entities
-        entities:
-          - entity: sensor.speedtest_ping
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
       - type: entities
         entities:
           - entity: binary_sensor.keenetic_giga_kn_1011_connectivity
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Client list
+            icon: mdi:home
+            tap_action:
+              action: url
+              url_path: http://192.168.1.1/controlPanel/devicesList
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Dashboard
+            tap_action:
+              action: url
+              url_path: http://192.168.1.1/dashboard
+            icon: mdi:access-point-network
   - title: System
     path: system
     icon: mdi:server
@@ -346,14 +293,9 @@ views:
           green: 0
           yellow: 50
           red: 75
-      - type: gauge
-        entity: sensor.memory_use_percent
-        min: 0
-        max: 100
-        severity:
-          green: 0
-          yellow: 50
-          red: 75
+      - type: entities
+        entities:
+          - sensor.time_online
       - type: gauge
         entity: sensor.disk_use_percent
         min: 0
@@ -364,14 +306,78 @@ views:
           red: 75
       - type: entities
         entities:
-          - sensor.time_online
-      - type: entities
-        entities:
           - entity: binary_sensor.backups_stale
           - entity: sensor.backup_state
+      - type: gauge
+        entity: sensor.memory_use_percent
+        min: 0
+        max: 100
+        severity:
+          green: 0
+          yellow: 50
+          red: 75
       - type: entities
         entities:
           - entity: sensor.processor_temperature
           - entity: binary_sensor.rpi_power_status
       - type: thermostat
         entity: climate.rpi_cooling_fan_controller
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Grafana
+            icon: phu:grafana
+            tap_action:
+              url_path: ''
+            button_action:
+              tap_action:
+                action: url
+                url_path: http://192.168.1.136:8888/
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Portainer
+            icon: mdi:docker
+            tap_action:
+              url_path: ''
+            button_action:
+              tap_action:
+                action: url
+                url_path: https://192.168.1.136:9443/
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Dashboard
+            tap_action:
+              url_path: ''
+            icon: phu:prometheusio
+            button_action:
+              tap_action:
+                action: url
+                url_path: http://192.168.1.136:9090/
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: Photoprism
+            tap_action:
+              url_path: ''
+            icon: mdi:camera
+            button_action:
+              tap_action:
+                action: url
+                url_path: http://192.168.1.136:2342/
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: button
+            button_type: name
+            name: InfluxDB
+            tap_action:
+              url_path: ''
+            icon: mdi:database
+            button_action:
+              tap_action:
+                action: url
+                url_path: http://192.168.1.136:8086/
