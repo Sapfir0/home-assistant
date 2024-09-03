@@ -1,0 +1,19 @@
+- alias: "Notify about completed torrent"
+  trigger:
+    - platform: event
+      event_type: transmission_downloaded_torrent
+  action:
+    - action: telegram_bot.send_message
+      data:
+        title: "Torrent completed!"
+        message: "{{trigger.event.data.name}}"
+
+- alias: "Notify about add torrent"
+  trigger:
+    - platform: event
+      event_type: transmission.add_torrent
+  action:
+    - action: telegram_bot.send_message
+      data:
+        title: "Torrent added!"
+        message: "{{trigger.event.data.name}}"

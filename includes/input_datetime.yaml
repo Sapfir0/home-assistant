@@ -3,3 +3,9 @@ wind_down:
   has_date: false
   has_time: true
   initial: "22:30:00"
+
+last_alarm_sync:
+  name: Last alarm sync time
+  has_date: true
+  has_time: false
+  initial: "1970-01-01"
