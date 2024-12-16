@@ -10,3 +10,4 @@ livingroom:
       - sensor.air_pm10
   sensors:
     - iaq_level
+    - iaq_index
