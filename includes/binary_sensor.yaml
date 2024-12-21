@@ -1,0 +1,10 @@
+- platform: trend
+  sensors:
+    air_temperature_trend:
+      entity_id: sensor.air_temperature
+
+    air_humidity_trend:
+      entity_id: sensor.air_humidity
+
+    air_co2_trend:
+      entity_id: sensor.air_co2

@@ -15,3 +15,45 @@
     pm_index:
       device_class: pm10
       value_template: "{{ state_attr('sensor.livingroom_iaq_level','pm_index')}}"
+
+    temperature_trend:
+      value_template: >
+        {% if is_state('binary_sensor.air_temperature_trend', 'on') %}
+        Rising
+        {% else %}
+        Falling
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.air_temperature_trend', 'on') %}
+        mdi:thermometer-chevron-up
+        {% else %}
+        mdi:thermometer-chevron-down
+        {% endif %}
+
+    humidity_trend:
+      value_template: >
+        {% if is_state('binary_sensor.air_humidity_trend', 'on') %}
+        Rising
+        {% else %}
+        Falling
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.air_humidity_trend', 'on') %}
+        mdi:chevron-up
+        {% else %}
+        mdi:chevron-down
+        {% endif %}
+
+    co2_trend:
+      value_template: >
+        {% if is_state('binary_sensor.air_co2_trend', 'on') %}
+        Rising
+        {% else %}
+        Falling
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.air_co2_trend', 'on') %}
+        mdi:chevron-up
+        {% else %}
+        mdi:chevron-down
+        {% endif %}

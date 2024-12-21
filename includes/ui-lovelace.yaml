@@ -7,50 +7,62 @@ views:
       - entity: person.alexander
       - entity: sun.sun
     cards:
-      - type: custom:clock-weather-card
-        entity: weather.forecast_home
-        weather_icon_type: line
-        animated_icon: true
-        forecast_rows: 7
-        locale: ru
-        time_format: 24
-        card_mod:
-          style:
-            .: |
-              ha-card {
-                background: none;
-                border: 0;
-                --ha-card-box-shadow: 0px;
-                margin: -8px -4px -4px -8px;
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Температура
+            icon: mdi:thermometer
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
               }
-      - type: entities
-        entities:
-          - entity: input_boolean.alarm_clock
-          - entity: input_select.sleep_mode
-            secondary_info: none
-      - type: markdown
-        content: >-
-          | Tables        | Are           |
-
-          | ------------- |:-------------:|
-
-          | {{ states("sensor.charging_time") }} | Включается розетка для
-          зарядки всякого разного |
-
-          | {{ states("sensor.wake_up_light_start_time") }} | Включается
-          лампа-рассвет |
-
-          | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
-          сна  |
-
-          | {{ states("sensor.weather_notifitcations") }} | Отправляется
-          уведомление о погоде |
-
-          | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
-        title: Расписание
-      - type: entities
-        entities:
-          - sensor.livingroom_iaq_level
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.air_temperature
+                group_by:
+                  duration: 30min
+                  func: avg
+          - type: custom:mushroom-entity-card
+            entity: sensor.temperature_trend
+            name: Тренд температуры
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+            name: Влажность
+            icon: mdi:water-percent
+            styles: |-
+              .bubble-line {
+                background: var(--ha-card-background);
+                opacity: 1;
+              }
+          - type: custom:apexcharts-card
+            header:
+              show: true
+              show_states: true
+              colorize_states: true
+            series:
+              - entity: sensor.air_humidity
+                type: column
+                name: Bedroom Humidity
+                group_by:
+                  func: avg
+                  duration: 30min
+              - entity: sensor.outside_humidity
+                type: line
+                name: Outside Humidity
+                group_by:
+                  func: avg
+                  duration: 30min
+          - type: custom:mushroom-entity-card
+            entity: sensor.humidity_trend
+            name: Тренд влажности
       - type: vertical-stack
         view_layout:
           grid-area: devices
@@ -158,10 +170,52 @@ views:
                     color: '#91ff00'
                   - value: 5
                     color: '#00ff23'
+          - type: entities
+            entities:
+              - entity: sensor.livingroom_iaq_level
+              - entity: sensor.livingroom_iaq_index
+          - type: custom:mushroom-entity-card
+      - type: custom:clock-weather-card
+        entity: weather.forecast_home
+        weather_icon_type: line
+        animated_icon: true
+        forecast_rows: 7
+        locale: ru
+        time_format: 24
+        card_mod:
+          style:
+            .: |
+              ha-card {
+                background: none;
+                border: 0;
+                --ha-card-box-shadow: 0px;
+                margin: -8px -4px -4px -8px;
+              }
       - type: entities
         entities:
-          - entity: sensor.air_temperature
-          - entity: sensor.air_humidity
+          - entity: input_boolean.alarm_clock
+          - entity: input_select.sleep_mode
+            secondary_info: none
+      - type: markdown
+        content: >-
+          | Tables        | Are           |
+
+          | ------------- |:-------------:|
+
+          | {{ states("sensor.charging_time") }} | Включается розетка для
+          зарядки всякого разного |
+
+          | {{ states("sensor.wake_up_light_start_time") }} | Включается
+          лампа-рассвет |
+
+          | {{ states("sensor.alarm_clock") }} | Будильник, отключается режим
+          сна  |
+
+          | {{ states("sensor.weather_notifitcations") }} | Отправляется
+          уведомление о погоде |
+
+          | {{ states("input_datetime.wind_down") }} | Идет уход ко сну
+        title: Расписание
   - title: Living room
     path: users
     icon: mdi:television
@@ -346,38 +400,3 @@ views:
               tap_action:
                 action: url
                 url_path: https://192.168.1.136:9443/
-          - type: custom:bubble-card
-            card_type: button
-            button_type: name
-            name: Dashboard
-            tap_action:
-              url_path: ''
-            icon: phu:prometheusio
-            button_action:
-              tap_action:
-                action: url
-                url_path: http://192.168.1.136:9090/
-          - type: custom:bubble-card
-            card_type: button
-            button_type: name
-            name: Photoprism
-            tap_action:
-              url_path: ''
-            icon: mdi:camera
-            button_action:
-              tap_action:
-                action: url
-                url_path: http://192.168.1.136:2342/
-      - type: vertical-stack
-        cards:
-          - type: custom:bubble-card
-            card_type: button
-            button_type: name
-            name: InfluxDB
-            tap_action:
-              url_path: ''
-            icon: mdi:database
-            button_action:
-              tap_action:
-                action: url
-                url_path: http://192.168.1.136:8086/
