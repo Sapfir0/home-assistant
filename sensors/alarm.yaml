@@ -4,33 +4,3 @@
       value_template: >
         {{ as_timestamp(now().replace(hour=0).replace(minute=0).replace(second=0)) }}
       unit_of_measurement: "s"
-
-    # будильник, который синхронизируется с телефона
-    alarm_clock:
-      friendly_name: Alarm clock
-      value_template: "08:55"
-
-    wake_up_light_start_time:
-      friendly_name: Wake up light start time
-      value_template: >
-        {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
-        {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
-        {% set before_alarm = t_start - 60 * 15 %}
-        {{ before_alarm | timestamp_custom("%H:%M", True) }}
-
-    weather_notifitcations:
-      friendly_name: Time for forecast
-      value_template: >
-        {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
-        {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
-        {% set before_alarm = t_start + 60 * 1 %}
-        {{ before_alarm | timestamp_custom("%H:%M", True) }}
-
-    charging_time:
-      friendly_name: Time for charging devices (if charging adapter is off at night)
-      value_template: >
-        {% set t_alarm =  strptime(states("sensor.alarm_clock"), '%H:%M') %}
-        {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
-        {% set before_alarm = t_start - 60 * 60 %}
-        {{ before_alarm | timestamp_custom("%H:%M", True) }}
-      # включаем за час до будильника

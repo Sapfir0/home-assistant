@@ -4,8 +4,14 @@ wind_down:
   has_time: true
   initial: "22:30:00"
 
-last_alarm_sync:
-  name: Last alarm sync time
-  has_date: true
-  has_time: false
-  initial: "1970-01-01"
+alarm_clock:
+  name: Alarm clock
+  has_date: false
+  has_time: true
+  initial: "09:00:00"
+
+wake_up_light_start_time:
+  name: Alarm clock
+  has_date: false
+  has_time: true
+  initial: "08:45:00"

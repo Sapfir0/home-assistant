@@ -24,6 +24,27 @@
         sequence:
           - service: light.turn_off
             entity_id: light.bedroom_lamp
-          - delay: 20 # ждем перед выключением розетки
-          # - service: switch.turn_off
-          #   entity_id: switch.smart_plug
+          - service: switch.turn_off
+            entity_id: switch.smart_plug
+
+- alias: "Sleep mode: go to sleep"
+  id: "sleep_mode_start"
+  trigger:
+   - platform: event
+     event_type: yandex_speaker
+     event_data:
+      value: ничего не делай # ключевое слово, которое мы будем прокидывать из яндекс дома, отправляем бесшумно
+  action:
+    sequence:
+      - service: yandex_station.send_command
+        data:
+          entity_id: media_player.yandex_station
+          text: какая погода?
+          response_variable: response
+      - service: input_select.select_option
+        entity_id: input_select.sleep_mode
+        data:
+          option: "on"
+
+
+

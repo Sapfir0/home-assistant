@@ -12,14 +12,13 @@
   use_blueprint:
     path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
     input:
-      manual_time: "{{ states('sensor.wake_up_light_start_time')  + ':00' }}"
+      manual_time: input_datetime.wake_up_light_start_time
       light_entity: light.bedroom_lamp
 
 - alias: "Alarm clock: Charging time"
   trigger:
-    platform: template
-    value_template: >
-      {{ states("sensor.time")[0:5] == states("sensor.charging_time") }}
+    platform: time
+    at: input_datetime.wake_up_light_start_time
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock
@@ -30,3 +29,25 @@
   action:
     - service: switch.turn_on
       entity_id: switch.smart_plug
+
+
+- alias: "Alarm clock: Changes"
+  id: "alarm_clock_changes"
+  trigger:
+    - platform: state
+      entity_id: input_datetime.alarm_clock
+    - platform: homeassistant
+      event: start # in case the states aren't properly restored
+  variables:
+    alarm_clock: "{{ states('input_datetime.alarm_clock') }}"
+  action:
+    sequence:
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.wake_up_light_start_time
+        data:
+          time:  >-
+            {% set t_alarm =  strptime(states("input_datetime.alarm_clock"), '%H:%M:%S') %}
+            {% set t_start = as_timestamp(now().replace(hour=t_alarm.hour).replace(minute=t_alarm.minute).replace(second=t_alarm.second)) %}
+            {% set before_alarm = t_start - 15 * 60 %}
+            {{ before_alarm | timestamp_custom("%H:%M:%S", True) }}
