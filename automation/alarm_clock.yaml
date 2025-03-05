@@ -12,7 +12,7 @@
   use_blueprint:
     path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
     input:
-      manual_time: input_datetime.wake_up_light_start_time
+      manual_time: "{{ states('input_datetime.wake_up_light_start_time')[1:] }}"
       light_entity: light.bedroom_lamp
 
 - alias: "Alarm clock: Charging time"

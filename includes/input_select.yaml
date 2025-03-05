@@ -4,3 +4,4 @@ sleep_mode:
     - "wind_down"
     - "off"
   icon: mdi:bed-king
+  initial: "off"

@@ -36,15 +36,8 @@
       value: ничего не делай # ключевое слово, которое мы будем прокидывать из яндекс дома, отправляем бесшумно
   action:
     sequence:
-      - service: yandex_station.send_command
-        data:
-          entity_id: media_player.yandex_station
-          text: какая погода?
-          response_variable: response
       - service: input_select.select_option
         entity_id: input_select.sleep_mode
         data:
           option: "on"
-
-
 
