@@ -18,7 +18,6 @@ input_text: !include includes/input_text.yaml
 binary_sensor: !include includes/binary_sensor.yaml
 
 notify: !include includes/output/notify.yaml
-telegram_bot: !include includes/output/telegram_bot.yaml
 
 sensor: !include_dir_merge_list sensors
 group: !include includes/groups.yaml

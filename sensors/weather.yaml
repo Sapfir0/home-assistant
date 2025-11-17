@@ -6,15 +6,15 @@
     outside_humidity:
       unit_of_measurement: "%"
       value_template: >
-        {{ state_attr('weather.yandex_weather', 'humidity') }}
+        {{ state_attr('weather.forecast_home', 'humidity') }}
     outside_temperature:
       unit_of_measurement: "°C"
       value_template: >
-        {{ state_attr('weather.yandex_weather', 'temperature') }}
+        {{ state_attr('weather.forecast_home', 'temperature') }}
     wind_description:
       friendly_name: "Wind Bofort description"
       value_template: >
-        {% set wind_speed = state_attr('weather.yandex_weather','wind_speed') / 3.6 %}
+        {% set wind_speed = state_attr('weather.forecast_home','wind_speed') / 3.6 %}
 
         {% if wind_speed <= 0.2 %}
         Штиль

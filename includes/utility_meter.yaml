@@ -1,13 +1,13 @@
 daily_energy_yard_room:
-  source: sensor.smart_plug_month_energy
+  source: sensor.umnaia_rozetka_today_s_consumption
   cycle: daily
 
 monthly_energy_yard_room:
-  source: sensor.smart_plug_month_energy
+  source: sensor.umnaia_rozetka_this_month_s_consumption
   cycle: monthly
 
 daily_energy_yard_room_tariff:
-  source: sensor.smart_plug_month_energy
+  source: sensor.umnaia_rozetka_this_month_s_consumption
   cycle: daily
   tariffs:
     - day

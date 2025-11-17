@@ -1,5 +1,5 @@
 sensor:
-  - object_id: AIR_co2
+  - default_entity_id: AIR_co2
     name: "Датчик CO2"
     state_topic: "qingping/582D347012AB/up"
     device_class: carbon_dioxide
@@ -13,7 +13,7 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-  - object_id: AIR_temperature
+  - default_entity_id: AIR_temperature
     name: "Датчик температуры"
     state_topic: "qingping/582D347012AB/up"
     device_class: temperature
@@ -27,7 +27,7 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-  - object_id: AIR_humidity
+  - default_entity_id: AIR_humidity
     name: "Датчик влажности"
     state_topic: "qingping/582D347012AB/up"
     device_class: humidity
@@ -41,7 +41,7 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-  - object_id: AIR_tvoc
+  - default_entity_id: AIR_tvoc
     name: "Датчик tvoc"
     state_topic: "qingping/582D347012AB/up"
     device_class: volatile_organic_compounds
@@ -55,7 +55,7 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-  - object_id: AIR_pm10
+  - default_entity_id: AIR_pm10
     name: "Датчик pm10"
     state_topic: "qingping/582D347012AB/up"
     device_class: pm10
@@ -69,7 +69,7 @@ sensor:
       name: "Air monitor"
       model: "CGS1"
       manufacturer: "qingping"
-  - object_id: AIR_pm25
+  - default_entity_id: AIR_pm25
     name: "Датчик pm25"
     state_topic: "qingping/582D347012AB/up"
     device_class: pm25
