@@ -5,9 +5,7 @@ livingroom:
     humidity: sensor.air_humidity
     co2: sensor.air_co2
     tvoc: sensor.air_tvoc
-    pm:
-      - sensor.air_pm25
-      - sensor.air_pm10
+    pm: sensor.air_pm25
   sensors:
     - iaq_level
     - iaq_index

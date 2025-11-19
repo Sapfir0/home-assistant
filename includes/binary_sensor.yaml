@@ -2,9 +2,21 @@
   sensors:
     air_temperature_trend:
       entity_id: sensor.air_temperature
+      sample_duration: 7200
+      max_samples: 120
+      min_samples: 20
+      min_gradient: -0.0008
 
     air_humidity_trend:
       entity_id: sensor.air_humidity
-
+      sample_duration: 7200
+      max_samples: 120
+      min_samples: 20
+      min_gradient: -0.0008
+      
     air_co2_trend:
       entity_id: sensor.air_co2
+      sample_duration: 7200
+      max_samples: 120
+      min_samples: 20
+      min_gradient: -0.0008

@@ -5,7 +5,7 @@ red_light:
     - service: light.turn_on
       data:
         entity_id:
-          - light.bedroom_lamp
+          - light.bedroom_light
         brightness: 98
         color_name: red
 blue_light:
@@ -15,7 +15,7 @@ blue_light:
     - service: light.turn_on
       data:
         entity_id:
-          - light.bedroom_lamp
+          - light.bedroom_light
         brightness: 98
         rgb_color: [76, 101, 224]
 white_lights:
@@ -25,7 +25,7 @@ white_lights:
     - service: light.turn_on
       data:
         entity_id:
-          - light.bedroom_lamp
+          - light.bedroom_light
         color_temp: 366
 
 warm_lights:
@@ -35,7 +35,7 @@ warm_lights:
     - service: light.turn_on
       data:
         entity_id:
-          - light.bedroom_lamp
+          - light.bedroom_light
         hs_color:
           - 26.725
           - 89.804

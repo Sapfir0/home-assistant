@@ -1,8 +1,5 @@
 - platform: template
   sensors:
-    sun_elevation:
-      value_template: >
-        {{ state_attr('sun.sun', 'elevation') | float }}
     outside_humidity:
       unit_of_measurement: "%"
       value_template: >

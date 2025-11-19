@@ -13,3 +13,6 @@ exclude:
     - sensor.time
     - sensor.openweathermap_forecast_time
     - switch.rpi_cooling_fan
+    - binary_sensor.air_temperature_trend
+    - binary_sensor.air_humidity_trend
+    - binary_sensor.air_co2_trend

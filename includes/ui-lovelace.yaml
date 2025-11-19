@@ -327,7 +327,7 @@ views:
             type: button
             tap_action:
               action: toggle
-            entity: light.bedroom_lamp
+            entity: light.bedroom_light
             icon: mdi:lamp
             name: Ночник
             show_state: false
@@ -355,7 +355,7 @@ views:
             intensity_icon: transit-connection-horizontal
             smooth_color_wheel: true
             type: custom:light-entity-card
-            entity: light.bedroom_lamp
+            entity: light.bedroom_light
             effects_list: false
   - title: Network
     path: router

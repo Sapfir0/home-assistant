@@ -1,0 +1,18 @@
+- alias: "Humidifier: Turn on"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.air_humidity
+      below: 40
+  action:
+    - service: humidifier.turn_on
+      entity_id: humidifier.humidifier
+
+- alias: "Humidifier: Turn off"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.air_humidity
+      above: 70
+  action:
+    - service: humidifier.turn_off
+      entity_id: humidifier.humidifier
+

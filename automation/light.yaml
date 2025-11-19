@@ -2,9 +2,9 @@
 - alias: "Light: Auto turn off after power reboot"
   trigger:
     - platform: state
-      entity_id: light.bedroom_lamp
+      entity_id: light.bedroom_light
       from: "unavailable"
       to: "on"
   action:
     - service: light.turn_off
-      entity_id: light.bedroom_lamp
+      entity_id: light.bedroom_light
